@@ -27,6 +27,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "defaultMapCenter": {
+        "lat": 49.5897423,
+        "lng": 34.5507948
+      }
     }
   }
 }
