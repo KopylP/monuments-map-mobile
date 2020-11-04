@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Animated,
 } from "react-native";
-import { DefaultTheme } from "../../../theme/default-theme";
+import { DefaultTheme } from "../../../../theme/default-theme";
 
 export default function SelectedTabs({
   firstTabTitle,

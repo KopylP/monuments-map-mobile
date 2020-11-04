@@ -1,21 +1,29 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import AppMap from "../../components/common/app-map/app-map";
-import SelectedTabs from "../../components/common/selected-tabs/selected-tabs";
-import { DefaultTheme } from "../../theme/default-theme";
+import SelectedTabs from "../../components/template/controls/selected-tabs/selected-tabs";
+import MonumentsBottomSheet from "./components/monuments-list-view/monuments-bottom-sheet/monuments-bottom-sheet";
+import MonumentsListView from "./components/monuments-list-view/monuments-list-view";
 
 export default function MonumentsMapScreen() {
   const [tab, setTab] = useState(0);
+  const ref = React.useRef();
+
+  useEffect(() => {
+    ref.current.open();
+  }, []);
+
+  useEffect(() => {
+    if (tab == 1) {
+        ref.current.close();
+    }
+  }, [tab]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
       <AppMap></AppMap>
-      {tab == 1 && (
-        <View style={{...StyleSheet.absoluteFill, backgroundColor: "white"}}>
-          <View style={{ width: "100%", height: 100, backgroundColor: DefaultTheme.pallete.colors.primary.main }}/>
-          <Text>This is will be list</Text>
-        </View>
-      )}
+      <MonumentsBottomSheet ref={ref}/>
+      <MonumentsListView show={tab == 1}/>
       <SelectedTabs
         firstTabTitle="Map"
         secondTabTitle="List"
