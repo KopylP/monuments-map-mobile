@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Animated } from "react-native";
-import { DefaultTheme } from "../../../../theme/default-theme";
+import { DefaultTheme } from "../../../../../theme/default-theme";
 
 export default function AnimatedHeader({ show }) {
   const heightAnim = useRef(new Animated.Value(0)).current;

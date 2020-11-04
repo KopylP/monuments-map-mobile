@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import BottomSheet from "reanimated-bottom-sheet";
 import MonumentsCarousel from "../monuments-carousel/monuments-carousel";
+import AppBottomSheet from "../../../../components/template/dialogs/bottom-sheet/app-bottom-sheet";
 
 export default class MonumentsBottomSheet extends Component {
   renderContent = () => (
@@ -10,22 +10,20 @@ export default class MonumentsBottomSheet extends Component {
   sheetRef = React.createRef(null);
 
   open() {
-      this.sheetRef.current.snapTo(0);
+      this.sheetRef.current.open();
   }
 
   close() {
-      this.sheetRef.current.snapTo(1);
+      this.sheetRef.current.close();
   }
 
   render() {
     return (
-      <BottomSheet
+      <AppBottomSheet
         ref={this.sheetRef}
-        snapPoints={[300, 0]}
-        borderRadius={10}
-        callbackThreshold={0.3}
-        renderContent={this.renderContent}
-      />
+      >
+        <MonumentsCarousel />
+      </AppBottomSheet>
     );
   }
 }

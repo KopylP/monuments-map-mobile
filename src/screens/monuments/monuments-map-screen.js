@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import AppMap from "../../components/common/app-map/app-map";
 import SelectedTabs from "../../components/template/controls/selected-tabs/selected-tabs";
-import MonumentsBottomSheet from "./components/monuments-list-view/monuments-bottom-sheet/monuments-bottom-sheet";
-import MonumentsListView from "./components/monuments-list-view/monuments-list-view";
+import MonumentsBottomSheet from "./components/monuments-bottom-sheet/monuments-bottom-sheet";
+import MonumentsListView from "./components/views/monuments-list-view/monuments-list-view";
 
 export default function MonumentsMapScreen() {
   const [tab, setTab] = useState(0);
