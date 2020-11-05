@@ -4,4 +4,6 @@ export const defaultMapCenter = {
   zoom: 15,
 };
 
-export const host = "http://monuments.pl.ua/api/"
+export const yearsRange = [1700, new Date().getFullYear()];
+
+export const host = "http://monuments.pl.ua/";

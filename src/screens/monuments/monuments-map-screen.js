@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import AppMap from "../../components/common/app-map/app-map";
 import SelectedTabs from "../../components/template/controls/selected-tabs/selected-tabs";
-import MonumentsBottomSheet from "./components/monuments-bottom-sheet/monuments-bottom-sheet";
 import MonumentsListView from "./components/views/monuments-list-view/monuments-list-view";
+import MonumentsMap from "./components/views/monument-map-view/monuments-map/monuments-map";
+import withMonumentService from "../../components/hoc-helpers/with-monument-service";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchMonuments } from "../../redux/actions/monuments-actions";
+import MonumentsBottomSheet from "./components/monuments-bottom-sheet/monuments-bottom-sheet";
 
-export default function MonumentsMapScreen() {
+function MonumentsMapScreen({ fetchMonuments }) {
   const [tab, setTab] = useState(0);
-  const ref = React.useRef();
 
   useEffect(() => {
-    ref.current.open();
+    fetchMonuments();
   }, []);
-
-  useEffect(() => {
-    if (tab == 1) {
-        ref.current.close();
-    }
-  }, [tab]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <AppMap></AppMap>
-      <MonumentsBottomSheet ref={ref}/>
-      <MonumentsListView show={tab == 1}/>
+      <MonumentsMap />
+      <MonumentsBottomSheet />
+      <MonumentsListView show={tab == 1} />
       <SelectedTabs
         firstTabTitle="Map"
         secondTabTitle="List"
         style={{
-          position: "fixed",
+          position: "absolute",
           top: 50,
           alignSelf: "center",
         }}
@@ -37,3 +34,9 @@ export default function MonumentsMapScreen() {
     </View>
   );
 }
+
+const bindDispatchToProps = (dispatch, { monumentService }) => {
+  return bindActionCreators({ fetchMonuments: fetchMonuments(monumentService) }, dispatch);
+}
+
+export default withMonumentService()(connect(null, bindDispatchToProps)(MonumentsMapScreen));

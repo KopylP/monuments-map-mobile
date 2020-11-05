@@ -5,14 +5,14 @@ import { host } from "./src/config";
 import AppContext from "./src/context/app-context";
 import store from "./src/redux/store";
 import MonumentsMapScreen from "./src/screens/monuments/monuments-map-screen";
-import MonumentsService from "./src/services/monuments-service";
+import MonumentService from "./src/services/monument-service";
 
 export default function App() {
 
-  const monumentsService = new MonumentsService(host);
+  const monumentService = new MonumentService(host);
 
   return (
-    <AppContext.Provider value={{monumentsService}}>
+    <AppContext.Provider value={{monumentService}}>
     <Provider store={store}>
       <View style={styles.container}>
         <MonumentsMapScreen />

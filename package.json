@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^1.4.1",
+    "@react-native-community/viewpager": "^4.2.0",
     "axios": "^0.21.0",
     "expo": "~39.0.2",
     "expo-constants": "~9.2.0",
@@ -15,14 +17,19 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
+    "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-gesture-handler": "~1.7.0",
     "react-native-maps": "0.27.1",
+    "react-native-reanimated": "~1.13.0",
+    "react-native-scroll-bottom-sheet": "^0.7.0",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-spinkit": "^1.5.1",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.2",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "redux": "^4.0.5",
-    "react-native-gesture-handler": "~1.7.0",
-    "react-native-reanimated": "~1.13.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

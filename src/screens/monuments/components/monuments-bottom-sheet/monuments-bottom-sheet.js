@@ -1,29 +1,35 @@
-import React, { Component } from "react";
-import MonumentsCarousel from "../monuments-carousel/monuments-carousel";
-import AppBottomSheet from "../../../../components/template/dialogs/bottom-sheet/app-bottom-sheet";
+import React, { useEffect, useRef } from "react";
+import { View } from "react-native";
+import { connect } from "react-redux";
+import TempBottomSheet from "../../../../components/template/temp-bottom-sheet/temp-bottom-sheet";
+import MapMonumentCard from "../views/monument-map-view/map-monument-card/map-monument-card";
 
-export default class MonumentsBottomSheet extends Component {
-  renderContent = () => (
-    <MonumentsCarousel />
-  );
+function MonumentsBottomSheet({ selectedMonument }) {
+  const bottomRef = useRef();
 
-  sheetRef = React.createRef(null);
+  useEffect(() => {
+    if (selectedMonument) {
+      setTimeout(() => {
+        bottomRef.current.open();
+      }, 100); 
+    }
+  }, [selectedMonument]);
 
-  open() {
-      this.sheetRef.current.open();
-  }
-
-  close() {
-      this.sheetRef.current.close();
-  }
-
-  render() {
-    return (
-      <AppBottomSheet
-        ref={this.sheetRef}
+  return (
+    <TempBottomSheet ref={bottomRef}>
+      <View
+        style={{
+          flex: 1,
+          paddingHorizontal: 20,
+          paddingBottom: 20,
+        }}
       >
-        <MonumentsCarousel />
-      </AppBottomSheet>
-    );
-  }
+        <MapMonumentCard />
+      </View>
+    </TempBottomSheet>
+  );
 }
+
+const bindStateToProps = ({ selectedMonument }) => ({ selectedMonument });
+
+export default connect(bindStateToProps)(MonumentsBottomSheet);

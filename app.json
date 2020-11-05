@@ -20,19 +20,19 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.kopyl.monumentsmap",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDTjU-QE2HsjmJsveLmcmtVfI2CpUppW6Q"
+        }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "defaultMapCenter": {
-        "lat": 49.5897423,
-        "lng": 34.5507948
-      }
     }
   }
 }
