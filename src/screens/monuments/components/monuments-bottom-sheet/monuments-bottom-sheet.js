@@ -2,21 +2,28 @@ import React, { useEffect, useRef } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import TempBottomSheet from "../../../../components/template/temp-bottom-sheet/temp-bottom-sheet";
-import MapMonumentCard from "../views/monument-map-view/map-monument-card/map-monument-card";
+import { closeSelectedMonumentDialog } from "../../../../redux/actions/selected-monument-actions";
+import MapMonumentCard from "./map-monument-card/map-monument-card";
 
-function MonumentsBottomSheet({ selectedMonument }) {
+function MonumentsBottomSheet({ openDialog, closeSelectedMonumentDialog }) {
   const bottomRef = useRef();
 
   useEffect(() => {
-    if (selectedMonument) {
+    if (openDialog) {
       setTimeout(() => {
         bottomRef.current.open();
       }, 100); 
     }
-  }, [selectedMonument]);
+  }, [openDialog]);
+
+  const handleChange = (index) => {
+    if (index === 0) {
+      closeSelectedMonumentDialog();
+    }
+  }
 
   return (
-    <TempBottomSheet ref={bottomRef}>
+    <TempBottomSheet ref={bottomRef} onChange={handleChange}>
       <View
         style={{
           flex: 1,
@@ -30,6 +37,7 @@ function MonumentsBottomSheet({ selectedMonument }) {
   );
 }
 
-const bindStateToProps = ({ selectedMonument }) => ({ selectedMonument });
+const bindStateToProps = ({ selectedMonument: { openDialog } }) => ({ openDialog });
+const bindDispatchToProps = { closeSelectedMonumentDialog };
 
-export default connect(bindStateToProps)(MonumentsBottomSheet);
+export default connect(bindStateToProps, bindDispatchToProps)(MonumentsBottomSheet);

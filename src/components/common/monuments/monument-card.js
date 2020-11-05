@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import ContentSpinner from "../content-spinner/content-spinner";
@@ -28,21 +28,22 @@ export default function MonumentCard({ monument }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        key={key}
-        source={source}
-        onLoadEnd={handleLoadingEnd}
-      />
-      <View style={styles.dataContainer}></View>
-      {loading && <ContentSpinner borderRadius={10} />}
+      <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
+        <Image
+          style={styles.image}
+          key={key}
+          source={source}
+          onLoadEnd={handleLoadingEnd}
+        />
+        <View style={styles.dataContainer}></View>
+        {loading && <ContentSpinner />}
+      </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 10,
+const shadow = Platform.select({
+  ios: {
     shadowColor: DefaultTheme.pallete.colors.primary.dark,
     shadowOffset: {
       width: 0,
@@ -50,18 +51,22 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
+  },
+  android: {
     elevation: 6,
-    elevation: 5,
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    borderRadius: 10,
     flex: 1,
+    ...shadow,
   },
   image: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
     flex: 1,
   },
   dataContainer: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
     backgroundColor: "#fdfdfd",
     width: "100%",
     height: 100,

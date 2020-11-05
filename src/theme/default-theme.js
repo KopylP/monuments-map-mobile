@@ -3,6 +3,8 @@ export const DefaultTheme = {
     pallete: {
       colors: {
         primary: {
+          extraLight: "#79EEBB",
+          light: "#68ddAA",
           main: "#57CC99",
           dark: "#35aa77",
         },
@@ -20,7 +22,8 @@ export const DefaultTheme = {
           main: "#A39C9C",
         },
         screenBackground: {
-            main: "#FAFAFA"
+            main: "#FAFAFA",
+            dark: "#E9E9E9"
         }
       },
     },

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Animated } from "react-native";
+import SearchBarIOS from "../../../../../components/template/search-bar/search-bar-ios";
 import { DefaultTheme } from "../../../../../theme/default-theme";
 
 export default function AnimatedHeader({ show }) {
@@ -33,15 +34,20 @@ export default function AnimatedHeader({ show }) {
     <Animated.View
       style={{
         width: "100%",
-        height: 100,
-        transform: [{
-          translateY: heightAnim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [-100, 0],
-          }),
-        }],
+        height: 150,
+        justifyContent: "flex-end",
+        transform: [
+          {
+            translateY: heightAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [-150, 0],
+            }),
+          },
+        ],
         backgroundColor: DefaultTheme.pallete.colors.primary.main,
       }}
-    ></Animated.View>
+    >
+      <SearchBarIOS style={{margin: 10}} placeholder="Пошук..."/>
+    </Animated.View>
   );
 }

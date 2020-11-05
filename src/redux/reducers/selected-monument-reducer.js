@@ -1,11 +1,26 @@
-import { CHANGE_SELECTED_MONUMENT } from "../constants";
+import {
+  CHANGE_SELECTED_MONUMENT,
+  CLOSE_SELECTED_MONUMENT_DIALOG,
+} from "../constants";
 
-const initialState = null;
+const initialState = {
+  monument: null,
+  openDialog: false,
+};
 
 export default selectedMonumentReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_SELECTED_MONUMENT:
-      state = action.payload;
+      return {
+        monument: action.payload,
+        openDialog: true,
+      };
+    case CLOSE_SELECTED_MONUMENT_DIALOG: {
+      return {
+        ...state,
+        openDialog: false,
+      };
+    }
     default:
       return state;
   }

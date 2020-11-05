@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchMonuments } from "../../redux/actions/monuments-actions";
 import MonumentsBottomSheet from "./components/monuments-bottom-sheet/monuments-bottom-sheet";
+import FilterButton from "./components/fitler-button/filter-button";
 
 function MonumentsMapScreen({ fetchMonuments }) {
   const [tab, setTab] = useState(0);
@@ -21,6 +22,7 @@ function MonumentsMapScreen({ fetchMonuments }) {
       <MonumentsMap />
       <MonumentsBottomSheet />
       <MonumentsListView show={tab == 1} />
+      <FilterButton />
       <SelectedTabs
         firstTabTitle="Map"
         secondTabTitle="List"
@@ -36,7 +38,12 @@ function MonumentsMapScreen({ fetchMonuments }) {
 }
 
 const bindDispatchToProps = (dispatch, { monumentService }) => {
-  return bindActionCreators({ fetchMonuments: fetchMonuments(monumentService) }, dispatch);
-}
+  return bindActionCreators(
+    { fetchMonuments: fetchMonuments(monumentService) },
+    dispatch
+  );
+};
 
-export default withMonumentService()(connect(null, bindDispatchToProps)(MonumentsMapScreen));
+export default withMonumentService()(
+  connect(null, bindDispatchToProps)(MonumentsMapScreen)
+);
