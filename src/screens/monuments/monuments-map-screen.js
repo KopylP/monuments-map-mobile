@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Platform } from "react-native";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import { connect } from "react-redux";
 import MonumentDetailScreen from "../../components/common/screens/monument-detail-screen";
+import { transitionEnd, transitionStart } from "../../redux/actions/transition-actions";
 import MapListScreen from "./components/nested-screens/map-list-screen";
 
 const Stack = createSharedElementStackNavigator();
 
-const MonumentsMapScreen = () => {
+const MonumentsMapScreen = ({ transitionStart, transitionEnd  }) => {
+
   return (
     <Stack.Navigator
       mode="modal"
@@ -14,9 +17,22 @@ const MonumentsMapScreen = () => {
         cardShadowEnabled: false,
         useNativeDrawer: true,
         gestureEnabled: false,
+        transitionSpec: {
+          open: {
+            animation: "timing",
+            config: {
+              duration: 200,
+            }
+          },
+          close: {
+            animation: "timing",
+            config: {
+              duration: 200,
+            }
+          }
+        },
       }}
       headerMode="none"
-      
     >
       <Stack.Screen
         name="List"
@@ -26,14 +42,20 @@ const MonumentsMapScreen = () => {
       <Stack.Screen
         name="Detail"
         component={MonumentDetailScreen}
-        // listeners={{
-        //   transitionStart: () => console.log("start"),
-        //   transitionEnd: (e) => console.log(e)
-        // }}
+        listeners={{
+          transitionStart: (e) => {
+            if (e.data.closing) {
+              transitionStart();
+              setTimeout(() => {
+                transitionEnd();
+              }, 300);
+            }
+          },
+        }}
         sharedElementsConfig={(route, otherRoute, showing) => {
-          if (route.name === "Detail") {
+          const { shareId } = route.params;
+          if (route.name === "Detail" && (showing || shareId.includes("map"))) {
             if (Platform.OS === "ios" || showing) {
-            const { shareId } = route.params;
             return [
               {
                 id: `image-${shareId}`,
@@ -50,4 +72,6 @@ const MonumentsMapScreen = () => {
   );
 };
 
-export default MonumentsMapScreen;
+const bindDispatchToProps = { transitionStart, transitionEnd };
+
+export default connect(null, bindDispatchToProps)(MonumentsMapScreen);

@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import MonumentCard from "../../../../../components/common/monuments/monument-card";
 
-function MapMonumentCard({ selectedMonument }) {
+function MapMonumentCard({ selectedMonument, transition }) {
   const navigation = useNavigation();
   const shareId = `map-${selectedMonument ? selectedMonument.id : 0}`;
   return (
@@ -11,17 +11,23 @@ function MapMonumentCard({ selectedMonument }) {
       monument={selectedMonument}
       shareId={shareId}
       onPress={() => {
-        navigation.navigate("Detail", {
-          monument: selectedMonument,
-          shareId,
-        });
+        if (!transition) {
+          navigation.navigate("Detail", {
+            monument: selectedMonument,
+            shareId,
+          });
+        }
       }}
     />
   );
 }
 
-const bindStateToProps = ({ selectedMonument: { monument } }) => ({
+const bindStateToProps = ({
+  selectedMonument: { monument },
+  transition: { transition },
+}) => ({
   selectedMonument: monument,
+  transition,
 });
 
 export default connect(bindStateToProps)(MapMonumentCard);

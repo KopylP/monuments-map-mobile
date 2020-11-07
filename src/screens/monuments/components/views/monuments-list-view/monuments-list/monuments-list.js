@@ -2,12 +2,25 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import { connect } from "react-redux";
 import { changeSelectedMonument } from "../../../../../../redux/actions/selected-monument-actions";
-import { DefaultTheme } from "../../../../../../theme/default-theme";
 import MonumentListItem from "./monuments-list-item";
+import { useNavigation } from "@react-navigation/native";
 
-function MonumentsList({ monuments }) {
+function MonumentsList({ monuments, transition }) {
+  
+  const navigation = useNavigation();
+
+  const handlePress = (monument) => {
+    const shareId = `item-${monument.id}`;
+    if (!transition) {
+      navigation.navigate("Detail", {
+        monument,
+        shareId,
+      });
+    }
+  };
+
   const renderItem = ({ item }) => {
-    return <MonumentListItem monument={item} />;
+    return <MonumentListItem monument={item} onPress={handlePress} />;
   };
   return (
     <FlatList
@@ -25,7 +38,10 @@ function MonumentsList({ monuments }) {
   );
 }
 
-const bindStateToProps = ({ monuments: { monuments } }) => ({ monuments });
+const bindStateToProps = ({
+  monuments: { monuments },
+  transition: { transition },
+}) => ({ monuments, transition });
 const bindDispatchToProps = { changeSelectedMonument };
 
 export default connect(bindStateToProps, bindDispatchToProps)(MonumentsList);

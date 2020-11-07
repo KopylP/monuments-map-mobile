@@ -5,7 +5,6 @@ import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import TouchableScale from "../../template/buttons/touchable-scale";
 import ContentSpinner from "../content-spinner/content-spinner";
-import CachedImage from "react-native-expo-cached-image";
 
 export default function MonumentCard({
   monument,
@@ -39,12 +38,12 @@ export default function MonumentCard({
       tension={50}
       friction={7}
       useNativeDriver
-      onPress={onPress}
+      onPress={loading ? p => p : onPress}
       style={styles.container}
     >
       <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
         <SharedElement id={`image-${shareId}`} style={styles.image}>
-          <CachedImage
+          <Image
             style={styles.image}
             key={key}
             source={source}

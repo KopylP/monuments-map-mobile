@@ -21,11 +21,6 @@ export default function App() {
       <Provider store={store}>
         <View style={styles.container}>
           <NavigationContainer>
-            {/* <Stack.Navigator>
-              <Stack.Navigator>
-                <Stack.Screen name="Map" component={} />
-              </Stack.Navigator>
-            </Stack.Navigator> */}
             <MonumentsMapScreen />
           </NavigationContainer>
         </View>

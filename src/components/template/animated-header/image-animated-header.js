@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
-import { SafeAreaView, StyleSheet, Text, Animated, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, Animated, View, Image } from "react-native";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
-import CachedImage from "react-native-expo-cached-image";
-
 
 const HEADER_MIN_HEIGHT = 84;
 
@@ -73,7 +71,7 @@ export default function ImageAnimatedHeader({
           { height: maxHeight },
         ]}>
         <SharedElement id={shareId} style={{ flex: 1 }}>
-          <CachedImage
+          <Image
             style={[
               styles.headerImage,
             ]}
