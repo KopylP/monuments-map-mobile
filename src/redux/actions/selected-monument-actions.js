@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CHANGE_SELECTED_MONUMENT,
   CLOSE_SELECTED_MONUMENT_DIALOG,
