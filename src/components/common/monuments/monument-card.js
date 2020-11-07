@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Image, Platform } from "react-native";
+import { SharedElement } from "react-navigation-shared-element";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
+import TouchableScale from "../../template/buttons/touchable-scale";
 import ContentSpinner from "../content-spinner/content-spinner";
+import CachedImage from "react-native-expo-cached-image";
 
-export default function MonumentCard({ monument }) {
+export default function MonumentCard({
+  monument,
+  shareId,
+  onPress = (p) => p,
+}) {
   const [loading, setLoading] = useState(true);
 
   const [source, setSource] = useState(null);
@@ -15,7 +22,7 @@ export default function MonumentCard({ monument }) {
       setLoading(true);
       setKey(Math.random());
       setSource({
-        uri: getPhotoUrlById(monument.majorPhotoImageId),
+        uri: getPhotoUrlById(monument.majorPhotoImageId, 700),
       });
     }
   }, [monument]);
@@ -27,18 +34,27 @@ export default function MonumentCard({ monument }) {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableScale
+      activeScale={0.9}
+      tension={50}
+      friction={7}
+      useNativeDriver
+      onPress={onPress}
+      style={styles.container}
+    >
       <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
-        <Image
-          style={styles.image}
-          key={key}
-          source={source}
-          onLoadEnd={handleLoadingEnd}
-        />
+        <SharedElement id={`image-${shareId}`} style={styles.image}>
+          <CachedImage
+            style={styles.image}
+            key={key}
+            source={source}
+            onLoadEnd={handleLoadingEnd}
+          />
+        </SharedElement>
         <View style={styles.dataContainer}></View>
-        {loading && <ContentSpinner />}
       </View>
-    </View>
+      {loading && <ContentSpinner borderRadius={10}/>}
+    </TouchableScale>
   );
 }
 
@@ -52,9 +68,7 @@ const shadow = Platform.select({
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
   },
-  android: {
-    elevation: 6,
-  },
+  android: {},
 });
 
 const styles = StyleSheet.create({
@@ -65,10 +79,14 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    zIndex: 999,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    backgroundColor: "#fdfdfd",
   },
   dataContainer: {
     backgroundColor: "#fdfdfd",
     width: "100%",
-    height: 100,
+    height: 80,
   },
 });

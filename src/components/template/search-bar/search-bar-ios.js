@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { Icon, SearchBar } from "react-native-elements";
 import { DefaultTheme } from "../../../theme/default-theme";
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { Animated } from "react-native";
+import { Animated, Platform } from "react-native";
 import SearchBarIOS from "../../../../../components/template/search-bar/search-bar-ios";
+import SearchBarAndroid from "../../../../../components/template/search-bar/search-bar-android";
 import { DefaultTheme } from "../../../../../theme/default-theme";
 
 export default function AnimatedHeader({ show }) {
@@ -30,24 +31,28 @@ export default function AnimatedHeader({ show }) {
     }
   }, [show]);
 
+  const height = Platform.OS === "android" ? 170 : 150;
+
   return (
     <Animated.View
       style={{
         width: "100%",
-        height: 150,
+        height,
         justifyContent: "flex-end",
         transform: [
           {
             translateY: heightAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: [-150, 0],
+              outputRange: [-height, 0],
             }),
           },
         ],
         backgroundColor: DefaultTheme.pallete.colors.primary.main,
       }}
     >
-      <SearchBarIOS style={{margin: 10}} placeholder="Пошук..."/>
+      { Platform.OS === "ios" && <SearchBarIOS style={{margin: 10}} placeholder="Пошук..."/> }
+      { Platform.OS === "android" && <SearchBarAndroid style={{marginHorizontal: 20, marginBottom: 10,}} placeholder="Пошук..."/> }
+      
     </Animated.View>
   );
 }

@@ -2,8 +2,6 @@ import React from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
-import FadeShadowButton from "../../../../components/template/buttons/fade-shadow-button";
-import ShadowButton from "../../../../components/template/buttons/shadow-button";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
 function FilterButton() {

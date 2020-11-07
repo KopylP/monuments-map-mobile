@@ -1,49 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import SelectedTabs from "../../components/template/controls/selected-tabs/selected-tabs";
-import MonumentsListView from "./components/views/monuments-list-view/monuments-list-view";
-import MonumentsMap from "./components/views/monument-map-view/monuments-map/monuments-map";
-import withMonumentService from "../../components/hoc-helpers/with-monument-service";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { fetchMonuments } from "../../redux/actions/monuments-actions";
-import MonumentsBottomSheet from "./components/monuments-bottom-sheet/monuments-bottom-sheet";
-import FilterButton from "./components/fitler-button/filter-button";
+import React from "react";
+import { Platform } from "react-native";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import MonumentDetailScreen from "../../components/common/screens/monument-detail-screen";
+import MapListScreen from "./components/nested-screens/map-list-screen";
 
-function MonumentsMapScreen({ fetchMonuments }) {
-  const [tab, setTab] = useState(0);
+const Stack = createSharedElementStackNavigator();
 
-  useEffect(() => {
-    fetchMonuments();
-  }, []);
-
+const MonumentsMapScreen = () => {
   return (
-    <View style={StyleSheet.absoluteFill}>
-      <MonumentsMap />
-      <MonumentsBottomSheet />
-      <MonumentsListView show={tab == 1} />
-      <FilterButton />
-      <SelectedTabs
-        firstTabTitle="Map"
-        secondTabTitle="List"
-        style={{
-          position: "absolute",
-          top: 50,
-          alignSelf: "center",
-        }}
-        onChangeTab={setTab}
+    <Stack.Navigator
+      mode="modal"
+      screenOptions={{
+        cardShadowEnabled: false,
+        useNativeDrawer: true,
+        gestureEnabled: false,
+      }}
+      headerMode="none"
+      
+    >
+      <Stack.Screen
+        name="List"
+        options={{ title: "List" }}
+        component={MapListScreen}
       />
-    </View>
-  );
-}
-
-const bindDispatchToProps = (dispatch, { monumentService }) => {
-  return bindActionCreators(
-    { fetchMonuments: fetchMonuments(monumentService) },
-    dispatch
+      <Stack.Screen
+        name="Detail"
+        component={MonumentDetailScreen}
+        // listeners={{
+        //   transitionStart: () => console.log("start"),
+        //   transitionEnd: (e) => console.log(e)
+        // }}
+        sharedElementsConfig={(route, otherRoute, showing) => {
+          if (route.name === "Detail") {
+            if (Platform.OS === "ios" || showing) {
+            const { shareId } = route.params;
+            return [
+              {
+                id: `image-${shareId}`,
+                animation: "fade",
+                resize: "none",
+                align: "center-center",
+              },
+            ];
+          }
+          }
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 
-export default withMonumentService()(
-  connect(null, bindDispatchToProps)(MonumentsMapScreen)
-);
+export default MonumentsMapScreen;
