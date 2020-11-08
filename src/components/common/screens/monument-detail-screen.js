@@ -6,7 +6,7 @@ import { DefaultTheme } from "../../../theme/default-theme";
 import ImageAnimatedHeader from "../../template/animated-header/image-animated-header";
 
 const MonumentDetailScreen = ({ route }) => {
-  const { monument, shareId } = route.params;
+  const { monument, shareId, imageBase64 } = route.params;
   const navigation = useNavigation();
   const [headerBackground, setHeaderBackground] = useState();
 
@@ -28,8 +28,7 @@ const MonumentDetailScreen = ({ route }) => {
         }}
         headerBackground={headerBackground}
         source={{
-          uri: getPhotoUrlById(monument.majorPhotoImageId, 700),
-          cache: "reload"
+          uri: imageBase64,
         }}
       >
         <Text
