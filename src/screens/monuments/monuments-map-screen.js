@@ -1,18 +1,24 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Platform } from "react-native";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { connect } from "react-redux";
-import MonumentDetailScreen from "../../components/common/screens/monument-detail-screen";
-import { transitionEnd, transitionStart } from "../../redux/actions/transition-actions";
+import MonumentDetailScreen from "../../components/common/screens/monument-detail-screen/monument-detail-screen";
+import {
+  transitionEnd,
+  transitionStart,
+} from "../../redux/actions/transition-actions";
 import MapListScreen from "./components/nested-screens/map-list-screen";
+import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import timeout from "../../helpers/timeout-promise";
 
 const Stack = createSharedElementStackNavigator();
 
-const MonumentsMapScreen = ({ transitionStart, transitionEnd  }) => {
+const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
+  const makeCancelable = useCancelablePromise();
 
   return (
     <Stack.Navigator
-      mode="modal"
+      mode="card"
       screenOptions={{
         cardShadowEnabled: false,
         useNativeDrawer: true,
@@ -22,14 +28,14 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd  }) => {
             animation: "timing",
             config: {
               duration: 200,
-            }
+            },
           },
           close: {
             animation: "timing",
             config: {
               duration: 200,
-            }
-          }
+            },
+          },
         },
       }}
       headerMode="none"
@@ -46,25 +52,25 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd  }) => {
           transitionStart: (e) => {
             if (e.data.closing) {
               transitionStart();
-              setTimeout(() => {
+              makeCancelable(timeout(300)).then(() => {
                 transitionEnd();
-              }, 300);
+              });
             }
           },
         }}
         sharedElementsConfig={(route, otherRoute, showing) => {
           const { shareId } = route.params;
           if (route.name === "Detail" && (showing || shareId.includes("map"))) {
-            if (Platform.OS === "ios" || showing) {
-            return [
-              {
-                id: `image-${shareId}`,
-                animation: "fade",
-                resize: "none",
-                align: "center-center",
-              },
-            ];
-          }
+            if (Platform.OS === "ios") {
+              return [
+                {
+                  id: `image-${shareId}`,
+                  animation: "fade",
+                  resize: "none",
+                  align: "center-center",
+                },
+              ];
+            }
           }
         }}
       />

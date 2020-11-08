@@ -1,5 +1,13 @@
 import React, { useRef } from "react";
-import { SafeAreaView, StyleSheet, Text, Animated, View, Image } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  Animated,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
 
@@ -17,7 +25,6 @@ export default function ImageAnimatedHeader({
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const headerScrollDistance = maxHeight - HEADER_MIN_HEIGHT;
-  
 
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, headerScrollDistance],
@@ -62,24 +69,20 @@ export default function ImageAnimatedHeader({
           { backgroundColor: headerBackground },
         ]}
       >
-        <Animated.View style={[
-          styles.headerBackground,
-          {
-            opacity: imageOpacity,
-            transform: [{ translateY: imageTranslateY }],
-          },
-          { height: maxHeight },
-        ]}>
-        <SharedElement id={shareId} style={{ flex: 1 }}>
-          <Image
-            style={[
-              styles.headerImage,
-            ]}
-            source={source}
-          />
-        </SharedElement>
+        <Animated.View
+          style={[
+            styles.headerBackground,
+            {
+              opacity: imageOpacity,
+              transform: [{ translateY: imageTranslateY }],
+            },
+            { height: maxHeight },
+          ]}
+        >
+          <SharedElement id={shareId} style={{ flex: 1 }}>
+            <Image style={[styles.headerImage]} source={source} />
+          </SharedElement>
         </Animated.View>
-
       </Animated.View>
       <Animated.View
         style={[
@@ -89,16 +92,14 @@ export default function ImageAnimatedHeader({
           },
         ]}
       >
-        <Text style={styles.title} numberOfLines={1}>{title}</Text>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
       </Animated.View>
       <View style={styles.iconView}>
-        <Icon
-          type="ionicon"
-          name="md-arrow-back"
-          color="white"
-          size={30}
-          onPress={onBack}
-        />
+        <TouchableOpacity onPress={onBack} style={styles.iconTouchableOpacity}>
+          <Icon type="ionicon" name="md-arrow-back" color="white" size={30} />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -139,11 +140,16 @@ const styles = StyleSheet.create({
   title: {
     color: "white",
     fontSize: 16,
-    maxWidth: "72%"
+    maxWidth: "72%",
   },
   iconView: {
     position: "absolute",
-    top: 40,
-    left: 20,
+    top: 35,
+    left: 15,
+  },
+  iconTouchableOpacity: {
+    borderRadius: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
 });

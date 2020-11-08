@@ -4,15 +4,16 @@ import { connect } from "react-redux";
 import TempBottomSheet from "../../../../components/template/temp-bottom-sheet/temp-bottom-sheet";
 import { closeSelectedMonumentDialog } from "../../../../redux/actions/selected-monument-actions";
 import MapMonumentCard from "./map-monument-card/map-monument-card";
+import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import timeout from "../../../../helpers/timeout-promise";
 
 function MonumentsBottomSheet({ openDialog, closeSelectedMonumentDialog }) {
   const bottomRef = useRef();
+  const makeCancelable = useCancelablePromise();
 
   useEffect(() => {
     if (openDialog) {
-      setTimeout(() => {
-        bottomRef.current.open();
-      }, 100); 
+      makeCancelable(timeout(100)).then(() => bottomRef.current.open());
     }
   }, [openDialog]);
 
@@ -20,7 +21,7 @@ function MonumentsBottomSheet({ openDialog, closeSelectedMonumentDialog }) {
     if (index === 0) {
       closeSelectedMonumentDialog();
     }
-  }
+  };
 
   return (
     <TempBottomSheet ref={bottomRef} onChange={handleChange}>
@@ -37,7 +38,12 @@ function MonumentsBottomSheet({ openDialog, closeSelectedMonumentDialog }) {
   );
 }
 
-const bindStateToProps = ({ selectedMonument: { openDialog } }) => ({ openDialog });
+const bindStateToProps = ({ selectedMonument: { openDialog } }) => ({
+  openDialog,
+});
 const bindDispatchToProps = { closeSelectedMonumentDialog };
 
-export default connect(bindStateToProps, bindDispatchToProps)(MonumentsBottomSheet);
+export default connect(
+  bindStateToProps,
+  bindDispatchToProps
+)(MonumentsBottomSheet);
