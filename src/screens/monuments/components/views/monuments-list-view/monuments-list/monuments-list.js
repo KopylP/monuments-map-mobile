@@ -9,12 +9,13 @@ function MonumentsList({ monuments, transition }) {
   
   const navigation = useNavigation();
 
-  const handlePress = (monument) => {
+  const handlePress = (monument, imageBase64) => {
     const shareId = `item-${monument.id}`;
     if (!transition) {
       navigation.navigate("Detail", {
         monument,
         shareId,
+        imageBase64,
       });
     }
   };

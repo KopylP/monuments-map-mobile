@@ -29,6 +29,7 @@ const MonumentDetailScreen = ({ route }) => {
         headerBackground={headerBackground}
         source={{
           uri: getPhotoUrlById(monument.majorPhotoImageId, 700),
+          cache: "reload"
         }}
       >
         <Text

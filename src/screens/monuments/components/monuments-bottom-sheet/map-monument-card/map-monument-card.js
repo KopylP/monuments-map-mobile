@@ -10,10 +10,11 @@ function MapMonumentCard({ selectedMonument, transition }) {
     <MonumentCard
       monument={selectedMonument}
       shareId={shareId}
-      onPress={() => {
+      onPress={(monument, imageBase64) => {
         if (!transition) {
           navigation.navigate("Detail", {
-            monument: selectedMonument,
+            monument,
+            imageBase64,
             shareId,
           });
         }

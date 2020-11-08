@@ -14,7 +14,7 @@ export default function MonumentListItem({ monument, onPress = (p) => p }) {
       <MonumentCard
         monument={monument}
         shareId={shareId}
-        onPress={() => onPress(monument)}
+        onPress={onPress}
       />
     </View>
   );

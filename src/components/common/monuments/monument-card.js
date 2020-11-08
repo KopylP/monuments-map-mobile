@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Platform } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import TouchableScale from "../../template/buttons/touchable-scale";
 import ContentSpinner from "../content-spinner/content-spinner";
+import AppContext from "../../../context/app-context";
 
 export default function MonumentCard({
   monument,
@@ -12,33 +14,37 @@ export default function MonumentCard({
   onPress = (p) => p,
 }) {
   const [loading, setLoading] = useState(true);
-
-  const [source, setSource] = useState(null);
+  const {
+    monumentService: { getPhoto },
+  } = useContext(AppContext);
+  const [imageBase64, setImageBase64] = useState(null);
   const [key, setKey] = useState(Math.random());
 
   useEffect(() => {
     if (monument) {
       setLoading(true);
+      getPhoto(monument.majorPhotoImageId, 700)
+        .then(img => {
+          setImageBase64(img.image);
+          setTimeout(() => {
+            setLoading(false);
+          }, 100);
+        })
+        .catch(e => {
+          // TODO handle error
+          setLoading(false);
+        });
       setKey(Math.random());
-      setSource({
-        uri: getPhotoUrlById(monument.majorPhotoImageId, 700),
-      });
     }
   }, [monument]);
 
-  const handleLoadingEnd = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
-  };
-
   return (
     <TouchableScale
-      activeScale={0.9}
+      activeScale={1}
       tension={50}
       friction={7}
       useNativeDriver
-      onPress={loading ? p => p : onPress}
+      onPress={loading ? (p) => p : p => onPress(monument, imageBase64)}
       style={styles.container}
     >
       <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
@@ -46,13 +52,12 @@ export default function MonumentCard({
           <Image
             style={styles.image}
             key={key}
-            source={source}
-            onLoadEnd={handleLoadingEnd}
+            source={{uri: imageBase64}}
           />
         </SharedElement>
         <View style={styles.dataContainer}></View>
       </View>
-      {loading && <ContentSpinner borderRadius={10}/>}
+      {loading && <ContentSpinner borderRadius={10} />}
     </TouchableScale>
   );
 }

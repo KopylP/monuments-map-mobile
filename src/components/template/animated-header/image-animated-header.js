@@ -115,13 +115,16 @@ const styles = StyleSheet.create({
   headerBackground: {
     position: "absolute",
     top: 0,
-    left: -20,
-    right: -20,
+    left: 0,
+    right: 0,
+    overflow: "hidden",
     width: null,
+    alignSelf: "center",
   },
   headerImage: {
     flex: 1,
     resizeMode: "cover",
+    overflow: "hidden",
   },
   topBar: {
     marginTop: 30,

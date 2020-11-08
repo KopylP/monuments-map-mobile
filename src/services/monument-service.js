@@ -15,17 +15,23 @@ export default class MonumentService {
     });
   }
 
-  async _getRequest(
-    path,
-    params = {},
-    cancelCallback = (p) => p
-  ) {
+  async _getRequest(path, params = {}, cancelCallback = (p) => p) {
     let _params = {
       ...params,
     };
     _params["cultureCode"] = this._cultureCode;
     const response = await this._axios.get(path, {
       params: _params,
+      cancelToken: new CancelToken(function executor(c) {
+        cancelCallback(c);
+      }),
+    });
+    return response.data;
+  }
+
+  async _getRequestWithoutCulture(path, params = {}, cancelCallback = (p) => p) {
+    const response = await this._axios.get(path, {
+      params,
       cancelToken: new CancelToken(function executor(c) {
         cancelCallback(c);
       }),
@@ -87,5 +93,9 @@ export default class MonumentService {
 
   getMonumentPhotos = async (monumentId) => {
     return await this._getRequest(`monument/${monumentId}/monumentPhotos`);
+  };
+
+  getPhoto = async (id, size, base64 = true) => {
+    return await this._getRequestWithoutCulture(`photo/${id}/image/${size}?base64=${base64}`);
   };
 }
