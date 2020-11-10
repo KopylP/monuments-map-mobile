@@ -19,10 +19,13 @@ const MonumentDetailScreen = ({ route }) => {
     monumentService: { getMonumentById },
   } = useContext(AppContext);
 
-  const { data, error /* TODO handle error */, loading } = useData(getMonumentById, {
-    delay: 100,
-    params: [monument.id],
-  });
+  const { data, error /* TODO handle error */, loading } = useData(
+    getMonumentById,
+    {
+      delay: 100,
+      params: [monument.id],
+    }
+  );
 
   const handleSetBackground = () => {
     makeCancelable(timeout(200)).then(() => {
@@ -35,26 +38,24 @@ const MonumentDetailScreen = ({ route }) => {
   }, []);
 
   return (
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: "white" }]}>
-      <ImageAnimatedHeader
-        maxHeight={250}
-        shareId={`image-${shareId}`}
-        title={monument.name}
-        onBack={() => {
-          navigation.goBack();
-          setHeaderBackground(null);
-        }}
-        headerBackground={headerBackground}
-        source={{
-          uri: imageBase64,
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          {data && <MonumentDetails monument={data} />}
-          {loading && <Loader />}
-        </View>
-      </ImageAnimatedHeader>
-    </View>
+    <ImageAnimatedHeader
+      maxHeight={250}
+      shareId={`image-${shareId}`}
+      title={monument.name}
+      onBack={() => {
+        navigation.goBack();
+        setHeaderBackground(null);
+      }}
+      headerBackground={headerBackground}
+      source={{
+        uri: imageBase64,
+      }}
+    >
+      <View style={{ flex: 1 }}>
+        {data && <MonumentDetails monument={data} />}
+        {loading && <Loader />}
+      </View>
+    </ImageAnimatedHeader>
   );
 };
 

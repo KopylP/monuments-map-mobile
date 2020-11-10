@@ -1,18 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Chip({ title, color, style = {} }) {
+export default function Chip({ title, color, textColor = "white", style = {} }) {
   return (
     <View
       style={[
         styles.container,
         {
-          borderColor: color,
+          backgroundColor: color,
         },
         style,
       ]}
     >
-      <Text style={[{ color: color }, styles.text]}>{title}</Text>
+      <Text style={[{ color: textColor }, styles.text]}>{title}</Text>
     </View>
   );
 }
@@ -20,11 +20,9 @@ export default function Chip({ title, color, style = {} }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 25,
-    borderWidth: 2,
-    backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     paddingVertical: 5,
   },
   text: {

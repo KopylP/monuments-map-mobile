@@ -23,6 +23,7 @@ export default function ImageAnimatedHeader({
   onBack = (p) => p,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
+  const scrollRef = useRef();
 
   const headerScrollDistance = maxHeight - HEADER_MIN_HEIGHT;
 
@@ -58,6 +59,7 @@ export default function ImageAnimatedHeader({
   return (
     <SafeAreaView style={StyleSheet.absoluteFill}>
       <Animated.ScrollView
+        ref={scrollRef}
         contentContainerStyle={{ paddingTop: maxHeight - 24 }}
         scrollEventThrottle={16}
         onScroll={Animated.event(
