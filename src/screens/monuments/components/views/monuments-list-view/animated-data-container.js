@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Animated } from "react-native";
-import { DefaultTheme } from "../../../../../theme/default-theme";
 
 export default function AnimatedDataContainer({ show, children }) {
   const heightAnim = useRef(new Animated.Value(0)).current;
@@ -35,7 +34,7 @@ export default function AnimatedDataContainer({ show, children }) {
         flex: 1,
         zIndex: 200,
         opacity: heightAnim,
-        backgroundColor: DefaultTheme.pallete.colors.screenBackground.main
+        backgroundColor: "#ebfff9",
       }}
     >
       {children}

@@ -26,6 +26,12 @@ export default function ImageAnimatedHeader({
 
   const headerScrollDistance = maxHeight - HEADER_MIN_HEIGHT;
 
+  const headerScale = scrollY.interpolate({
+    inputRange: [-headerScrollDistance * 3, 0],
+    outputRange: [2, 1],
+    extrapolate: "clamp",
+  });
+
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, headerScrollDistance],
     outputRange: [0, -headerScrollDistance],
@@ -65,7 +71,12 @@ export default function ImageAnimatedHeader({
         style={[
           styles.header,
           { height: maxHeight },
-          { transform: [{ translateY: headerTranslateY }] },
+          {
+            transform: [
+              { translateY: headerTranslateY },
+              { scale: headerScale },
+            ],
+          },
           { backgroundColor: headerBackground },
         ]}
       >

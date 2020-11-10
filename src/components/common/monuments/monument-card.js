@@ -41,7 +41,7 @@ export default function MonumentCard({
 
   return (
     <TouchableScale
-      activeScale={0.9}
+      activeScale={0.95}
       tension={50}
       friction={7}
       useNativeDriver

@@ -3,10 +3,12 @@ export const DefaultTheme = {
     pallete: {
       colors: {
         primary: {
+          background: "#cffceb",
           extraLight: "#79EEBB",
           light: "#68ddAA",
           main: "#57CC99",
           dark: "#35aa77",
+          extraDark: "#249966",
         },
         secondary: {
           main: "#624CAB",
