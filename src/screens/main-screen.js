@@ -11,11 +11,16 @@ export default function MainScreen() {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Map"
+        
         tabBarOptions={{
           activeTintColor: DefaultTheme.pallete.colors.primary.main,
           tabStyle: {
             paddingVertical: 5,
             backgroundColor: "white",
+            zIndex: 0,
+          },
+          style: {
+              zIndex: 0
           },
         }}
       >

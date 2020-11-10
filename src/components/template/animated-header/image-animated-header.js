@@ -7,6 +7,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
@@ -76,7 +77,7 @@ export default function ImageAnimatedHeader({
           {
             transform: [
               { translateY: headerTranslateY },
-              { scale: headerScale },
+              { scale: Platform.OS === "ios" ? headerScale : 1 },
             ],
           },
           { backgroundColor: headerBackground },

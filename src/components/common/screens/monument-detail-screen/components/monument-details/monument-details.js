@@ -22,7 +22,7 @@ export default function MonumentDetails({ monument }) {
       <Title title={monument.name} />
       <MonumentAddress {...monument} style={styles.address} />
       <DetailYear {...monument} style={styles.year}/>
-      <Text style={styles.status}>{monument.status.name} ({monument.protectionNumber})</Text>
+      <Text style={styles.status}>{monument && monument.status.name} ({monument && monument.protectionNumber})</Text>
       <View style={styles.buttonsContainer}>
         <RectangularButton
           iconName="ios-images"
