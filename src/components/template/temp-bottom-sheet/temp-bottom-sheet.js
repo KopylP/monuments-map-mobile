@@ -9,7 +9,7 @@ export default class TempBottomSheet extends Component {
 
   renderContent = () => {
     const screenHeight = Math.round(Dimensions.get("window").height);
-    const { height = screenHeight / 2 - 20 } = this.props;
+    const { height = screenHeight / 2 - 45 } = this.props;
 
     return (
       <View
@@ -50,7 +50,7 @@ export default class TempBottomSheet extends Component {
         ref={this.sheetRef}
         initialSnapIndex={0}
         handleComponent={renderHeader}
-        snapPoints={[0, height / 2 - 20]}
+        snapPoints={[0, height / 2 - 45]}
         animationDuration={open ? 200 : 300}
         onChange={this._handleChange}
       >

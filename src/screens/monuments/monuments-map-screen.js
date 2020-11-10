@@ -12,6 +12,7 @@ import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../helpers/timeout-promise";
 import MonumentGalleryScreen from "../../components/common/screens/monument-gallary-screen/monument-gallery-screen";
 import { DefaultTheme } from "../../theme/default-theme";
+import { Icon } from "react-native-elements";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -99,3 +100,9 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
 const bindDispatchToProps = { transitionStart, transitionEnd };
 
 export default connect(null, bindDispatchToProps)(MonumentsMapScreen);
+
+export const mapTabOptions = {
+  tabBarIcon: ({ color, size }) => (
+    <Icon name="map" type="font-awesome" size={size} color={color} />
+  ),
+};

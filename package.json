@@ -10,6 +10,7 @@
   "dependencies": {
     "@gorhom/bottom-sheet": "^1.4.1",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.11.0",
     "@react-navigation/native": "^5.8.8",
     "@react-navigation/native-stack": "^5.0.5",
     "@react-navigation/stack": "^5.12.3",
