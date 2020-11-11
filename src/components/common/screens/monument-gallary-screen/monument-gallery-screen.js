@@ -1,32 +1,31 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import ZoomImage from "../../../template/images/zoom-image/zoom-image";
-function MonumentGalleryScreen() {
-  const navigation = useNavigation();
+import React, { memo, useContext, useEffect } from "react";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
+import AppContext from "../../../../context/app-context";
+import { DefaultTheme } from "../../../../theme/default-theme";
+import useData from "../../../hooks/use-data";
+import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
+import Gallery from "./gallery/gallary";
+import Header from "./header/header";
+function MonumentGalleryScreen({ route, navigation }) {
+  const { monumentId, title } = route.params;
+  const {
+    monumentService: { getMonumentPhotos },
+  } = useContext(AppContext);
+  const { data, loading, error } = useData(getMonumentPhotos, {
+    params: [monumentId],
+    delay: 300,
+  }); // TODO handle error
 
   useEffect(() => {
     navigation.dangerouslyGetParent().setOptions({ tabBarVisible: false });
-    navigation.setOptions({ tabBarVisible: false });
   }, []);
   return (
-    <View style={[StyleSheet.absoluteFill]}>
-      <FlatList
-        style={StyleSheet.absoluteFill}
-        horizontal
-        pagingEnabled
-        renderItem={({ item }) => {
-          return <ZoomImage source={item} />;
-        }}
-      />
-      <ZoomImage
-        source={{ uri: "https://picsum.photos/600/500" }}
-        width={300}
-        height={500}
-      />
+    <View style={StyleSheet.absoluteFill}>
+      {loading && <AbsoluteIndicator backgroundColor="black" />}
+      {data && <Gallery monumentPhotos={data} title={title}/>}
     </View>
   );
 }
 
-export default MonumentGalleryScreen;
+export default memo(MonumentGalleryScreen);

@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { DefaultTheme } from "../../../../../../theme/default-theme";
 import RectangularButton from "../../../../../template/buttons/rectangular-button";
 import Title from "../../../../../template/typography/title";
@@ -8,6 +8,9 @@ import DetailYear from "../../../../dates/year-detail";
 import ConditionChip from "./condition-chip";
 import MonumentAddress from "./monument-address";
 import OpenInMapButton from "./open-in-map-button";
+
+const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 export default function MonumentDetails({ monument }) {
   const { navigate } = useNavigation();
@@ -21,8 +24,11 @@ export default function MonumentDetails({ monument }) {
     >
       <Title title={monument.name} />
       <MonumentAddress {...monument} style={styles.address} />
-      <DetailYear {...monument} style={styles.year}/>
-      <Text style={styles.status}>{monument && monument.status.name} ({monument && monument.protectionNumber})</Text>
+      <DetailYear {...monument} style={styles.year} />
+      <Text style={styles.status}>
+        {monument && monument.status.name} (
+        {monument && monument.protectionNumber})
+      </Text>
       <View style={styles.buttonsContainer}>
         <RectangularButton
           iconName="ios-images"
@@ -30,7 +36,12 @@ export default function MonumentDetails({ monument }) {
           color={DefaultTheme.pallete.colors.primary.main}
           textColor="white"
           title="Галерея"
-          onPress={() => navigate("Gallery", { monumentId: monument.id })}
+          onPress={() =>
+            navigate("Gallery", {
+              title: monument.name,
+              monumentId: monument.id,
+            })
+          }
         />
         <OpenInMapButton style={styles.rightButton} {...monument} />
         <RectangularButton

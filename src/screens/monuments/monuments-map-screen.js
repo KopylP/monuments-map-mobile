@@ -27,6 +27,7 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         cardShadowEnabled: false,
         useNativeDrawer: true,
         headerTintColor: "white",
+        gestureEnabled: false,
         transitionSpec: {
           open: {
             animation: "timing",
@@ -54,7 +55,7 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
       <Stack.Screen 
         name="Gallery"
         options={{
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: DefaultTheme.pallete.colors.primary.main
           },

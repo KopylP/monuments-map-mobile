@@ -7,8 +7,7 @@ export default function useData(
   options = {
     delay: 0,
     params: [],
-  },
-  recall = {}
+  }
 ) {
   const makeCancelable = useCancelablePromise();
   const [data, setData] = useState(null);
@@ -31,7 +30,7 @@ export default function useData(
         setError(error);
         setLoading(false);
       });
-  }, [recall]);
+  }, []);
 
   return {
     data,
