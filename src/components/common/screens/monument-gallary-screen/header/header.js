@@ -5,7 +5,6 @@ import { Icon } from "react-native-elements";
 import DetailYear from "../../../dates/year-detail";
 
 export default function Header({ title, year, period, onClose }) {
-  console.log("year", year);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onClose} style={styles.iconContainer}>
