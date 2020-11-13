@@ -6,9 +6,10 @@ import {
   Animated,
   View,
   Image,
-  TouchableOpacity,
   Platform,
+  TouchableWithoutFeedback
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
 
@@ -22,6 +23,8 @@ export default function ImageAnimatedHeader({
   children,
   headerBackground,
   onBack = (p) => p,
+  onImageLoad = (p) => p,
+  onPress = null,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
@@ -94,7 +97,17 @@ export default function ImageAnimatedHeader({
           ]}
         >
           <SharedElement id={shareId} style={{ flex: 1 }}>
-            <Image style={[styles.headerImage]} source={source} />
+            <TouchableWithoutFeedback
+              disabled={!onPress}
+              onPress={onPress}
+              style={{ width: "100%", height: maxHeight }}
+            >
+              <Image
+                style={[styles.headerImage]}
+                source={source}
+                onLoadEnd={onImageLoad}
+              />
+            </TouchableWithoutFeedback>
           </SharedElement>
         </Animated.View>
       </Animated.View>

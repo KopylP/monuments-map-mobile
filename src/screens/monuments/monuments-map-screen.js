@@ -13,9 +13,10 @@ import timeout from "../../helpers/timeout-promise";
 import MonumentGalleryScreen from "../../components/common/screens/monument-gallary-screen/monument-gallery-screen";
 import { DefaultTheme } from "../../theme/default-theme";
 import { Icon } from "react-native-elements";
+import PhotoDetailScreen from "../../components/common/screens/photo-detail-screen/photo-detail-screen";
+import PhotoViewScreen from "../../components/common/screens/photo-view-screen/photo-view-screen";
 
 const Stack = createSharedElementStackNavigator();
-
 
 const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
   const makeCancelable = useCancelablePromise();
@@ -24,6 +25,7 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
     <Stack.Navigator
       mode="modal"
       screenOptions={{
+        headerBackTitle: " ",
         cardShadowEnabled: false,
         useNativeDrawer: true,
         headerTintColor: "white",
@@ -32,7 +34,7 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
           open: {
             animation: "timing",
             config: {
-            duration: 150,
+              duration: 150,
             },
           },
           close: {
@@ -49,18 +51,34 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         options={{ title: "List" }}
         component={MapListScreen}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="Gallery"
+        options={({ route }) => ({
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: DefaultTheme.pallete.colors.primary.main,
+          },
+          title: route.params.title,
+        })}
+        component={MonumentGalleryScreen}
+      />
+      <Stack.Screen
+        name="PhotoDetail"
         options={{
           headerShown: false,
-          headerStyle: {
-            backgroundColor: DefaultTheme.pallete.colors.primary.main
-          },
         }}
-        component={MonumentGalleryScreen}/>
+        component={PhotoDetailScreen}
+      />
+      <Stack.Screen
+        name="PhotoView"
+        options={{
+          headerShown: false,
+        }}
+        component={PhotoViewScreen}
+      />
       <Stack.Screen
         name="Detail"
         options={{
@@ -79,7 +97,8 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         }}
         sharedElementsConfig={(route, otherRoute, showing) => {
           const { shareId } = route.params;
-          if (route.name === "Detail" && otherRoute.name === "Gallery") return [{}];
+          if (route.name === "Detail" && otherRoute.name === "Gallery")
+            return [{}];
           if (route.name === "Detail" && (showing || shareId.includes("map"))) {
             if (Platform.OS === "ios") {
               return [

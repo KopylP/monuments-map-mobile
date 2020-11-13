@@ -7,7 +7,7 @@ export default function ConditionChip({ condition, destroyYear, style = {} }) {
 
   switch (condition.abbreviation) {
     case "good-condition":
-      color = DefaultTheme.pallete.colors.primary.main;
+      color = "#57CC99";
       break;
     case "lost":
       color = "#dc0a14";
@@ -22,7 +22,7 @@ export default function ConditionChip({ condition, destroyYear, style = {} }) {
       color = "#f4c430";
       break;
     default:
-      color = DefaultTheme.pallete.colors.primary.main;
+      color = "#57CC99";
   }
 
   const title = condition.name;

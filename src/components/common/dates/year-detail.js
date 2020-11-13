@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 import Period from "../../../models/period";
 // import { useTranslation } from "react-i18next";
-// import { arabToRoman } from "roman-numbers";
+import { arabToRoman } from "roman-numbers";
 
 export default function DetailYear({ year, period, style={} }) {
   let dateText;

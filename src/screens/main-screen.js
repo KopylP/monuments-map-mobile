@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
 
-  if (routeName === "Gallery") {
+  if (["PhotoView", "PhotoDetail"].includes(routeName)) {
     return false;
   }
 

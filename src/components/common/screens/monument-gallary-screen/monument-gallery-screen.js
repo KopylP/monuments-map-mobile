@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import AppContext from "../../../../context/app-context";
 import useData from "../../../hooks/use-data";
 import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
-import Gallery from "./gallery/gallary";
+import GalleryPhotosList from "./gallery/gallery-photos-list";
 
 function MonumentGalleryScreen({ route }) {
   const { monumentId, title } = route.params;
@@ -17,8 +17,8 @@ function MonumentGalleryScreen({ route }) {
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      {loading && <AbsoluteIndicator backgroundColor="black" />}
-      {data && <Gallery monumentPhotos={data} title={title}/>}
+      {loading && <AbsoluteIndicator />}
+      {data && <GalleryPhotosList monumentPhotos={data} title={title}/>}
     </View>
   );
 }

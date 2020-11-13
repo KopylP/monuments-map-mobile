@@ -5,6 +5,7 @@ import { DefaultTheme } from "../../../../../../theme/default-theme";
 import RectangularButton from "../../../../../template/buttons/rectangular-button";
 import Title from "../../../../../template/typography/title";
 import DetailYear from "../../../../dates/year-detail";
+import SourcesButton from "../../../../sources-button/sources-button";
 import ConditionChip from "./condition-chip";
 import MonumentAddress from "./monument-address";
 import OpenInMapButton from "./open-in-map-button";
@@ -44,14 +45,7 @@ export default function MonumentDetails({ monument }) {
           }
         />
         <OpenInMapButton style={styles.rightButton} {...monument} />
-        <RectangularButton
-          iconName="info"
-          iconType="font-awesome"
-          color={DefaultTheme.pallete.colors.primary.background}
-          textColor={DefaultTheme.pallete.colors.primary.main}
-          title="Джерела"
-          style={styles.rightButton}
-        />
+        <SourcesButton style={styles.rightButton}/>
       </View>
       <View style={styles.chips}>
         <ConditionChip {...monument} />

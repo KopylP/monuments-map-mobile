@@ -14,8 +14,8 @@ export default function OpenInMapButton({ latitude, longitude, name, style }) {
       onPress={handlePress}
       iconType="ionicon"
       style={style}
-      color={DefaultTheme.pallete.colors.primary.background}
-      textColor={DefaultTheme.pallete.colors.primary.main}
+      color={DefaultTheme.pallete.colors.primary.extraLight}
+      textColor="white"
       title="Маршрут"
     />
   );
