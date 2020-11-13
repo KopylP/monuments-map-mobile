@@ -1,6 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Dimensions } from "react-native";
 import GalleryThumb from "./gallery-thumb";
 import { useNavigation } from "@react-navigation/native";
@@ -20,7 +19,7 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
 
   return (
     <ScrollView>
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         {monumentPhotos.map((mp, i) => {
           return (
             <GalleryThumb
@@ -31,7 +30,7 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
             />
           );
         })}
-      </SafeAreaView>
+      </View>
     </ScrollView>
   );
 }
@@ -39,9 +38,6 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 0,
-    marginTop: -21,
-    marginHorizontal: -2,
     flexDirection: "row",
     justifyContent: "flex-start",
     flexWrap: "wrap",
