@@ -7,7 +7,8 @@ import {
   View,
   Image,
   Platform,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ImageBackground
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-elements";
@@ -25,6 +26,7 @@ export default function ImageAnimatedHeader({
   onBack = (p) => p,
   onImageLoad = (p) => p,
   onPress = null,
+  imageHeight = null,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
@@ -102,8 +104,13 @@ export default function ImageAnimatedHeader({
               onPress={onPress}
               style={{ width: "100%", height: maxHeight }}
             >
-              <Image
+              <ImageBackground
                 style={[styles.headerImage]}
+                imageStyle={{
+                  alignSelf: "flex-start",
+                  resizeMode: "cover",
+                  height: imageHeight,
+                }}
                 source={source}
                 onLoadEnd={onImageLoad}
               />
@@ -151,7 +158,6 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     flex: 1,
-    resizeMode: "cover",
     overflow: "hidden",
   },
   topBar: {
