@@ -29,7 +29,7 @@ export default function AnimatedHeader({ show }) {
     }
   }, [show]);
 
-  const height =  100;
+  const height =  80;
 
   return (
     <Animated.View

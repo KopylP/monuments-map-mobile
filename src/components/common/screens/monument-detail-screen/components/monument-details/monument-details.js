@@ -14,7 +14,7 @@ export default function MonumentDetails({ monument }) {
       style={{
         paddingHorizontal: 20,
         paddingBottom: 20,
-        paddingTop: Platform.OS === "android" ? 40 : 20,
+        paddingTop: 10,
       }}
     >
       <Title title={monument.name} />

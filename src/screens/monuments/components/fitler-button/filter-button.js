@@ -9,7 +9,7 @@ function FilterButton() {
     <View
       style={{
         position: "absolute",
-        top: 50,
+        top: 25,
         right: 15,
         alignSelf: "center",
       }}

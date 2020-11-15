@@ -30,7 +30,7 @@ function MapListScreen({ fetchMonuments, modal }) {
         secondTabTitle={t('list')}
         style={{
           position: "absolute",
-          top: 50,
+          top: 25,
           alignSelf: "center",
         }}
         onChangeTab={setTab}

@@ -48,7 +48,6 @@ export default function PhotoDetail({
           <View
             style={{
               flex: 1,
-              paddingTop: 20,
               paddingHorizontal: 20,
               paddingBottom: 20,
             }}

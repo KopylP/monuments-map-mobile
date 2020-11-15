@@ -1,11 +1,9 @@
 import React, { useRef } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   Animated,
   View,
-  Image,
   Platform,
   TouchableWithoutFeedback,
   ImageBackground
@@ -14,7 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
 
-const HEADER_MIN_HEIGHT = 84;
+const HEADER_MIN_HEIGHT = 60;
 
 export default function ImageAnimatedHeader({
   maxHeight,
@@ -63,10 +61,10 @@ export default function ImageAnimatedHeader({
   });
 
   return (
-    <SafeAreaView style={StyleSheet.absoluteFill}>
+    <View style={StyleSheet.absoluteFill}>
       <Animated.ScrollView
         ref={scrollRef}
-        contentContainerStyle={{ paddingTop: maxHeight - 24 }}
+        contentContainerStyle={{ paddingTop: maxHeight }}
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
@@ -135,7 +133,7 @@ export default function ImageAnimatedHeader({
           <Icon type="ionicon" name="md-arrow-back" color="white" size={30} />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   topBar: {
-    marginTop: 30,
+    marginTop: 6,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -177,7 +175,7 @@ const styles = StyleSheet.create({
   },
   iconView: {
     position: "absolute",
-    top: 35,
+    top: 11,
     left: 15,
   },
   iconTouchableOpacity: {

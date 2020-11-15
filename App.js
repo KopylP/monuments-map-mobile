@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { host } from "./src/config";
 import AppContext from "./src/context/app-context";
@@ -11,23 +11,32 @@ import MainScreen from "./src/screens/main-screen";
 import LocateProvider from "./src/context/locate-context";
 import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { DefaultTheme } from "./src/theme/default-theme";
+import { isAndroid, isIOS } from "./src/helpers/platform-helpers";
 enableScreens();
 
 function App() {
-
-  const { culture: { code } } = useLocate();
+  const {
+    culture: { code },
+  } = useLocate();
 
   const monumentService = new MonumentService(host, code);
   const geocoderService = new GeocoderService(code);
 
   return (
-      <AppContext.Provider value={{ monumentService, geocoderService }}>
-        <Provider store={store}>
-          <SafeAreaView style={styles.container}>
-            <MainScreen />
-          </SafeAreaView>
-        </Provider>
-      </AppContext.Provider>
+    <AppContext.Provider value={{ monumentService, geocoderService }}>
+      <Provider store={store}>
+        {isIOS && <SafeAreaView style={styles.statusBar} />}
+        <SafeAreaView style={styles.container}>
+          <MainScreen />
+        </SafeAreaView>
+
+        <StatusBar
+          translucent
+          backgroundColor={DefaultTheme.pallete.colors.primary.dark}
+        />
+      </Provider>
+    </AppContext.Provider>
   );
 }
 
@@ -40,5 +49,9 @@ export default (props) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  statusBar: {
+    flex: 0,
+    backgroundColor: DefaultTheme.pallete.colors.primary.dark,
   },
 });
