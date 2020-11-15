@@ -1,9 +1,13 @@
 import React from "react";
 import openInMap from "../../../../../../helpers/open-in-map";
 import { DefaultTheme } from "../../../../../../theme/default-theme";
+import { useLocate } from "../../../../../hooks/locate-hooks";
 import RectangularButton from "../../../../../template/buttons/rectangular-button";
 
 export default function OpenInMapButton({ latitude, longitude, name, style }) {
+
+  const { t } = useLocate();
+
   const handlePress = () => {
     openInMap(latitude, longitude, name);
   };
@@ -16,7 +20,7 @@ export default function OpenInMapButton({ latitude, longitude, name, style }) {
       style={style}
       color={DefaultTheme.pallete.colors.primary.extraLight}
       textColor="white"
-      title="Маршрут"
+      title={t("route")}
     />
   );
 }

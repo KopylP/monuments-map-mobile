@@ -9,9 +9,11 @@ import MonumentsMap from "../views/monument-map-view/monuments-map/monuments-map
 import MonumentsListView from "../views/monuments-list-view/monuments-list-view";
 import withMonumentService from "../../../../components/hoc-helpers/with-monument-service";
 import { fetchMonuments } from "../../../../redux/actions/monuments-actions";
+import { useLocate } from "../../../../components/hooks/locate-hooks";
 
 function MapListScreen({ fetchMonuments, modal }) {
   const [tab, setTab] = useState(0);
+  const { t } = useLocate();
 
   useEffect(() => {
     fetchMonuments();
@@ -24,8 +26,8 @@ function MapListScreen({ fetchMonuments, modal }) {
       <MonumentsListView show={tab == 1} />
       <FilterButton />
       <SelectedTabs
-        firstTabTitle="Map"
-        secondTabTitle="List"
+        firstTabTitle={t('map')}
+        secondTabTitle={t('list')}
         style={{
           position: "absolute",
           top: 50,

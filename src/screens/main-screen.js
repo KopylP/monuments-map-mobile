@@ -6,12 +6,12 @@ import MonumentsMapScreen, {
 } from "./monuments/monuments-map-screen";
 import { DefaultTheme } from "../theme/default-theme";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { useLocate } from "../components/hooks/locate-hooks";
 
 const Tab = createBottomTabNavigator();
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
-
   if (["PhotoView", "PhotoDetail"].includes(routeName)) {
     return false;
   }
@@ -20,6 +20,9 @@ const getTabBarVisibility = (route) => {
 };
 
 export default function MainScreen() {
+
+  const { t, locale } = useLocate();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -42,7 +45,7 @@ export default function MainScreen() {
           options={({ route }) => {
             return {
               ...mapTabOptions,
-              tabBarLabel: "Map",
+              tabBarLabel: t('map'),
               tabBarVisible: getTabBarVisibility(route),
             };
           }}

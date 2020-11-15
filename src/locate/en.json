@@ -1,0 +1,18 @@
+{
+    "list": "List",
+    "map": "Map",
+    "gallery": "Gallery",
+    "route": "Route",
+    "sources": "Sources",
+    "Early of century": "Early {{century}}-th century",
+    "Middle of the century": "The middle of the {{century}}-th century",
+    "End of the century": "The end of the {{century}}-th century",
+    "Years of the century": "{{decade}}s of the {{century}}-th century",
+    "simple year": "{{year}}",
+    "City": "City",
+    "Monument status": "Monument status",
+    "Monument condition": "Monument condition",
+    "No monuments were found by such criteria": "No monuments were found by such criteria",
+    "Network error": "Ooops, Something went wrong :(",
+    "view": "View"
+}

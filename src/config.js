@@ -6,4 +6,13 @@ export const defaultMapCenter = {
 
 export const yearsRange = [1700, new Date().getFullYear()];
 
+export const defaultCulture = { code: "en-GB", name: "English" };
+
+export const supportedCultures = [
+  { code: "uk-UA", name: "Українська" },
+  { code: "en-GB", name: "English" },
+  { code: "pl-PL", name: "Polski" },
+  { code: "ru-RU", name: "Русский" },
+];
+
 export const host = "http://monuments.pl.ua/";

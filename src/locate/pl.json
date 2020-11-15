@@ -1,0 +1,18 @@
+{
+    "list": "Lista",
+    "map": "Mapa",
+    "gallery": "Galeria",
+    "route": "Trasa",
+    "sources": "Źródła",
+    "Early of century": "Początek {{century}} wieku",
+    "Middle of the century": "Połowa {{century}} wieku",
+    "End of the century": "Koniec {{century}} wieku",
+    "Years of the century": "Lata {{decade}}. {{century}} wieku",
+    "simple year": "{{year}} rok",
+    "City": "Miasto",
+    "Monument status": "Status zabytku",
+    "Monument condition": "Stan zabytku",
+    "No monuments were found by such criteria": "Według takich kryteriów nie znaleziono żadnych zabytków",
+    "Network error": "Ups! Coś poszło nie tak :(",
+    "view": "Przegląd"
+}

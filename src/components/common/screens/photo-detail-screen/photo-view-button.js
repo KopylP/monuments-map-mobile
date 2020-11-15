@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DefaultTheme } from "../../../../theme/default-theme";
+import { useLocate } from "../../../hooks/locate-hooks";
 import RectangularButton from "../../../template/buttons/rectangular-button";
 
 export default function PhotoViewButton({
@@ -10,6 +11,7 @@ export default function PhotoViewButton({
 }) {
 
   const { navigate } = useNavigation();
+  const { t } = useLocate(); 
 
   const handlePress = () => {
     navigate("PhotoView", {
@@ -23,7 +25,7 @@ export default function PhotoViewButton({
       iconType="font-awesome"
       color={DefaultTheme.pallete.colors.primary.main}
       textColor="white"
-      title="Перегляд"
+      title={t("view")}
       style={style}
       onPress={canPress ? handlePress : p => p}
     />

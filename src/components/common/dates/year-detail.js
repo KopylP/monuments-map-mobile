@@ -1,32 +1,36 @@
 import React from "react";
 import { Text } from "react-native";
 import Period from "../../../models/period";
-// import { useTranslation } from "react-i18next";
 import { arabToRoman } from "roman-numbers";
+import { useLocate } from "../../hooks/locate-hooks";
 
 export default function DetailYear({ year, period, style={} }) {
+
+  const { t } = useLocate();
+
   let dateText;
   switch (period) {
     case Period.StartOfCentury:
-      dateText = arabToRoman(year);
+      dateText = t("Early of century", { century: arabToRoman(year) });
       break;
     case Period.MiddleOfCentury:
-      dateText = arabToRoman(year);
+      dateText = t("Middle of the century", { century: arabToRoman(year) });
       break;
     case Period.EndOfCentury:
-      dateText = arabToRoman(year);
+      dateText = t("End of the century", { century: arabToRoman(year) });
       break;
     case Period.Year:
-      dateText = year;
+      dateText = t("simple year", { year });
       break;
     case Period.Decades:
-    //   dateText = t("Built in the years of the century", {
-    //     decade: year % 100,
-    //     century: arabToRoman(+("" + year).slice(0, 2) + 1),
-    //   });
+      dateText = t("Years of the century", {
+        decade: year % 100,
+        century: arabToRoman(+("" + year).slice(0, 2) + 1),
+      });
       break;
     default:
       dateText = "";
+      break;
   }
 
   return <Text style={style}>{dateText}</Text>;

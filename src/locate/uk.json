@@ -1,0 +1,18 @@
+{
+    "list": "Cписок",
+    "map": "Мапа",
+    "gallery": "Галерея",
+    "route": "Маршрут",
+    "sources": "Джерела",
+    "Early of century": "Початок {{century}}-го століття",
+    "Middle of the century": "Середина {{century}}-го століття",
+    "End of the century": "кінець {{century}}-го століття",
+    "Years of the century": "{{decade}}-ті роки {{century}}-го століття",
+    "simple year": "{{year}} рік",
+    "City": "Місто",
+    "Monument status": "Статус пам'ятки",
+    "Monument condition": "Стан пам'ятки",
+    "No monuments were found by such criteria": "За такими критеріями не знайдено жодної пам'ятки",
+    "Network error": "Йой, сталася халепа :(",
+    "view": "Перегляд"
+}

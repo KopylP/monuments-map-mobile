@@ -1,20 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { Dimensions, Platform, StyleSheet, Text, View } from "react-native";
-import { DefaultTheme } from "../../../../../../theme/default-theme";
-import RectangularButton from "../../../../../template/buttons/rectangular-button";
+import React from "react";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import Title from "../../../../../template/typography/title";
 import DetailYear from "../../../../dates/year-detail";
 import SourcesButton from "../../../../sources-button/sources-button";
 import ConditionChip from "./condition-chip";
+import GalleryButton from "./gallery-button";
 import MonumentAddress from "./monument-address";
 import OpenInMapButton from "./open-in-map-button";
 
-const deviceWidth = Dimensions.get("window").width;
-const deviceHeight = Dimensions.get("window").height;
-
 export default function MonumentDetails({ monument }) {
-  const { navigate } = useNavigation();
   return (
     <View
       style={{
@@ -31,19 +25,7 @@ export default function MonumentDetails({ monument }) {
         {monument && monument.protectionNumber})
       </Text>
       <View style={styles.buttonsContainer}>
-        <RectangularButton
-          iconName="ios-images"
-          iconType="ionicon"
-          color={DefaultTheme.pallete.colors.primary.main}
-          textColor="white"
-          title="Галерея"
-          onPress={() =>
-            navigate("Gallery", {
-              title: monument.name,
-              monumentId: monument.id,
-            })
-          }
-        />
+        <GalleryButton {...monument}/>
         <OpenInMapButton style={styles.rightButton} {...monument} />
         <SourcesButton style={styles.rightButton}/>
       </View>
