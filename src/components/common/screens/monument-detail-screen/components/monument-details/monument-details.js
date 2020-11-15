@@ -1,5 +1,6 @@
 import React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import { isIOS } from "../../../../../../helpers/platform-helpers";
 import Title from "../../../../../template/typography/title";
 import DetailYear from "../../../../dates/year-detail";
 import SourcesButton from "../../../../sources-button/sources-button";
@@ -50,11 +51,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   status: {
-    fontWeight: "600",
+    fontWeight: isIOS ? "600": "700",
     marginTop: 5,
   },
   year: {
-    fontWeight: "600",
+    fontWeight: isIOS ? "600": "700",
     marginTop: 15,
   },
   address: {
