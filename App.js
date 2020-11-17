@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, StatusBar } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import { host } from "./src/config";
 import AppContext from "./src/context/app-context";
@@ -12,7 +12,8 @@ import LocateProvider from "./src/context/locate-context";
 import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DefaultTheme } from "./src/theme/default-theme";
-import { isAndroid, isIOS } from "./src/helpers/platform-helpers";
+import { StatusBar } from "expo-status-bar";
+import { isIOS } from "./src/helpers/platform-helpers";
 enableScreens();
 
 function App() {
@@ -27,14 +28,16 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         {isIOS && <SafeAreaView style={styles.statusBar} />}
-        <SafeAreaView style={styles.container}>
-          <MainScreen />
-        </SafeAreaView>
-
-        <StatusBar
-          translucent
-          backgroundColor={DefaultTheme.pallete.colors.primary.dark}
-        />
+        <View style={StyleSheet.absoluteFill}>
+          <SafeAreaView style={styles.container}>
+            <MainScreen />
+          </SafeAreaView>
+          <StatusBar
+            style="light"
+            translucent={false}
+            backgroundColor={DefaultTheme.pallete.colors.primary.dark}
+          />
+        </View>
       </Provider>
     </AppContext.Provider>
   );
