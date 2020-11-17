@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
@@ -5,6 +6,13 @@ import { connect } from "react-redux";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
 function FilterButton() {
+
+  const { navigate } = useNavigation();
+  
+  const handlePress = () => {
+    navigate("Filters");
+  }
+
   return (
     <View
       style={{
@@ -15,6 +23,7 @@ function FilterButton() {
       }}
     >
       <Button
+        onPress={handlePress}
         buttonStyle={{
           backgroundColor: DefaultTheme.pallete.colors.primary.main,
           padding: 5,

@@ -7,14 +7,15 @@ export default function useData(
   options = {
     delay: 0,
     params: [],
+    defaultValue: null,
   }
 ) {
   const makeCancelable = useCancelablePromise();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(options.defaultValue);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { delay, params } = options;
+  const { delay = 0, params = [], defaultValue = null } = options;
 
   useEffect(() => {
     makeCancelable(getData(...params))

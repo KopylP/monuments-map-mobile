@@ -67,12 +67,12 @@ export default class MonumentService {
     return await this._getRequest(`monument/${id}`);
   };
 
-  getAllStatuses = async () => {
-    return await this._getRequest("status/");
+  getAllStatuses = async (cancelCallback) => {
+    return await this._getRequest("status/", {}, cancelCallback = p => p);
   };
 
-  getAllConditions = async () => {
-    return await this._getRequest("condition/");
+  getAllConditions = async (cancelCallback) => {
+    return await this._getRequest("condition/", {}, cancelCallback = p => p);
   };
 
   getAllCities = async () => {

@@ -15,6 +15,7 @@ import { DefaultTheme } from "../../theme/default-theme";
 import { Icon } from "react-native-elements";
 import PhotoDetailScreen from "../../components/common/screens/photo-detail-screen/photo-detail-screen";
 import PhotoViewScreen from "../../components/common/screens/photo-view-screen/photo-view-screen";
+import FilterScreen from "./components/nested-screens/filter-screen/filter-screen";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -30,6 +31,9 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         useNativeDrawer: true,
         headerTintColor: "white",
         gestureEnabled: false,
+        headerStyle: {
+          backgroundColor: DefaultTheme.pallete.colors.primary.main,
+        },
         transitionSpec: {
           open: {
             animation: "timing",
@@ -58,9 +62,6 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         name="Gallery"
         options={({ route }) => ({
           headerShown: true,
-          headerStyle: {
-            backgroundColor: DefaultTheme.pallete.colors.primary.main,
-          },
           title: route.params.title,
         })}
         component={MonumentGalleryScreen}
@@ -79,6 +80,9 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         }}
         component={PhotoViewScreen}
       />
+      <Stack.Screen 
+        name="Filters"
+        component={FilterScreen}/>
       <Stack.Screen
         name="Detail"
         options={{
