@@ -15,8 +15,8 @@ export default function Header({ onClose }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 20,
-    paddingTop: 40,
+    paddingLeft: 10,
+    paddingTop: 20,
     top: 0,
     left: 0,
     position: "absolute",
