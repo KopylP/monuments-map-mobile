@@ -3,6 +3,7 @@ const {
   FETCH_MONUMENTS_SUCCESS,
   FETCH_MONUMENTS_FAILURE,
   CHANGE_CANCEL_REQUEST,
+  REQUEST_MONUMENTS_FETCH,
 } = require("../constants");
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   loading: true,
   error: null,
   cancelRequest: null,
+  requestFetch: true,
 };
 
 export default monumentsReducer = (state = initialState, action) => {
@@ -25,6 +27,7 @@ export default monumentsReducer = (state = initialState, action) => {
         loading: false,
         error: null,
         monuments: action.payload,
+        requestFetch: false,
       };
     case FETCH_MONUMENTS_FAILURE:
       return {
@@ -36,6 +39,11 @@ export default monumentsReducer = (state = initialState, action) => {
       return {
         ...state,
         cancelRequest: action.payload,
+      };
+    case REQUEST_MONUMENTS_FETCH:
+      return {
+        ...state,
+        requestFetch: true,
       };
     default:
       return state;

@@ -1,4 +1,8 @@
-import { CHANGE_CONDITIONS, CHANGE_STATUSES } from "../constants";
+import {
+  CHANGE_CONDITIONS,
+  CHANGE_STATUSES,
+  CLEAR_FILTERS,
+} from "../constants";
 
 const initialState = {
   conditions: [],
@@ -18,6 +22,9 @@ export default filterReducer = (state = initialState, action) => {
         ...state,
         conditions: action.payload,
       };
+    }
+    case CLEAR_FILTERS: {
+      return initialState;
     }
     default:
       return state;

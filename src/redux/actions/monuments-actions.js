@@ -4,6 +4,7 @@ import {
   FETCH_MONUMENTS_SUCCESS,
   FETCH_MONUMENTS_FAILURE,
   CHANGE_CANCEL_REQUEST,
+  REQUEST_MONUMENTS_FETCH,
 } from "../constants";
 import { yearsRange } from "../../config";
 
@@ -67,3 +68,7 @@ export const fetchMonuments = (monumentService) => (
       }
     });
 };
+
+export const requestMonumentsFetch = () => ({
+  type: REQUEST_MONUMENTS_FETCH,
+});

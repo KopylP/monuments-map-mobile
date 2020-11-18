@@ -1,4 +1,8 @@
-import { CHANGE_CONDITIONS, CHANGE_STATUSES } from "../constants";
+import {
+  CHANGE_CONDITIONS,
+  CHANGE_STATUSES,
+  CLEAR_FILTERS,
+} from "../constants";
 
 export const changeStatuses = (statuses) => {
   return {
@@ -10,6 +14,12 @@ export const changeStatuses = (statuses) => {
 export const changeConditions = (conditions) => {
   return {
     type: CHANGE_CONDITIONS,
-    payload: conditions
+    payload: conditions,
+  };
+};
+
+export const clearFilters = () => {
+  return {
+    type: CLEAR_FILTERS,
   };
 };

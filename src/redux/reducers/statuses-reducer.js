@@ -3,6 +3,7 @@ import {
   FETCH_STATUSES_FAILURE,
   FETCH_STATUSES_REQUEST,
   FETCH_STATUSES_SUCCESS,
+  REQUEST_STATUSES_FETCH,
 } from "../constants";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   loading: false,
   error: null,
   cancelRequest: null,
+  requestFetch: true,
 };
 
 export default statusesReducer = (state = initialState, action) => {
@@ -25,6 +27,7 @@ export default statusesReducer = (state = initialState, action) => {
         loading: false,
         error: null,
         statuses: action.payload,
+        requestFetch: false,
       };
     case FETCH_STATUSES_FAILURE:
       return {
@@ -36,6 +39,11 @@ export default statusesReducer = (state = initialState, action) => {
       return {
         ...state,
         cancelRequest: action.payload,
+      };
+    case REQUEST_STATUSES_FETCH:
+      return {
+        ...state,
+        requestFetch: true,
       };
     default:
       return state;

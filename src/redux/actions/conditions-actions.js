@@ -4,6 +4,7 @@ import {
   FETCH_CONDITIONS_FAILURE,
   FETCH_CONDITIONS_REQUEST,
   FETCH_CONDITIONS_SUCCESS,
+  REQUEST_CONDITIONS_FETCH,
 } from "../constants";
 
 const changeCancelRequest = (e) => {
@@ -58,3 +59,7 @@ export const fetchConditions = (monumentService) => () => (
       }
     });
 };
+
+export const requestConditionsFetch = () => ({
+  type: REQUEST_CONDITIONS_FETCH,
+});

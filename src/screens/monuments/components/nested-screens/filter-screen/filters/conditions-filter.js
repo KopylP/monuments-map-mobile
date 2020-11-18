@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeConditions } from "../../../../../../redux/actions/filter-actions";
 import DefaultFilter from "./default-filter";
 
-function ConditionsFilter({ selectedValues, data, changeConditions, style = {} }) {
+function ConditionsFilter({ selectedConditions, data, changeConditions, style = {} }) {
   return (
     <DefaultFilter
       title="Conditions"
-      selectedValues={selectedValues}
+      selectedValues={selectedConditions}
       setSelectedValues={changeConditions}
       data={data}
       style={style}
@@ -15,10 +14,8 @@ function ConditionsFilter({ selectedValues, data, changeConditions, style = {} }
   );
 }
 
-const bindStateToProps = ({ filter, conditions }) => ({
-  selectedValues: filter.conditions,
+const bindStateToProps = ({ conditions }) => ({
   data: conditions.conditions,
 });
-const bindDispatchToProps = { changeConditions };
 
-export default connect(bindStateToProps, bindDispatchToProps)(ConditionsFilter);
+export default connect(bindStateToProps)(ConditionsFilter);

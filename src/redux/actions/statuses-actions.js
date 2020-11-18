@@ -5,6 +5,7 @@ import {
   FETCH_STATUSES_FAILURE,
   FETCH_STATUSES_REQUEST,
   FETCH_STATUSES_SUCCESS,
+  REQUEST_STATUSES_FETCH,
 } from "../constants";
 
 const changeCancelRequest = (e) => {
@@ -59,3 +60,7 @@ export const fetchStatuses = (monumentService) => () => (
       }
     });
 };
+
+export const requestStatusesFetch = () => ({
+  type: REQUEST_STATUSES_FETCH,
+});

@@ -11,13 +11,19 @@ import withMonumentService from "../../../../components/hoc-helpers/with-monumen
 import { fetchMonuments } from "../../../../redux/actions/monuments-actions";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 
-function MapListScreen({ fetchMonuments, modal }) {
+function MapListScreen({
+  fetchMonuments,
+  requestFetch,
+  statuses,
+  conditions,
+  cities,
+}) {
   const [tab, setTab] = useState(0);
   const { t } = useLocate();
 
   useEffect(() => {
-    fetchMonuments();
-  }, []);
+    if (requestFetch) fetchMonuments(cities, statuses, conditions);
+  }, [requestFetch]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -26,8 +32,8 @@ function MapListScreen({ fetchMonuments, modal }) {
       <MonumentsListView show={tab == 1} />
       <FilterButton />
       <SelectedTabs
-        firstTabTitle={t('map')}
-        secondTabTitle={t('list')}
+        firstTabTitle={t("map")}
+        secondTabTitle={t("list")}
         style={{
           position: "absolute",
           top: 25,
@@ -46,8 +52,16 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
   );
 };
 
-
+const bindStateToProps = ({
+  monuments: { requestFetch },
+  filter: { statuses, conditions, cities },
+}) => ({
+  requestFetch,
+  statuses,
+  conditions,
+  cities,
+});
 
 export default withMonumentService()(
-  connect(null, bindDispatchToProps)(MapListScreen)
+  connect(bindStateToProps, bindDispatchToProps)(MapListScreen)
 );

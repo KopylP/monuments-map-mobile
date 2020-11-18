@@ -14,20 +14,9 @@ function FilterScreen({
   fetchStatuses,
   fetchConditions,
 }) {
-  const { statuses } = statusesState;
-  const { conditions } = conditionsState;
-
-  console.log("statuses", statuses);
-  console.log("conditions", conditions);
-  console.log("statuses loading", statusesState.loading);
-  console.log("conditions loading", conditionsState.loading);
-
+  
   useEffect(() => {
-    if (
-      (!statuses && !statusesState.loading) ||
-      (!conditions && !conditionsState.loading)
-    ) {
-      console.log("we are loading this shit");
+    if (statusesState.requestFetch || conditionsState.requestFetch) {
       fetchStatuses();
       fetchConditions();
     }
@@ -39,7 +28,9 @@ function FilterScreen({
         <AbsoluteIndicator />
       )}
       {!statusesState.loading && !conditionsState.loading && <FilterView />}
-      {/* TODO handle error */}
+      {/* TODO Для обробки помилок треба додати стан, 
+              який буде змінюватися кожного разу, коли користувач
+              захоче оновити фільтри*/}
     </View>
   );
 }
