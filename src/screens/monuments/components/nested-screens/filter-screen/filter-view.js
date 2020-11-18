@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect } from "react-redux";
+import { useLocate } from "../../../../../components/hooks/locate-hooks";
 import {
   changeConditions,
   changeStatuses,
@@ -23,6 +24,7 @@ function FilterView({
 }) {
   const { main } = DefaultTheme.pallete.colors.primary;
   const { goBack } = useNavigation();
+  const { t } = useLocate();
 
   const [updatingMonuments, setUpdatingMonuments] = useState(false);
   const [statuses, setStatuses] = useState(filters.statuses);
@@ -83,7 +85,7 @@ function FilterView({
           marginTop: "auto",
         }}
       >
-        Filter
+        {t("Filter")}
       </Button>
     </View>
   );

@@ -16,11 +16,13 @@ import { Icon } from "react-native-elements";
 import PhotoDetailScreen from "../../components/common/screens/photo-detail-screen/photo-detail-screen";
 import PhotoViewScreen from "../../components/common/screens/photo-view-screen/photo-view-screen";
 import FilterScreen from "./components/nested-screens/filter-screen/filter-screen";
+import { useLocate } from "../../components/hooks/locate-hooks";
 
 const Stack = createSharedElementStackNavigator();
 
 const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
   const makeCancelable = useCancelablePromise();
+  const { t } = useLocate();
 
   return (
     <Stack.Navigator
@@ -82,6 +84,9 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
       />
       <Stack.Screen 
         name="Filters"
+        options={{
+          title: t("Filters")
+        }}
         component={FilterScreen}/>
       <Stack.Screen
         name="Detail"

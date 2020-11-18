@@ -14,5 +14,8 @@
     "Monument condition": "Monument condition",
     "No monuments were found by such criteria": "No monuments were found by such criteria",
     "Network error": "Ooops, Something went wrong :(",
-    "view": "View"
+    "view": "View",
+    "Filters": "Filters",
+    "Clear": "Clear",
+    "Filter": "Filter"
 }

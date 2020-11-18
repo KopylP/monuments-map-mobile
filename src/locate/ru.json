@@ -14,5 +14,8 @@
     "Monument condition": "Состояние памятника",
     "No monuments were found by such criteria": "По таким критериям не найдено ни одного памятника",
     "Network error": "Ой, что-то пошло не так :(",
-    "view": "Просмотр"
+    "view": "Просмотр",
+    "Filters": "Фильтры",
+    "Clear": "Очистить",
+    "Filter": "Фильтровать"
 }

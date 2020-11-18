@@ -14,5 +14,8 @@
     "Monument condition": "Стан пам'ятки",
     "No monuments were found by such criteria": "За такими критеріями не знайдено жодної пам'ятки",
     "Network error": "Йой, сталася халепа :(",
-    "view": "Перегляд"
+    "view": "Перегляд",
+    "Filters": "Фільтри",
+    "Clear": "Очистити",
+    "Filter": "Фільтрувати"
 }
