@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Button, Badge } from "react-native-elements";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import { connect } from "react-redux";
+import { isIOS } from "../../../../helpers/platform-helpers";
 
 function FilterButton({ filters }) {
   const { navigate } = useNavigation();
@@ -49,11 +50,15 @@ function FilterButton({ filters }) {
           badgeStyle={{
             borderWidth: 0,
           }}
-          textStyle={{
-            marginLeft: 1,
-            marginTop: 1,
-          }}
-          containerStyle={{ position: "absolute", top: -8, right: -8, }}
+          textStyle={
+            isIOS
+              ? {
+                  marginLeft: 1,
+                  marginTop: 1,
+                }
+              : {}
+          }
+          containerStyle={{ position: "absolute", top: -8, right: -8 }}
         ></Badge>
       )}
     </View>
