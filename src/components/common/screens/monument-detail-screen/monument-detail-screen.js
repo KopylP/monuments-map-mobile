@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import Loader from "./components/loader";
@@ -37,15 +37,17 @@ const MonumentDetailScreen = ({ route }) => {
     handleSetBackground();
   }, []);
 
+  const handleBack = () => {
+    navigation.goBack();
+    setHeaderBackground(null);
+  }
+
   return (
     <ImageAnimatedHeader
       maxHeight={250}
       shareId={`image-${shareId}`}
       title={monument.name}
-      onBack={() => {
-        navigation.goBack();
-        setHeaderBackground(null);
-      }}
+      onBack={handleBack}
       headerBackground={headerBackground}
       source={{
         uri: imageBase64,

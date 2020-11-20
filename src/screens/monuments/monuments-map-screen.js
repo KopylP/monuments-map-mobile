@@ -1,15 +1,12 @@
 import React from "react";
-import { Platform } from "react-native";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { connect } from "react-redux";
-import MonumentDetailScreen from "../../components/common/screens/monument-detail-screen/monument-detail-screen";
 import {
   transitionEnd,
   transitionStart,
 } from "../../redux/actions/transition-actions";
 import MapListScreen from "./components/nested-screens/map-list-screen";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
-import timeout from "../../helpers/timeout-promise";
 import MonumentGalleryScreen from "../../components/common/screens/monument-gallary-screen/monument-gallery-screen";
 import { DefaultTheme } from "../../theme/default-theme";
 import { Icon } from "react-native-elements";
@@ -17,6 +14,7 @@ import PhotoDetailScreen from "../../components/common/screens/photo-detail-scre
 import PhotoViewScreen from "../../components/common/screens/photo-view-screen/photo-view-screen";
 import FilterScreen from "./components/nested-screens/filter-screen/filter-screen";
 import { useLocate } from "../../components/hooks/locate-hooks";
+import monumentDetailScreenOptions from "../../components/common/screens/monument-detail-screen/monument-detail-screen.options";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -82,45 +80,19 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         }}
         component={PhotoViewScreen}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="Filters"
         options={{
-          title: t("Filters")
+          title: t("Filters"),
         }}
-        component={FilterScreen}/>
+        component={FilterScreen}
+      />
       <Stack.Screen
-        name="Detail"
-        options={{
-          headerShown: false,
-        }}
-        component={MonumentDetailScreen}
-        listeners={{
-          transitionStart: (e) => {
-            if (e.data.closing) {
-              transitionStart();
-              makeCancelable(timeout(300)).then(() => {
-                transitionEnd();
-              });
-            }
-          },
-        }}
-        sharedElementsConfig={(route, otherRoute, showing) => {
-          const { shareId } = route.params;
-          if (route.name === "Detail" && otherRoute.name === "Gallery")
-            return [{}];
-          if (route.name === "Detail" && (showing || shareId.includes("map"))) {
-            if (Platform.OS === "ios") {
-              return [
-                {
-                  id: `image-${shareId}`,
-                  animation: "fade",
-                  resize: "none",
-                  align: "center-center",
-                },
-              ];
-            }
-          }
-        }}
+        {...monumentDetailScreenOptions(
+          makeCancelable,
+          transitionStart,
+          transitionEnd
+        )}
       />
     </Stack.Navigator>
   );
