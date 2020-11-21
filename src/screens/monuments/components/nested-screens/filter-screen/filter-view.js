@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect } from "react-redux";
 import { useLocate } from "../../../../../components/hooks/locate-hooks";
@@ -66,24 +66,34 @@ function FilterView({
   }, [monumentsLoading]);
 
   return (
-    <View style={{ flex: 1, padding: 15 }}>
-      <StatusesFilter
-        changeStatuses={setStatuses}
-        selectedStatuses={statuses}
-      />
-      <ConditionsFilter
-        style={{ marginTop: 15 }}
-        changeConditions={setConditions}
-        selectedConditions={conditions}
-      />
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { paddingHorizontal: 15, paddingBottom: 65 },
+      ]}
+    >
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{
+          paddingTop: 15,
+        }}
+      >
+        <StatusesFilter
+          changeStatuses={setStatuses}
+          selectedStatuses={statuses}
+        />
+        <ConditionsFilter
+          style={{ marginTop: 15 }}
+          changeConditions={setConditions}
+          selectedConditions={conditions}
+        />
+      </ScrollView>
       <Button
         color={main}
         mode="contained"
         loading={updatingMonuments}
         onPress={handleButtonPress}
-        style={{
-          marginTop: "auto",
-        }}
+        style={styles.button}
       >
         {t("Filter")}
       </Button>
@@ -104,3 +114,12 @@ const bindDispatchToProps = {
 };
 
 export default connect(bindStateToProps, bindDispatchToProps)(FilterView);
+
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    bottom: 15,
+    left: 15,
+    right: 15,
+  },
+});
