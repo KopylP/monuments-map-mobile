@@ -17,7 +17,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This application uses geolocation data to center the map on the user's location and show architectural monuments near him."
+      }
     },
     "android": {
       "package": "com.kopyl.monumentsmap",
@@ -25,6 +28,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "permissions": ["ACCESS_FINE_LOCATION"],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyDTjU-QE2HsjmJsveLmcmtVfI2CpUppW6Q"
