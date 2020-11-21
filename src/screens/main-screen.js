@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
-  if (["PhotoView", "PhotoDetail"].includes(routeName)) {
+  if (["PhotoView", "PhotoDetail", "Sources"].includes(routeName)) {
     return false;
   }
 
@@ -20,7 +20,6 @@ const getTabBarVisibility = (route) => {
 };
 
 export default function MainScreen() {
-
   const { t, locale } = useLocate();
 
   return (
@@ -45,7 +44,7 @@ export default function MainScreen() {
           options={({ route }) => {
             return {
               ...mapTabOptions,
-              tabBarLabel: t('map'),
+              tabBarLabel: t("map"),
               tabBarVisible: getTabBarVisibility(route),
             };
           }}

@@ -18,6 +18,7 @@ export default function PhotoDetail({
   description,
   year,
   period,
+  sources,
   title,
   touchable,
 }) {
@@ -58,7 +59,7 @@ export default function PhotoDetail({
             </View>
             <View style={styles.buttonsContainer}>
               <PhotoViewButton canPress={touchable} imageBase64={data.image}/>
-              <SourcesButton style={styles.rightButton}/>
+              <SourcesButton style={styles.rightButton} sources={sources} />
             </View>
             <Text style={styles.description}>{description}</Text>
           </View>

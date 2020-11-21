@@ -15,6 +15,7 @@ import PhotoViewScreen from "../../components/common/screens/photo-view-screen/p
 import FilterScreen from "./components/nested-screens/filter-screen/filter-screen";
 import { useLocate } from "../../components/hooks/locate-hooks";
 import monumentDetailScreenOptions from "../../components/common/screens/monument-detail-screen/monument-detail-screen.options";
+import SourcesScreen from "../../components/common/screens/sources-screen/sources-sreen";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -93,6 +94,11 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
           transitionStart,
           transitionEnd
         )}
+      />
+      <Stack.Screen
+        name="Sources"
+        options={{ title: t("sources") }}
+        component={SourcesScreen}
       />
     </Stack.Navigator>
   );

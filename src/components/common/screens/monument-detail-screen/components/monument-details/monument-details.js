@@ -28,7 +28,7 @@ export default function MonumentDetails({ monument }) {
       <View style={styles.buttonsContainer}>
         <GalleryButton {...monument}/>
         <OpenInMapButton style={styles.rightButton} {...monument} />
-        <SourcesButton style={styles.rightButton}/>
+        <SourcesButton style={styles.rightButton} {...monument}/>
       </View>
       <View style={styles.chips}>
         <ConditionChip {...monument} />

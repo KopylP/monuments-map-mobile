@@ -25,7 +25,7 @@ export default function monumentDetailScreenOptions(
     },
     sharedElementsConfig: (route, otherRoute, showing) => {
       const { shareId } = route.params;
-      if (route.name === "Detail" && otherRoute.name === "Gallery") return [{}];
+      if (route.name === "Detail" && otherRoute.name !== "List") return [{}];
       if (route.name === "Detail" && (showing || shareId.includes("map"))) {
         if (Platform.OS === "ios") {
           return [
