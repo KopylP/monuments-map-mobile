@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import Loader from "./components/loader";
@@ -40,24 +40,26 @@ const MonumentDetailScreen = ({ route }) => {
   const handleBack = () => {
     navigation.goBack();
     setHeaderBackground(null);
-  }
+  };
 
   return (
-    <ImageAnimatedHeader
-      maxHeight={250}
-      shareId={`image-${shareId}`}
-      title={monument.name}
-      onBack={handleBack}
-      headerBackground={headerBackground}
-      source={{
-        uri: imageBase64,
-      }}
-    >
-      <View style={{ flex: 1 }}>
-        {data && <MonumentDetails monument={data} />}
-        {loading && <Loader />}
-      </View>
-    </ImageAnimatedHeader>
+    <View style={StyleSheet.absoluteFill}>
+      <ImageAnimatedHeader
+        maxHeight={250}
+        shareId={`image-${shareId}`}
+        title={monument.name}
+        onBack={handleBack}
+        headerBackground={headerBackground}
+        source={{
+          uri: imageBase64,
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          {data && <MonumentDetails monument={data} />}
+          {loading && <Loader />}
+        </View>
+      </ImageAnimatedHeader>
+    </View>
   );
 };
 
