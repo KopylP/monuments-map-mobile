@@ -6,11 +6,12 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
+import BackButton from "../buttons/back-button";
 
 const HEADER_MIN_HEIGHT = 60;
 
@@ -25,6 +26,7 @@ export default function ImageAnimatedHeader({
   onImageLoad = (p) => p,
   onPress = null,
   imageHeight = null,
+  showBackButton = true,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
@@ -128,11 +130,9 @@ export default function ImageAnimatedHeader({
           {title}
         </Text>
       </Animated.View>
-      <View style={styles.iconView}>
-        <TouchableOpacity onPress={onBack} style={styles.iconTouchableOpacity}>
-          <Icon type="ionicon" name="md-arrow-back" color="white" size={30} />
-        </TouchableOpacity>
-      </View>
+      {showBackButton && (
+        <BackButton onPress={onBack} containerStyle={styles.iconView} />
+      )}
     </View>
   );
 }
@@ -175,12 +175,7 @@ const styles = StyleSheet.create({
   },
   iconView: {
     position: "absolute",
-    top: 11,
+    top: 14,
     left: 15,
-  },
-  iconTouchableOpacity: {
-    borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
   },
 });

@@ -22,7 +22,6 @@ export default function PhotoDetail({
   title,
   touchable,
 }) {
-  const { goBack } = useNavigation();
   const {
     monumentService: { getFullSizePhoto },
   } = useContext(AppContext);
@@ -41,7 +40,7 @@ export default function PhotoDetail({
           imageHeight={SIZE / photo.imageScale}
           title={title}
           headerBackground={DefaultTheme.pallete.colors.primary.main}
-          onBack={goBack}
+          showBackButton={false}
           source={{
             uri: data.image,
           }}
