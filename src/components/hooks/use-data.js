@@ -54,7 +54,6 @@ export default function useData(
   };
 
   const update = () => {
-    console.log("update");
     if (effectParams.length > 0 && !checkEffectParamsOnNull()) return;
     enableLoading();
     makeCancelable(getData(...params))

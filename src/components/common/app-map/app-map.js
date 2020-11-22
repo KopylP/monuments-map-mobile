@@ -18,7 +18,6 @@ export default class AppMap extends Component {
   handleMapReady = async () => {
     let { status } = await Location.requestPermissionsAsync();
     if (status === "granted") {
-      console.log("granted");
       this.setState({
         userAccessLocation: true,
       });
