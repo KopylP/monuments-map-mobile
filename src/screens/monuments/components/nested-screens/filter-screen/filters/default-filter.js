@@ -9,7 +9,7 @@ export default function DefaultFilter({
   setSelectedValues,
   data,
   title,
-  style = {}
+  style = {},
 }) {
   const isChipSelected = (id) => selectedValues.includes(id);
 
@@ -29,41 +29,55 @@ export default function DefaultFilter({
   return (
     <View style={[{ width: "100%" }, style]}>
       <Text style={styles.text}>{title}</Text>
-      <View style={{
+      <View
+        style={{
           flexDirection: "row",
           flexWrap: "wrap",
           width: "100%",
-      }}>
-        {data && data.map((option, i) => {
-          return (
-            <Chip
-              key={i}
-              style={{
-                margin: 5,
-                backgroundColor: isChipSelected(option.id) ? main : background,
-              }}
-              textStyle={{
-                  color: "white"
-              }}
-              icon={({size}) => isChipSelected(option.id) && <Icon type="font-awesome" size={size} name="check" color="white"/> }
-              onPress={() => handleChipPress(option.id)}
-              selected={isChipSelected(option.id)}
-              selectedColor={main}
-              mode="outlined"
-            >
-              {option.name}
-            </Chip>
-          );
-        })}
+        }}
+      >
+        {data &&
+          data.map((option, i) => {
+            return (
+              <Chip
+                key={i}
+                style={{
+                  margin: 5,
+                  backgroundColor: isChipSelected(option.id)
+                    ? main
+                    : background,
+                }}
+                textStyle={{
+                  color: "white",
+                }}
+                icon={({ size }) =>
+                  isChipSelected(option.id) && (
+                    <Icon
+                      type="font-awesome"
+                      name="check"
+                      size={size}
+                      color="white"
+                    />
+                  )
+                }
+                onPress={() => handleChipPress(option.id)}
+                selected={isChipSelected(option.id)}
+                selectedColor={main}
+                mode="outlined"
+              >
+                {option.name}
+              </Chip>
+            );
+          })}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    text: {
-        margin: 5,
-        fontSize: 20,
-        fontWeight: "700"
-    }
+  text: {
+    margin: 5,
+    fontSize: 20,
+    fontWeight: "700",
+  },
 });

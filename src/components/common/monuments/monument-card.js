@@ -1,43 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Platform, Text } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
-import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import { DefaultTheme } from "../../../theme/default-theme";
 import TouchableScale from "../../template/buttons/touchable-scale";
 import ContentSpinner from "../content-spinner/content-spinner";
 import AppContext from "../../../context/app-context";
-import timeout from "../../../helpers/timeout-promise";
+import useData from "../../hooks/use-data";
 
 export default function MonumentCard({
   monument,
   shareId,
   onPress = (p) => p,
 }) {
-  const [loading, setLoading] = useState(true);
   const {
     monumentService: { getPhoto },
   } = useContext(AppContext);
-  const [imageBase64, setImageBase64] = useState(null);
+
   const [key, setKey] = useState(Math.random());
-  const makecancelable = useCancelablePromise();
+
+  const { data, loading, error } = useData(getPhoto, {
+    params: [monument && monument.majorPhotoImageId, 700],
+    delay: 100,
+    numberOfAttempts: 3,
+  }, [monument]);
+  /* TODO handle error */
 
   useEffect(() => {
-    if (monument) {
-      setLoading(true);
-      makecancelable(getPhoto(monument.majorPhotoImageId, 700))
-        .then((img) => {
-          setImageBase64(img.image);
-          makecancelable(timeout(100)).then(() => {
-            setLoading(false);
-          });
-        })
-        .catch((e) => {
-          // TODO handle error
-          setLoading(false);
-        });
+    if (data != null) {
       setKey(Math.random());
     }
-  }, [monument]);
+  }, [data]);
 
   return (
     <TouchableScale
@@ -45,12 +37,18 @@ export default function MonumentCard({
       tension={50}
       friction={7}
       useNativeDriver
-      onPress={loading ? (p) => p : (p) => onPress(monument, imageBase64)}
+      onPress={
+        loading && !error ? (p) => p : (p) => onPress(monument, data.image)
+      }
       style={styles.container}
     >
       <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
         <SharedElement id={`image-${shareId}`} style={styles.image}>
-          <Image style={styles.image} key={key} source={{ uri: imageBase64 }} />
+          <Image
+            style={styles.image}
+            key={key}
+            source={{ uri: data && data.image }}
+          />
         </SharedElement>
         <View style={styles.dataContainer}>
           <Text style={styles.title}>{monument && monument.name}</Text>
