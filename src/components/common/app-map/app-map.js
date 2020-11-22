@@ -2,14 +2,34 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import MapView from "react-native-maps";
 import { defaultMapCenter } from "../../../config";
-import * as Location from "expo-location";
-import { Button } from "react-native-elements";
-import { DefaultTheme } from "../../../theme/default-theme";
 import MyLocationButton from "./my-location-button";
+import * as Location from "expo-location";
 
-export default class AppMap extends Component {
+class AppMap extends Component {
   state = {
     userAccessLocation: false,
+    location: null,
+  };
+
+  locationSubscription = null;
+
+  handleWatch = (location) => {
+    this.setState({location});
+  };
+
+  configureLocation = () => {
+    Location.watchPositionAsync(
+      {
+        timeInterval: 1000,
+      },
+      this.handleWatch
+    ).then(s => this.locationSubscription = s);
+  };
+
+  disableLocation = () => {
+    if (this.locationSubscription) {
+      this.locationSubscription.remove();
+    }
   };
 
   mapRef = React.createRef();
@@ -27,22 +47,32 @@ export default class AppMap extends Component {
     }
   };
 
-  handleLocationButtonPress = async () => {
-    const location = await Location.getCurrentPositionAsync({});
-    this.animateToRegion(
-      {
-        latitude: location.latitude,
-        longitude: location.longitude,
-        latitudeDelta: 0.006,
-        longitudeDelta: 0.006,
-      },
-      200
-    );
+  handleLocationButtonPress = () => {
+    const { location } = this.state;
+    if (location) {
+      this.animateToRegion(
+        {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.006,
+          longitudeDelta: 0.006,
+        },
+        200
+      );
+    }
   };
+
+  componentDidMount() {
+    this.configureLocation();
+  }
+
+  componentWillUnmount() {
+    this.disableLocation();
+  }
 
   render() {
     const { children } = this.props;
-    const { userAccessLocation } = this.state;
+    const { userAccessLocation, location } = this.state;
     return (
       <View style={[StyleSheet.absoluteFill]}>
         <MapView
@@ -57,18 +87,15 @@ export default class AppMap extends Component {
           showsPointsOfInterest={false}
           showsCompass={false}
           showsUserLocation={userAccessLocation}
+          showsMyLocationButton={userAccessLocation}
           style={[StyleSheet.absoluteFill]}
-          mapPadding={{
-            left: 5,
-            right: 10,
-          }}
         >
           {children}
         </MapView>
-        {userAccessLocation && (
-          <MyLocationButton onPress={this.handleLocationButtonPress} />
-        )}
+        {location && <MyLocationButton onPress={this.handleLocationButtonPress} />}
       </View>
     );
   }
 }
+
+export default AppMap;
