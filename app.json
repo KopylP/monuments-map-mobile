@@ -4,11 +4,12 @@
     "slug": "monuments-map-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "marginHorizontal": "20"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,7 +26,7 @@
     "android": {
       "package": "com.kopyl.monumentsmap",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.jpg",
         "backgroundColor": "#FFFFFF"
       },
       "permissions": ["ACCESS_FINE_LOCATION"],
@@ -34,9 +35,6 @@
           "apiKey": "AIzaSyDTjU-QE2HsjmJsveLmcmtVfI2CpUppW6Q"
         }
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
