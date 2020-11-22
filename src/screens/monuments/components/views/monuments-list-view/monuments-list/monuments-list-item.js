@@ -8,7 +8,7 @@ export default function MonumentListItem({ monument, onPress = (p) => p }) {
     <View
       style={{
         width: "100%",
-        height: 220,
+        height: 250,
       }}
     >
       <MonumentCard

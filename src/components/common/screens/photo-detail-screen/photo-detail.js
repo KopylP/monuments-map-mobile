@@ -1,8 +1,8 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import AppContext from "../../../../context/app-context";
 import { DefaultTheme } from "../../../../theme/default-theme";
+import { useLocate } from "../../../hooks/locate-hooks";
 import useData from "../../../hooks/use-data";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
@@ -32,6 +32,8 @@ export default function PhotoDetail({
     }
   );
 
+  const { t } = useLocate();
+
   return (
     <>
       {!loading && data && (
@@ -53,7 +55,7 @@ export default function PhotoDetail({
             }}
           >
             <View style={styles.yearContainer}>
-              <Text style={styles.year}>Фото: </Text>
+              <Text style={styles.year}>{t("Photo")}: </Text>
               <DetailYear year={year} period={period} style={styles.year} />
             </View>
             <View style={styles.buttonsContainer}>
