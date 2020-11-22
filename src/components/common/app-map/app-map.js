@@ -8,28 +8,6 @@ import * as Location from "expo-location";
 class AppMap extends Component {
   state = {
     userAccessLocation: false,
-    location: null,
-  };
-
-  locationSubscription = null;
-
-  handleWatch = (location) => {
-    this.setState({location});
-  };
-
-  configureLocation = () => {
-    Location.watchPositionAsync(
-      {
-        timeInterval: 1000,
-      },
-      this.handleWatch
-    ).then(s => this.locationSubscription = s);
-  };
-
-  disableLocation = () => {
-    if (this.locationSubscription) {
-      this.locationSubscription.remove();
-    }
   };
 
   mapRef = React.createRef();
@@ -47,8 +25,8 @@ class AppMap extends Component {
     }
   };
 
-  handleLocationButtonPress = () => {
-    const { location } = this.state;
+  handleLocationButtonPress = async () => {
+    const location = await Location.getLastKnownPositionAsync();
     if (location) {
       this.animateToRegion(
         {
@@ -62,17 +40,10 @@ class AppMap extends Component {
     }
   };
 
-  componentDidMount() {
-    this.configureLocation();
-  }
-
-  componentWillUnmount() {
-    this.disableLocation();
-  }
 
   render() {
     const { children } = this.props;
-    const { userAccessLocation, location } = this.state;
+    const { userAccessLocation } = this.state;
     return (
       <View style={[StyleSheet.absoluteFill]}>
         <MapView
@@ -87,12 +58,11 @@ class AppMap extends Component {
           showsPointsOfInterest={false}
           showsCompass={false}
           showsUserLocation={userAccessLocation}
-          showsMyLocationButton={userAccessLocation}
           style={[StyleSheet.absoluteFill]}
         >
           {children}
         </MapView>
-        {location && <MyLocationButton onPress={this.handleLocationButtonPress} />}
+        {userAccessLocation && <MyLocationButton onPress={this.handleLocationButtonPress} />}
       </View>
     );
   }
