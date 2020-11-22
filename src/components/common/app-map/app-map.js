@@ -26,20 +26,21 @@ class AppMap extends Component {
   };
 
   handleLocationButtonPress = async () => {
-    const location = await Location.getLastKnownPositionAsync();
-    if (location) {
-      this.animateToRegion(
-        {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          latitudeDelta: 0.006,
-          longitudeDelta: 0.006,
-        },
-        200
-      );
+    if (this.state.userAccessLocation) {
+      const location = await Location.getLastKnownPositionAsync();
+      if (location) {
+        this.animateToRegion(
+          {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.006,
+            longitudeDelta: 0.006,
+          },
+          200
+        );
+      }
     }
   };
-
 
   render() {
     const { children } = this.props;
@@ -62,7 +63,9 @@ class AppMap extends Component {
         >
           {children}
         </MapView>
-        {userAccessLocation && <MyLocationButton onPress={this.handleLocationButtonPress} />}
+        {userAccessLocation && (
+          <MyLocationButton onPress={this.handleLocationButtonPress} />
+        )}
       </View>
     );
   }
