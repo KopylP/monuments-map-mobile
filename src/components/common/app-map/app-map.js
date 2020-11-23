@@ -60,6 +60,7 @@ class AppMap extends Component {
           showsCompass={false}
           showsUserLocation={userAccessLocation}
           style={[StyleSheet.absoluteFill]}
+          showsMyLocationButton={false}
         >
           {children}
         </MapView>
