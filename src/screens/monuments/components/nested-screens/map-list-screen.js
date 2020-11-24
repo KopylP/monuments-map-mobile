@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
@@ -60,16 +60,21 @@ const bindStateToProps = ({
   error,
 });
 
+const bindPropsToActions = (p) => ({
+  fetchAction: p.fetchAction,
+  requestAction: p.requestAction,
+});
+
+const bindPropsToParams = ({ statuses, conditions, cities }) => [
+  cities,
+  statuses,
+  conditions,
+];
+
 const composed = compose(
   withMonumentService(),
   connect(bindStateToProps, bindDispatchToProps),
-  withReduxData(
-    (p) => ({
-      fetchAction: p.fetchAction,
-      requestAction: p.requestAction,
-    }),
-    ({ statuses, conditions, cities }) => [cities, statuses, conditions]
-  )
+  withReduxData(bindPropsToActions, bindPropsToParams)
 );
 
 export default composed(MapListScreen);
