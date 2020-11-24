@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, compose } from "redux";
 import SelectedTabs from "../../../../components/template/controls/selected-tabs/selected-tabs";
 import FilterButton from "../fitler-button/filter-button";
 import MonumentsBottomSheet from "../monuments-bottom-sheet/monuments-bottom-sheet";
 import MonumentsMap from "../views/monument-map-view/monuments-map/monuments-map";
 import MonumentsListView from "../views/monuments-list-view/monuments-list-view";
 import withMonumentService from "../../../../components/hoc-helpers/with-monument-service";
-import { fetchMonuments } from "../../../../redux/actions/monuments-actions";
-import { useLocate } from "../../../../components/hooks/locate-hooks";
-
-function MapListScreen({
+import {
   fetchMonuments,
-  requestFetch,
-  statuses,
-  conditions,
-  cities,
-}) {
+  requestMonumentsFetch,
+} from "../../../../redux/actions/monuments-actions";
+import { useLocate } from "../../../../components/hooks/locate-hooks";
+import withReduxData from "../../../../components/hoc-helpers/with-redux-data";
+
+function MapListScreen() {
   const [tab, setTab] = useState(0);
   const { t } = useLocate();
-
-  useEffect(() => {
-    if (requestFetch) fetchMonuments(cities, statuses, conditions);
-  }, [requestFetch]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -47,21 +41,35 @@ function MapListScreen({
 
 const bindDispatchToProps = (dispatch, { monumentService }) => {
   return bindActionCreators(
-    { fetchMonuments: fetchMonuments(monumentService) },
+    {
+      fetchAction: fetchMonuments(monumentService),
+      requestAction: requestMonumentsFetch,
+    },
     dispatch
   );
 };
 
 const bindStateToProps = ({
-  monuments: { requestFetch },
+  monuments: { requestFetch, error },
   filter: { statuses, conditions, cities },
 }) => ({
   requestFetch,
   statuses,
   conditions,
   cities,
+  error,
 });
 
-export default withMonumentService()(
-  connect(bindStateToProps, bindDispatchToProps)(MapListScreen)
+const composed = compose(
+  withMonumentService(),
+  connect(bindStateToProps, bindDispatchToProps),
+  withReduxData(
+    (p) => ({
+      fetchAction: p.fetchAction,
+      requestAction: p.requestAction,
+    }),
+    ({ statuses, conditions, cities }) => [cities, statuses, conditions]
+  )
 );
+
+export default composed(MapListScreen);

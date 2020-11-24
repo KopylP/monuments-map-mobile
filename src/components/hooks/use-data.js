@@ -47,6 +47,7 @@ export default function useData(
 
   const enableLoading = () => {
     if (!loading) setLoading(true);
+    if (error) setError(null);
   };
 
   const checkEffectParamsOnNull = () => {

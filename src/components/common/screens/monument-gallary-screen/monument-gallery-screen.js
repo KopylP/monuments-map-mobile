@@ -1,26 +1,27 @@
-import React, { memo, useContext } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
-import AppContext from "../../../../context/app-context";
-import useData from "../../../hooks/use-data";
+import { compose } from "redux";
+import withData from "../../../hoc-helpers/with-data";
+import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
+import withRouteParams from "../../../hoc-helpers/with-route-params";
 import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
 import GalleryPhotosList from "./gallery/gallery-photos-list";
 
-function MonumentGalleryScreen({ route }) {
-  const { monumentId, title } = route.params;
-  const {
-    monumentService: { getMonumentPhotos },
-  } = useContext(AppContext);
-  const { data, loading, error } = useData(getMonumentPhotos, {
-    params: [monumentId],
-    delay: 300,
-  }); // TODO handle error
+function MonumentGalleryScreen({ params, data, loading }) {
+  const { title } = params;
 
   return (
     <View style={StyleSheet.absoluteFill}>
       {loading && <AbsoluteIndicator />}
-      {data && <GalleryPhotosList monumentPhotos={data} title={title}/>}
+      {data && <GalleryPhotosList monumentPhotos={data} title={title} />}
     </View>
   );
 }
 
-export default memo(MonumentGalleryScreen);
+const composed = compose(
+  withMsGetMethod((p) => p.getMonumentPhotos),
+  withRouteParams(),
+  withData(({ monumentId }) => [monumentId])
+);
+
+export default composed(MonumentGalleryScreen);

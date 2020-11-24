@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import AppContext from "../../../../context/app-context";
+import { compose } from "redux";
 import { DefaultTheme } from "../../../../theme/default-theme";
+import withData from "../../../hoc-helpers/with-data";
+import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
 import { useLocate } from "../../../hooks/locate-hooks";
-import useData from "../../../hooks/use-data";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
 import DetailYear from "../../dates/year-detail";
@@ -12,8 +13,7 @@ import PhotoViewButton from "./photo-view-button";
 
 const SIZE = Math.floor(Dimensions.get("window").width);
 
-export default function PhotoDetail({
-  photoId,
+function PhotoDetail({
   photo,
   description,
   year,
@@ -21,17 +21,9 @@ export default function PhotoDetail({
   sources,
   title,
   touchable,
+  data,
+  loading,
 }) {
-  const {
-    monumentService: { getFullSizePhoto },
-  } = useContext(AppContext);
-  const { data, loading, error /* TODO handle error */ } = useData(
-    getFullSizePhoto,
-    {
-      params: [photoId],
-    }
-  );
-
   const { t } = useLocate();
 
   return (
@@ -59,7 +51,7 @@ export default function PhotoDetail({
               <DetailYear year={year} period={period} style={styles.year} />
             </View>
             <View style={styles.buttonsContainer}>
-              <PhotoViewButton canPress={touchable} imageBase64={data.image}/>
+              <PhotoViewButton canPress={touchable} imageBase64={data.image} />
               <SourcesButton style={styles.rightButton} sources={sources} />
             </View>
             <Text style={styles.description}>{description}</Text>
@@ -74,6 +66,13 @@ export default function PhotoDetail({
     </>
   );
 }
+
+const composed = compose(
+  withMsGetMethod(p => p.getFullSizePhoto),
+  withData((_, props) => [props.photoId])
+);
+
+export default composed(PhotoDetail);
 
 const styles = StyleSheet.create({
   buttonsContainer: {

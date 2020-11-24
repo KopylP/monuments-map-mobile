@@ -39,7 +39,7 @@ function FilterView({
   };
 
   const onFailure = (error) => {
-    /* TODO handle error */
+    goBack();
   };
 
   const onSuccess = () => {

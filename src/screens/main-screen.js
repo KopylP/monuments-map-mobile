@@ -7,6 +7,7 @@ import MonumentsMapScreen, {
 import { DefaultTheme } from "../theme/default-theme";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useLocate } from "../components/hooks/locate-hooks";
+import AboutAppScreen, { aboutAppTabOptions } from "./about-app/about-app-screen";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,6 +50,14 @@ export default function MainScreen() {
             };
           }}
         />
+        <Tab.Screen name="AboutApp"
+        component={AboutAppScreen}
+        options={{
+          ...aboutAppTabOptions,
+          tabBarLabel: "about app",
+        }}>
+
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );

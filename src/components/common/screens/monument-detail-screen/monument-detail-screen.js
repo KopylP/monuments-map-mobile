@@ -1,31 +1,22 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import Loader from "./components/loader";
-import AppContext from "../../../../context/app-context";
 import MonumentDetails from "./components/monument-details/monument-details";
 import timeout from "../../../../helpers/timeout-promise";
-import useData from "../../../hooks/use-data";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import { compose } from "redux";
+import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
+import withRouteParams from "../../../hoc-helpers/with-route-params";
+import withData from "../../../hoc-helpers/with-data";
 
-const MonumentDetailScreen = ({ route }) => {
-  const { monument, shareId, imageBase64 } = route.params;
+const MonumentDetailScreen = ({ data, loading, params }) => {
+  const { monument, shareId, imageBase64 } = params;
   const [headerBackground, setHeaderBackground] = useState(null);
   const makeCancelable = useCancelablePromise();
   const navigation = useNavigation();
-  const {
-    monumentService: { getMonumentById },
-  } = useContext(AppContext);
-
-  const { data, error /* TODO handle error */, loading } = useData(
-    getMonumentById,
-    {
-      delay: 100,
-      params: [monument.id],
-    }
-  );
 
   const handleSetBackground = () => {
     makeCancelable(timeout(200)).then(() => {
@@ -63,4 +54,10 @@ const MonumentDetailScreen = ({ route }) => {
   );
 };
 
-export default MonumentDetailScreen;
+const composed = compose(
+  withMsGetMethod((p) => p.getMonumentById),
+  withRouteParams(),
+  withData(({ monument }) => [monument.id])
+);
+
+export default composed(MonumentDetailScreen);
