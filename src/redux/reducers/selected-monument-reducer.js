@@ -8,13 +8,14 @@ import {
 const initialState = {
   monument: null,
   openDialog: false,
-  dialogEnabled: false,
+  dialogEnabled: true,
 };
 
 export default selectedMonumentReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_SELECTED_MONUMENT:
       return {
+        ...state,
         monument: action.payload,
         openDialog: true,
       };

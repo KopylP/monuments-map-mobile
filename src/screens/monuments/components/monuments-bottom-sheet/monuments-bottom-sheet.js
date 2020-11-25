@@ -16,6 +16,7 @@ function MonumentsBottomSheet({
   dialogEnabled,
   disableDialog,
 }) {
+
   const bottomRef = useRef();
   const makeCancelable = useCancelablePromise();
 
