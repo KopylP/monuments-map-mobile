@@ -21,7 +21,7 @@ const getTabBarVisibility = (route) => {
 };
 
 export default function MainScreen() {
-  const { t, locale } = useLocate();
+  const { t } = useLocate();
 
   return (
     <NavigationContainer>
@@ -54,7 +54,7 @@ export default function MainScreen() {
         component={AboutAppScreen}
         options={{
           ...aboutAppTabOptions,
-          tabBarLabel: "about app",
+          tabBarLabel: t("About app"),
         }}>
 
         </Tab.Screen>
