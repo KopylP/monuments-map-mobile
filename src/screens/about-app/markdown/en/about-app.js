@@ -1,18 +1,16 @@
 const text = `
-Пам'ятки Полтави — це інтерактивна карта з основними пам'ятками міста, їх описом та галереєю. Ми створили її, щоб привернути увагу до проблеми знищення культурної спадщини нашого міста.
+Monuments of Poltava is an interactive map featuring important monuments of the city with their description and gallery. We created it to promote public attention to the problem of a decline in the cultural legacy of our city.
 
-Це повністю волонтерський, студентський, проєкт, що був створений лише за ініціативи команди без залучення коштів організацій.
+This project was done completely by an initiative of volunteers and students, without any financial support.
 
-За допомогою цієї карти ви зможете:
+With our map you can:
 
-- знайти основну інформацію про пам'ятки
-- скористатися фільтрами для пошуку
-- розглянути галерею з зображенням пам'ятки в різні часи
-- дізнатися про вже знищені пам'ятки
-- відстежувати найближчі пам'ятки до вашої геопозиції
+-  find general information concerning monuments
+-  use filters for improved search
+-  browse a gallery with monuments pictured in several time periods
+-  find out about destroyed monuments
+-  find the closest monuments according to your location
 
-Ми бачимо Полтаву — ще більш розвиненим, туристично-привабливим містом, що оберігає та цінує історичну та культурну спадщину. Якщо ви хочете долучитися, або підтримати команду, пишіть за адресою: p.kopyl9@gmail.com
-
-Також, за бажанням, можете підвісити нам каву в Кавуні) Чи є ми в Полтаві уточнюйте в Інстаграмі @petia.kopyl.`;
+We believe that Poltava will become more developed, tourist-friendly city by guarding and valuing historic and cultural heritage. If you are willing to contribute or support our team, please inquire by: [p.kopyl9@gmail.com](mailto:p.kopyl9@gmail.com).`;
 
 export default text;
