@@ -1,6 +1,8 @@
 import {
   CHANGE_SELECTED_MONUMENT,
   CLOSE_SELECTED_MONUMENT_DIALOG,
+  DISABLE_DIALOG,
+  ENABLE_DIALOG,
 } from "../constants";
 
 export const changeSelectedMonument = (monument) => {
@@ -15,3 +17,15 @@ export const closeSelectedMonumentDialog = () => {
     type: CLOSE_SELECTED_MONUMENT_DIALOG,
   };
 };
+
+export const disableDialog = () => {
+  return {
+    type: DISABLE_DIALOG
+  }
+}
+
+export const enableDialog = () => {
+  return {
+    type: ENABLE_DIALOG
+  }
+}

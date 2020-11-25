@@ -16,10 +16,11 @@ import FilterScreen from "./components/nested-screens/filter-screen/filter-scree
 import { useLocate } from "../../components/hooks/locate-hooks";
 import monumentDetailScreenOptions from "../../components/common/screens/monument-detail-screen/monument-detail-screen.options";
 import SourcesScreen from "../../components/common/screens/sources-screen/sources-sreen";
+import { enableDialog } from "../../redux/actions/selected-monument-actions";
 
 const Stack = createSharedElementStackNavigator();
 
-const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
+const MonumentsMapScreen = ({ transitionStart, transitionEnd, enableDialog }) => {
   const makeCancelable = useCancelablePromise();
   const { t } = useLocate();
 
@@ -53,7 +54,6 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
     >
       <Stack.Screen
         name="List"
-        options={{ title: "List" }}
         component={MapListScreen}
         options={{
           headerShown: false,
@@ -92,7 +92,8 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
         {...monumentDetailScreenOptions(
           makeCancelable,
           transitionStart,
-          transitionEnd
+          transitionEnd,
+          enableDialog
         )}
       />
       <Stack.Screen
@@ -104,7 +105,7 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd }) => {
   );
 };
 
-const bindDispatchToProps = { transitionStart, transitionEnd };
+const bindDispatchToProps = { transitionStart, transitionEnd, enableDialog };
 
 export default connect(null, bindDispatchToProps)(MonumentsMapScreen);
 

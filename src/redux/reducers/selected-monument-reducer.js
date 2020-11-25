@@ -1,11 +1,14 @@
 import {
   CHANGE_SELECTED_MONUMENT,
   CLOSE_SELECTED_MONUMENT_DIALOG,
+  DISABLE_DIALOG,
+  ENABLE_DIALOG,
 } from "../constants";
 
 const initialState = {
   monument: null,
   openDialog: false,
+  dialogEnabled: false,
 };
 
 export default selectedMonumentReducer = (state = initialState, action) => {
@@ -21,6 +24,16 @@ export default selectedMonumentReducer = (state = initialState, action) => {
         openDialog: false,
       };
     }
+    case DISABLE_DIALOG:
+      return {
+        ...state,
+        dialogEnabled: false,
+      }
+    case ENABLE_DIALOG:
+      return {
+        ...state,
+        dialogEnabled: true,
+      }
     default:
       return state;
   }

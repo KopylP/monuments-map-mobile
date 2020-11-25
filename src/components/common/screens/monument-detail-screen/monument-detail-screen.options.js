@@ -5,7 +5,8 @@ import MonumentDetailScreen from "./monument-detail-screen";
 export default function monumentDetailScreenOptions(
   makeCancelable,
   transitionStart,
-  transitionEnd
+  transitionEnd,
+  enableDialog
 ) {
   return {
     name: "Detail",
@@ -16,10 +17,12 @@ export default function monumentDetailScreenOptions(
     listeners: {
       transitionStart: (e) => {
         if (e.data.closing) {
+          enableDialog();
           transitionStart();
           makeCancelable(timeout(300)).then(() => {
             transitionEnd();
           });
+        } else {
         }
       },
     },

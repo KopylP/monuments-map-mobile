@@ -21,6 +21,7 @@ export default function AboutAppScreen() {
 const styles = StyleSheet.create({
   contentContainer: {
     paddingHorizontal: 15,
+    paddingBottom: 15,
   },
 });
 
