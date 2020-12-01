@@ -43,6 +43,7 @@ export default function DefaultFilter({
                 key={i}
                 style={{
                   margin: 5,
+                  maxWidth: "100%",
                   backgroundColor: isChipSelected(option.id)
                     ? main
                     : background,

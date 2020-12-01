@@ -14,6 +14,7 @@ import {
 } from "../../../../redux/actions/monuments-actions";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 import withReduxData from "../../../../components/hoc-helpers/with-redux-data";
+import MapIndicator from "../map-indicator/map-indicator";
 
 function MapListScreen() {
   const [tab, setTab] = useState(0);
@@ -23,6 +24,7 @@ function MapListScreen() {
     <View style={StyleSheet.absoluteFill}>
       <MonumentsMap />
       <MonumentsBottomSheet />
+      <MapIndicator />
       <MonumentsListView show={tab == 1} />
       <FilterButton />
       <SelectedTabs
