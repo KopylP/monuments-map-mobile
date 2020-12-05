@@ -27,7 +27,7 @@ export const DefaultTheme = {
           main: "#A39C9C",
         },
         screenBackground: {
-            main: "#FAFAFA",
+            main: "#EFEFF4",
             dark: "#E9E9E9"
         }
       },
