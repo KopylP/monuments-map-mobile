@@ -6,6 +6,7 @@ import TouchableScale from "../../template/buttons/touchable-scale";
 import ContentSpinner from "../content-spinner/content-spinner";
 import AppContext from "../../../context/app-context";
 import useData from "../../hooks/use-data";
+import { isIOS } from "../../../helpers/platform-helpers";
 
 export default function MonumentCard({
   monument,
@@ -91,6 +92,6 @@ const styles = StyleSheet.create({
   title: {
     padding: 20,
     fontSize: 24,
-    fontWeight: "600",
+    fontWeight: isIOS ? "600": "700",
   },
 });
