@@ -17,21 +17,39 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.kopyl.monumentsmap",
       "supportsTablet": true,
+      "googleServicesFile": "./assets/ios/GoogleService-Info.plist",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This application uses geolocation data to center the map on the user's location and show architectural monuments near him."
       }
     },
     "android": {
       "package": "com.kopyl.monumentsmap",
+      "googleServicesFile": "./assets/android/google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "permissions": ["ACCESS_FINE_LOCATION"],
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyDTjU-QE2HsjmJsveLmcmtVfI2CpUppW6Q"
+        }
+      }
+    },
+    "web": {
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyALiczDv1RrBOgDhRVIzUNY2fAedzUNr7s",
+          "authDomain": "poltava-monuments-map.firebaseapp.com",
+          "projectId": "poltava-monuments-map",
+          "storageBucket": "poltava-monuments-map.appspot.com",
+          "messagingSenderId": "352846321465",
+          "appId": "1:352846321465:web:5a06352a60b21033527ae8",
+          "measurementId": "G-ETZN89EGPS"
         }
       }
     }

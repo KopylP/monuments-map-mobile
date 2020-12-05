@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../../../../theme/default-theme";
 import { Icon } from "react-native-elements";
+import { logEvent } from 'expo-firebase-analytics';
 
 export default function DefaultFilter({
   selectedValues,
@@ -22,7 +23,13 @@ export default function DefaultFilter({
       newValues.splice(index, 1);
       setSelectedValues(newValues);
     }
+    logFilterClick(id);
   };
+
+  const logFilterClick = (id) => {
+    const filterChip = data.find(p => p.id === id);
+    logEvent("FilterPressed", { name: filterChip.abbreviation });
+  }
 
   const { background, main } = DefaultTheme.pallete.colors.primary;
 

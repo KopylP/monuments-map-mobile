@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352846321465",
+    "project_id": "poltava-monuments-map",
+    "storage_bucket": "poltava-monuments-map.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352846321465:android:f4e7d325ab31960f527ae8",
+        "android_client_info": {
+          "package_name": "com.kopyl.monumentsmap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352846321465-ni49du9e0a0adc00u5qrmr4g6o8h7a7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsbGfL_XeSPOnKUXoawfdxC7mPkUxOaok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352846321465-ni49du9e0a0adc00u5qrmr4g6o8h7a7m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

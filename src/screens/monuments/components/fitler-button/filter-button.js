@@ -5,6 +5,7 @@ import { Button, Badge } from "react-native-elements";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import { connect } from "react-redux";
 import { isIOS } from "../../../../helpers/platform-helpers";
+import { compose } from "redux";
 
 function FilterButton({ filters }) {
   const { navigate } = useNavigation();
@@ -67,4 +68,6 @@ function FilterButton({ filters }) {
 
 const bindStateToProps = ({ filter }) => ({ filters: filter });
 
-export default connect(bindStateToProps)(FilterButton);
+const composed = compose(connect(bindStateToProps));
+
+export default composed(FilterButton);

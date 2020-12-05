@@ -11,6 +11,7 @@ import { compose } from "redux";
 import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
 import withRouteParams from "../../../hoc-helpers/with-route-params";
 import withData from "../../../hoc-helpers/with-data";
+import withParamsScreenLog from "../../../hoc-helpers/analytics/with-params-screen-log";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
   const { monument, shareId, imageBase64 } = params;
@@ -54,10 +55,18 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
   );
 };
 
+const bindRouteParamsToMethodProps = ({ monument }) => [monument.id];
+const bindRouteParamsToLogObject = ({ monument }) => ({
+  id: monument.id,
+  slug: monument.slug,
+  localizedName: monument.name
+});
+
 const composed = compose(
   withMsGetMethod((p) => p.getMonumentById),
   withRouteParams(),
-  withData(({ monument }) => [monument.id])
+  withParamsScreenLog("MonumentsDetailsScreen", bindRouteParamsToLogObject),
+  withData(bindRouteParamsToMethodProps)
 );
 
 export default composed(MonumentDetailScreen);
