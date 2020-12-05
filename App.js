@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import { host } from "./src/config";
 import AppContext from "./src/context/app-context";
