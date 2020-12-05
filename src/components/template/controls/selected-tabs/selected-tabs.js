@@ -77,7 +77,7 @@ const Tab = ({ title, selected, onTabSelected }) => {
 const styles = StyleSheet.create({
   root: {
     width: 200,
-    backgroundColor: DefaultTheme.pallete.colors.screenBackground.main,
+    backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
