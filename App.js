@@ -14,15 +14,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { DefaultTheme } from "./src/theme/default-theme";
 import { StatusBar } from "expo-status-bar";
 import { isIOS } from "./src/helpers/platform-helpers";
+import { logEvent } from "expo-firebase-analytics";
 enableScreens();
 
 function App() {
   const {
-    culture: { code },
+    culture,
   } = useLocate();
 
-  const monumentService = new MonumentService(host, code);
-  const geocoderService = new GeocoderService(code);
+  const monumentService = new MonumentService(host, culture.code);
+  const geocoderService = new GeocoderService(culture.code);
+
+  logEvent("Culture", culture);
 
   return (
     <AppContext.Provider value={{ monumentService, geocoderService }}>
