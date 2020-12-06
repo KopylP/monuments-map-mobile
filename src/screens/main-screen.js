@@ -45,7 +45,7 @@ export default function MainScreen() {
           options={({ route }) => {
             return {
               ...mapTabOptions,
-              tabBarLabel: t("map"),
+              tabBarLabel: t("Monuments"),
               tabBarVisible: getTabBarVisibility(route),
             };
           }}

@@ -111,6 +111,6 @@ export default connect(null, bindDispatchToProps)(MonumentsMapScreen);
 
 export const mapTabOptions = {
   tabBarIcon: ({ color, size }) => (
-    <Icon name="map" type="font-awesome" size={size} color={color} />
+    <Icon name="landmark" type="font-awesome-5" size={size} color={color} />
   ),
 };
