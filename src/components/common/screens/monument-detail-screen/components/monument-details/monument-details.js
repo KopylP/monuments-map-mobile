@@ -1,7 +1,8 @@
 import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { isIOS } from "../../../../../../helpers/platform-helpers";
 import Title from "../../../../../template/typography/title";
+import CopyableText from "../../../../copyable-text/copyable-text";
 import DetailYear from "../../../../dates/year-detail";
 import SourcesButton from "../../../../sources-button/sources-button";
 import ConditionChip from "./condition-chip";
@@ -26,14 +27,16 @@ export default function MonumentDetails({ monument }) {
         {monument && monument.protectionNumber})
       </Text>
       <View style={styles.buttonsContainer}>
-        <GalleryButton {...monument}/>
+        <GalleryButton {...monument} />
         <OpenInMapButton style={styles.rightButton} {...monument} />
-        <SourcesButton style={styles.rightButton} {...monument}/>
+        <SourcesButton style={styles.rightButton} {...monument} />
       </View>
       <View style={styles.chips}>
         <ConditionChip {...monument} />
       </View>
-      <Text style={styles.description}>{monument.description}</Text>
+      <CopyableText style={styles.description}>
+        {monument.description}
+      </CopyableText>
     </View>
   );
 }
@@ -51,11 +54,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   status: {
-    fontWeight: isIOS ? "600": "700",
+    fontWeight: isIOS ? "600" : "700",
     marginTop: 5,
   },
   year: {
-    fontWeight: isIOS ? "600": "700",
+    fontWeight: isIOS ? "600" : "700",
     marginTop: 15,
   },
   address: {

@@ -7,6 +7,7 @@ import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
 import { useLocate } from "../../../hooks/locate-hooks";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
 import AbsoluteIndicator from "../../../template/indicators/absolute-indicator/absolute-indicator";
+import CopyableText from "../../copyable-text/copyable-text";
 import DetailYear from "../../dates/year-detail";
 import SourcesButton from "../../sources-button/sources-button";
 import PhotoViewButton from "./photo-view-button";
@@ -54,7 +55,7 @@ function PhotoDetail({
               <PhotoViewButton canPress={touchable} imageBase64={data.image} />
               <SourcesButton style={styles.rightButton} sources={sources} />
             </View>
-            <Text style={styles.description}>{description}</Text>
+            <CopyableText style={styles.description}>{description}</CopyableText>
           </View>
         </ImageAnimatedHeader>
       )}
