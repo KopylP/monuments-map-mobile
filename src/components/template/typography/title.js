@@ -9,6 +9,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: isIOS ? "600": "700",
-    fontFamily: 'Roboto',
   },
 });
