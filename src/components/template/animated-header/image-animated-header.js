@@ -8,8 +8,6 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Icon } from "react-native-elements";
 import { SharedElement } from "react-navigation-shared-element";
 import BackButton from "../buttons/back-button";
 
@@ -175,7 +173,7 @@ const styles = StyleSheet.create({
   },
   iconView: {
     position: "absolute",
-    top: 14,
+    top: 11,
     left: 15,
   },
 });
