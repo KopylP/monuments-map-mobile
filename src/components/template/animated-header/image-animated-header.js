@@ -32,7 +32,7 @@ export default function ImageAnimatedHeader({
   const headerScrollDistance = maxHeight - HEADER_MIN_HEIGHT;
 
   const headerScale = scrollY.interpolate({
-    inputRange: [-headerScrollDistance * 3, 0],
+    inputRange: [-headerScrollDistance, 0],
     outputRange: [2, 1],
     extrapolate: "clamp",
   });
