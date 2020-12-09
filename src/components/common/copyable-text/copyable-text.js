@@ -5,7 +5,10 @@ import { DefaultTheme } from "../../../theme/default-theme";
 export default function CopyableText({ children, style }) {
   return (
     <TextInput
-      style={style}
+      style={{
+        color: "black",
+        ...style
+      }}
       multiline
       scrollEnabled={false}
       selectionColor={DefaultTheme.pallete.colors.primary.main}

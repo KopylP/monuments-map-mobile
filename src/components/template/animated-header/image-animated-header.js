@@ -85,6 +85,7 @@ export default function ImageAnimatedHeader({
           },
           { backgroundColor: headerBackground },
         ]}
+        pointerEvents="none"
       >
         <Animated.View
           style={[
