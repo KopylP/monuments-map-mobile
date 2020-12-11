@@ -23,12 +23,13 @@ export default function useData(
   const [data, setData] = useState(defaultValue);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loadingData, setLoadingData] = useState(false);
 
   const currentAttempt = useRef(0);
 
   const handleSuccess = (data) => {
+    setData(data);
     makeCancelable(timeout(delay)).then(() => {
-      setData(data);
       setLoading(false);
       setError(null);
     });
@@ -42,6 +43,7 @@ export default function useData(
       setData(null);
       setError(error);
       setLoading(false);
+      setLoadingData(false);
     }
   };
 
@@ -67,6 +69,6 @@ export default function useData(
   return {
     data,
     loading,
-    error,
+    error  
   };
 }

@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   title: {
     color: "white",
     fontSize: 16,
-    maxWidth: "72%",
+    maxWidth: "62%",
   },
   iconView: {
     position: "absolute",

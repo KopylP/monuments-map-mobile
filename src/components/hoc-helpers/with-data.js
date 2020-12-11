@@ -13,7 +13,7 @@ const withData = (bindRouteParamsToMethodParamList, options = {}) => (Wrapper) =
 
   const handleRefresh = () => setRefreshKey(Math.random());
 
-  const { loading, data, error } = useData(
+  const { loading, data, error, loadingData } = useData(
     getMethod,
     {
       params: methodParams,
@@ -26,7 +26,7 @@ const withData = (bindRouteParamsToMethodParamList, options = {}) => (Wrapper) =
     return <ErrorComponent error={error} onRefresh={handleRefresh}/>;
   }
 
-  return <Wrapper {...props} loading={loading} data={data} />;
+  return <Wrapper {...props} loading={loading} data={data} loadingData={loadingData}/>;
 };
 
 export default withData;

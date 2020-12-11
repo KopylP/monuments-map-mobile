@@ -47,7 +47,7 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
         }}
       >
         <View style={{ flex: 1 }}>
-          {data && <MonumentDetails monument={data} />}
+          {!loading && data && <MonumentDetails monument={data} />}
           {loading && <Loader />}
         </View>
       </ImageAnimatedHeader>

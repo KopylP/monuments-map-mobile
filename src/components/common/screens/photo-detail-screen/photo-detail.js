@@ -29,7 +29,7 @@ function PhotoDetail({
 
   return (
     <>
-      {!loading && data && (
+      {data && (
         <ImageAnimatedHeader
           maxHeight={Math.min(SIZE / photo.imageScale, 400)}
           imageHeight={SIZE / photo.imageScale}

@@ -25,7 +25,6 @@ function MapListScreen() {
     <View style={StyleSheet.absoluteFill}>
       <MonumentsMap />
       <MonumentsBottomSheet />
-      <MapIndicator />
       <MonumentsListView show={tab == 1} />
       <Logo />
       <FilterButton />
@@ -39,6 +38,7 @@ function MapListScreen() {
         }}
         onChangeTab={setTab}
       />
+      <MapIndicator />
     </View>
   );
 }
