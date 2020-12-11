@@ -3,16 +3,19 @@ import { Alert } from "react-native";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import LogoImage from "./logo-image";
-// import * as StoreReview from 'expo-store-review';
+import { useLocate } from "../../../../components/hooks/locate-hooks";
 
 export default function Logo() {
+
+  const { t } = useLocate();
+
   const handlePress = () => {
-    Alert.alert("Хочете більше дізнатися про проєкт?", "Вся інформація доступна на нашому сайті.", [
+    Alert.alert(t("Do you want to learn more about the project?"), t("All information is available on our website"), [
       {
-        text: "Перейти",
+        text: t("Go"),
       },
       {
-        text: "Закрити"
+        text: t("Cancel")
       }
     ])
   };
