@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   topBar: {
-    marginTop: 6,
+    marginTop: 5,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   },
   iconView: {
     position: "absolute",
-    top: 11,
+    top: 10,
     left: 15,
   },
 });

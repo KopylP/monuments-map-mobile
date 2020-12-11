@@ -15,6 +15,7 @@ import {
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 import withReduxData from "../../../../components/hoc-helpers/with-redux-data";
 import MapIndicator from "../map-indicator/map-indicator";
+import Logo from "../logo/logo";
 
 function MapListScreen() {
   const [tab, setTab] = useState(0);
@@ -26,6 +27,7 @@ function MapListScreen() {
       <MonumentsBottomSheet />
       <MapIndicator />
       <MonumentsListView show={tab == 1} />
+      <Logo />
       <FilterButton />
       <SelectedTabs
         firstTabTitle={t("map")}

@@ -20,7 +20,11 @@ import { enableDialog } from "../../redux/actions/selected-monument-actions";
 
 const Stack = createSharedElementStackNavigator();
 
-const MonumentsMapScreen = ({ transitionStart, transitionEnd, enableDialog }) => {
+const MonumentsMapScreen = ({
+  transitionStart,
+  transitionEnd,
+  enableDialog,
+}) => {
   const makeCancelable = useCancelablePromise();
   const { t } = useLocate();
 
@@ -34,7 +38,20 @@ const MonumentsMapScreen = ({ transitionStart, transitionEnd, enableDialog }) =>
         headerTintColor: "white",
         gestureEnabled: false,
         headerStyle: {
-          backgroundColor: DefaultTheme.pallete.colors.primary.main,
+          backgroundColor: DefaultTheme.pallete.colors.primary.dark,
+          height: 60,
+        },
+        headerTitleStyle: {
+          fontWeight: "400",
+          fontSize: 16,
+        },
+        headerLeft: ({ onPress }) => {
+          return (
+            <Icon type="ionicon" name="md-arrow-back" size={30} color="white" onPress={onPress}/>
+          );
+        },
+        headerLeftContainerStyle: {
+          left: 25
         },
         transitionSpec: {
           open: {

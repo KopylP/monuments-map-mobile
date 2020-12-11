@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "monuments-map-mobile",
-    "slug": "monuments-map-mobile",
+    "name": "Poltava Monuments",
+    "slug": "poltava-monuments",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
