@@ -36,18 +36,9 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-
-    elevation: 2,
   },
 });
 
