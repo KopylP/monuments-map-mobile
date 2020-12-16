@@ -1,18 +1,26 @@
 import React from "react";
-import { Button } from "react-native-paper";
+import { Text, TouchableOpacity } from "react-native";
 import { useLocate } from "../../../../../../components/hooks/locate-hooks";
-import { clearFilters } from "../../../../../../redux/actions/filter-actions";
 
 function ClearButton({ onClear = (p) => p }) {
   const { t } = useLocate();
 
   return (
-    <Button color="white" onPress={onClear}>
-      {t("Clear")}
-    </Button>
+    <TouchableOpacity onPress={onClear}>
+      <Text
+        style={{
+          color: "white",
+          fontSize: 14,
+          textTransform: "uppercase",
+          fontWeight: "500",
+          letterSpacing: 1,
+          margin: 16,
+        }}
+      >
+        {t("Clear")}
+      </Text>
+    </TouchableOpacity>
   );
 }
-
-const mapDispatchToProps = { clearFilters };
 
 export default ClearButton;
