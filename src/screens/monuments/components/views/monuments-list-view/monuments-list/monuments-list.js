@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { changeSelectedMonument } from "../../../../../../redux/actions/selected-monument-actions";
 import MonumentListItem from "./monuments-list-item";
 import { useNavigation } from "@react-navigation/native";
+import EmptyResult from "./empty-result";
 
-function MonumentsList({ monuments, transition }) {
-  
+function MonumentsList({ monuments, loading, transition }) {
+  if (monuments.length == 0 && !loading) return <EmptyResult />;
+
   const navigation = useNavigation();
 
   const handlePress = (monument, imageBase64) => {
@@ -23,6 +25,7 @@ function MonumentsList({ monuments, transition }) {
   const renderItem = ({ item }) => {
     return <MonumentListItem monument={item} onPress={handlePress} />;
   };
+
   return (
     <FlatList
       style={{ flex: 1 }}
@@ -40,9 +43,9 @@ function MonumentsList({ monuments, transition }) {
 }
 
 const bindStateToProps = ({
-  monuments: { monuments },
+  monuments: { monuments, loading },
   transition: { transition },
-}) => ({ monuments, transition });
+}) => ({ monuments, transition, loading });
 const bindDispatchToProps = { changeSelectedMonument };
 
 export default connect(bindStateToProps, bindDispatchToProps)(MonumentsList);
