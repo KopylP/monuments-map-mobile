@@ -4,20 +4,30 @@ import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import LogoImage from "./logo-image";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
+import * as Linking from 'expo-linking';
+import { host } from "../../../../config";
 
 export default function Logo() {
-
   const { t } = useLocate();
 
+  const handleGoButtonPress = () => {
+    Linking.openURL(host);
+  }
+
   const handlePress = () => {
-    Alert.alert(t("Do you want to learn more about the project?"), t("All information is available on our website"), [
-      {
-        text: t("Go"),
-      },
-      {
-        text: t("Cancel")
-      }
-    ])
+    Alert.alert(
+      t("Do you want to learn more about the project?"),
+      t("All information is available on our website"),
+      [
+        {
+          text: t("Go"),
+          onPress: handleGoButtonPress
+        },
+        {
+          text: t("Cancel"),
+        },
+      ]
+    );
   };
 
   return (
