@@ -9,19 +9,22 @@ export default function BackButton({
   iconColor = "white",
   iconStyle = {},
   iconSize = 30,
+  withBackButton = true,
   backColor = DefaultTheme.pallete.colors.primary.main,
 }) {
   return (
     <View style={containerStyle}>
       <TouchableOpacity onPress={onPress} style={styles.iconTouchableOpacity}>
-        <View style={styles.backIconContainer}>
-          <Icon
-            type="ionicon"
-            name="md-arrow-back"
-            size={iconSize}
-            color={backColor}
-          />
-        </View>
+        {withBackButton && (
+          <View style={styles.backIconContainer}>
+            <Icon
+              type="ionicon"
+              name="md-arrow-back"
+              size={iconSize}
+              color={backColor}
+            />
+          </View>
+        )}
         <Icon
           type="ionicon"
           name="md-arrow-back"

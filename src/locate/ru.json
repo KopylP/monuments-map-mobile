@@ -25,5 +25,7 @@
     "All information is available on our website": "Вся информация доступна на нашем сайте.",
     "Go": "Перейти",
     "Cancel": "Закрыть",
-    "No monuments were found according to these criteria": "По данным критериям памятников не найдено :("
+    "No monuments were found according to these criteria": "По данным критериям памятников не найдено :(",
+    "Lost Internet connection": "Ууупс... Кажется мы потеряли интернет соединение. Проверьте подключение к интернету, и попробуйте еще!",
+    "Refresh": "Обновить"
 }

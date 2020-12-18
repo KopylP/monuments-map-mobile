@@ -25,5 +25,7 @@
     "All information is available on our website": "Wszystkie informacje są dostępne na naszej stronie internetowej.",
     "Go": "Przejdź",
     "Cancel": "Zamknij",
-    "No monuments were found according to these criteria": "Nie znaleziono zabytków według wybranych kryteriów :("
+    "No monuments were found according to these criteria": "Nie znaleziono zabytków według wybranych kryteriów :(",
+    "Lost Internet connection": "Ups... Wygląda na to, że straciliśmy połączenie internetowe. Sprawdź swoje połączenie internetowe i spróbuj ponownie!",
+    "Refresh": "Odśwież"
 }
