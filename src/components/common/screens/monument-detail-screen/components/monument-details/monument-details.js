@@ -8,6 +8,7 @@ import SourcesButton from "../../../../sources-button/sources-button";
 import ConditionChip from "./condition-chip";
 import GalleryButton from "./gallery-button";
 import MonumentAddress from "./monument-address";
+import MonumentStatus from "./monument-status";
 import OpenInMapButton from "./open-in-map-button";
 
 export default function MonumentDetails({ monument }) {
@@ -22,10 +23,7 @@ export default function MonumentDetails({ monument }) {
       <Title title={monument.name} />
       <MonumentAddress {...monument} style={styles.address} />
       <DetailYear {...monument} style={styles.year} />
-      <Text style={styles.status}>
-        {monument && monument.status.name} (
-        {monument && monument.protectionNumber})
-      </Text>
+      <MonumentStatus style={styles.status} {...monument}/>
       <View style={styles.buttonsContainer}>
         <GalleryButton {...monument} />
         <OpenInMapButton style={styles.rightButton} {...monument} />
