@@ -1,9 +1,15 @@
 import React from "react";
-import { DefaultTheme } from "../../../../../../theme/default-theme";
+import { useLocateYear } from "../../../../../hooks/locate-hooks";
 import Chip from "../../../../../template/chips/chip";
 
-export default function ConditionChip({ condition, destroyYear, style = {} }) {
+export default function ConditionChip({
+  condition,
+  destroyYear = 0,
+  destroyPeriod = 0,
+  style = {},
+}) {
   let color;
+  const locatedYear = useLocateYear(destroyYear, destroyPeriod);
 
   switch (condition.abbreviation) {
     case "good-condition":
@@ -25,7 +31,8 @@ export default function ConditionChip({ condition, destroyYear, style = {} }) {
       color = "#57CC99";
   }
 
-  const title = condition.name;
+  const title =
+    condition.name + (destroyYear === 0 ? "" : ` (${locatedYear})`);
 
-  return <Chip style={style} color={color} title={title}/>
+  return <Chip style={style} color={color} title={title} />;
 }
