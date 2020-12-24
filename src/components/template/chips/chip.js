@@ -12,7 +12,7 @@ export default function Chip({ title, color, textColor = "white", style = {} }) 
         style,
       ]}
     >
-      <Text style={[{ color: textColor }, styles.text]}>{title}</Text>
+      <Text style={[{ color: textColor }, styles.text]} numberOfLines={1}>{title}</Text>
     </View>
   );
 }
