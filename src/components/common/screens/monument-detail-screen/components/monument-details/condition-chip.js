@@ -4,8 +4,8 @@ import Chip from "../../../../../template/chips/chip";
 
 export default function ConditionChip({
   condition,
-  destroyYear = 0,
-  destroyPeriod = 0,
+  destroyYear,
+  destroyPeriod,
   style = {},
 }) {
   let color;
@@ -32,7 +32,7 @@ export default function ConditionChip({
   }
 
   const title =
-    condition.name + (destroyYear === 0 ? "" : ` (${locatedYear})`);
+    condition.name + (destroyYear === null ? "" : ` (${locatedYear})`);
 
   return <Chip style={style} color={color} title={title} />;
 }
