@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../../../../theme/default-theme";
 import { Icon } from "react-native-elements";
-import { logEvent } from 'expo-firebase-analytics';
+import { logEvent } from "expo-firebase-analytics";
+import FilterTitle from "./filter-title";
 
 export default function DefaultFilter({
   selectedValues,
@@ -27,15 +28,15 @@ export default function DefaultFilter({
   };
 
   const logFilterClick = (id) => {
-    const filterChip = data.find(p => p.id === id);
+    const filterChip = data.find((p) => p.id === id);
     logEvent("FilterPressed", { name: filterChip.abbreviation });
-  }
+  };
 
   const { background, main } = DefaultTheme.pallete.colors.primary;
 
   return (
     <View style={[{ width: "100%" }, style]}>
-      <Text style={styles.text}>{title}</Text>
+      <FilterTitle title={title} />
       <View
         style={{
           flexDirection: "row",
@@ -55,7 +56,6 @@ export default function DefaultFilter({
                     ? main
                     : background,
                 }}
-                
                 textStyle={{
                   color: "white",
                 }}
@@ -82,11 +82,3 @@ export default function DefaultFilter({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    margin: 5,
-    fontSize: 20,
-    fontWeight: "700",
-  },
-});

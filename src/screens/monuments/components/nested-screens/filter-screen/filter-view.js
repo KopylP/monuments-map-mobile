@@ -7,18 +7,22 @@ import { useLocate } from "../../../../../components/hooks/locate-hooks";
 import {
   changeConditions,
   changeStatuses,
+  changeYearsRange,
 } from "../../../../../redux/actions/filter-actions";
 import { requestMonumentsFetch } from "../../../../../redux/actions/monuments-actions";
 import { DefaultTheme } from "../../../../../theme/default-theme";
 import ClearButton from "./filters/clear-button";
 import ConditionsFilter from "./filters/conditions-filter";
 import StatusesFilter from "./filters/statuses-filter";
+import YearsRangeFilter from "./filters/years-range-filter";
+import { yearsRange as defaultYearsRange } from "../../../../../config";
 
 function FilterView({
   monumentsLoading,
   requestMonumentsFetch,
   changeStatuses,
   changeConditions,
+  changeYearsRange,
   monumentsError,
   filters,
 }) {
@@ -29,12 +33,17 @@ function FilterView({
   const [updatingMonuments, setUpdatingMonuments] = useState(false);
   const [statuses, setStatuses] = useState(filters.statuses);
   const [conditions, setConditions] = useState(filters.conditions);
+  const [yearsRange, setYearsRange] = useState(filters.yearsRange);
+
+  const [scrollEnabled, setScrollEnabled] = useState(true);
+
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
     changeStatuses(statuses);
     changeConditions(conditions);
     setUpdatingMonuments(true);
+    changeYearsRange(yearsRange);
     requestMonumentsFetch();
   };
 
@@ -50,6 +59,7 @@ function FilterView({
   const handleClear = () => {
     setStatuses([]);
     setConditions([]);
+    setYearsRange(defaultYearsRange);
   };
 
   useLayoutEffect(() => {
@@ -65,6 +75,14 @@ function FilterView({
     }
   }, [monumentsLoading]);
 
+  const enableScroll = () => {
+    setScrollEnabled(true);
+  };
+
+  const disableScroll = () => {
+    setScrollEnabled(false);
+  };
+
   return (
     <View
       style={[
@@ -77,15 +95,23 @@ function FilterView({
         contentContainerStyle={{
           paddingTop: 15,
         }}
+        scrollEnabled={scrollEnabled}
       >
         <StatusesFilter
           changeStatuses={setStatuses}
           selectedStatuses={statuses}
         />
         <ConditionsFilter
-          style={{ marginTop: 15 }}
+          style={styles.filter}
           changeConditions={setConditions}
           selectedConditions={conditions}
+        />
+        <YearsRangeFilter
+          style={styles.filter}
+          selectedYearsRange={yearsRange}
+          changeYearsRange={setYearsRange}
+          onValuesChangeStart={disableScroll}
+          onValuesChangeFinish={enableScroll}
         />
       </ScrollView>
       <Button
@@ -111,6 +137,7 @@ const bindDispatchToProps = {
   requestMonumentsFetch,
   changeStatuses,
   changeConditions,
+  changeYearsRange
 };
 
 export default connect(bindStateToProps, bindDispatchToProps)(FilterView);
@@ -121,5 +148,8 @@ const styles = StyleSheet.create({
     bottom: 15,
     left: 15,
     right: 15,
+  },
+  filter: {
+    marginTop: 15,
   },
 });

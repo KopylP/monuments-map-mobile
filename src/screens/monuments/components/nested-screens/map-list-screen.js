@@ -55,12 +55,13 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
 
 const bindStateToProps = ({
   monuments: { requestFetch, error },
-  filter: { statuses, conditions, cities },
+  filter: { statuses, conditions, cities, yearsRange },
 }) => ({
   requestFetch,
   statuses,
   conditions,
   cities,
+  yearsRange,
   error,
 });
 
@@ -69,10 +70,11 @@ const bindPropsToActions = (p) => ({
   requestAction: p.requestAction,
 });
 
-const bindPropsToParams = ({ statuses, conditions, cities }) => [
+const bindPropsToParams = ({ statuses, conditions, cities, yearsRange }) => [
   cities,
   statuses,
   conditions,
+  yearsRange
 ];
 
 const composed = compose(

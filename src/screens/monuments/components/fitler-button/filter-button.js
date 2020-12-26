@@ -6,6 +6,8 @@ import { DefaultTheme } from "../../../../theme/default-theme";
 import { connect } from "react-redux";
 import { isIOS } from "../../../../helpers/platform-helpers";
 import { compose } from "redux";
+import { yearsRange } from "../../../../config";
+import { arraysAreEquals } from "../../../../helpers/array-helpers";
 
 function FilterButton({ filters }) {
   const { navigate } = useNavigation();
@@ -16,7 +18,11 @@ function FilterButton({ filters }) {
 
   const countOfFilters = () => {
     const { cities, statuses, conditions } = filters;
-    return cities.length + statuses.length + conditions.length;
+    let count = cities.length + statuses.length + conditions.length;
+    if (!arraysAreEquals(filters.yearsRange, yearsRange)) {
+      count++;
+    }
+    return count;
   };
 
   const filterCounts = countOfFilters();

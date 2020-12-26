@@ -1,13 +1,16 @@
+import { yearsRange } from "../../config";
 import {
   CHANGE_CONDITIONS,
   CHANGE_STATUSES,
   CLEAR_FILTERS,
+  CHANGE_YEARS_RANGE
 } from "../constants";
 
 const initialState = {
   conditions: [],
   statuses: [],
   cities: [],
+  yearsRange: yearsRange
 };
 
 export default filterReducer = (state = initialState, action) => {
@@ -22,6 +25,12 @@ export default filterReducer = (state = initialState, action) => {
         ...state,
         conditions: action.payload,
       };
+    }
+    case CHANGE_YEARS_RANGE: {
+      return {
+        ...state,
+        yearsRange: action.payload
+      }
     }
     case CLEAR_FILTERS: {
       return initialState;
