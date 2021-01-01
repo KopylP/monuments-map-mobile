@@ -30,7 +30,7 @@ export default function YearsRangeFilter({
           onValuesChange={changeYearsRange}
           min={yearsRange[0]}
           max={yearsRange[1]}
-          sliderLength={screenWidth - 60}
+          sliderLength={screenWidth - 50}
           selectedStyle={styles.selected}
           markerStyle={styles.marker}
           onValuesChangeStart={onValuesChangeStart}
@@ -62,8 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: DefaultTheme.pallete.colors.primary.main,
     shadowRadius: 0,
     shadowColor: "transparent",
-    width: 20,
-    height: 20,
+    width: 12,
+    height: 12,
+    borderWidth: 0,
   },
   selected: {
     backgroundColor: DefaultTheme.pallete.colors.primary.main,
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   yearsContainer: {
     justifyContent: "space-between",
     flexDirection: "row",
-    marginHorizontal: -10,
+    marginHorizontal: -7,
     marginTop: -5,
   },
 });

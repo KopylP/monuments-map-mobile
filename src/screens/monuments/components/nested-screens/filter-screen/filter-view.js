@@ -96,6 +96,7 @@ function FilterView({
           paddingTop: 15,
         }}
         scrollEnabled={scrollEnabled}
+        showsVerticalScrollIndicator={false}
       >
         <StatusesFilter
           changeStatuses={setStatuses}

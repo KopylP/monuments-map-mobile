@@ -4,10 +4,12 @@ import ErrorScreen from "../common/screens/error-screen/error-screen";
 const withReduxData = (bindPropsToActions = p => ({
     fetchAction: p.fetchAction,
     requestAction: p.requestAction,
-}), bindPropsToParams = (p) => []) => (
+}), bindPropsToParams = (p) => [], settings = {}) => (
   Wrapper
 ) => (props) => {
   const { requestFetch, error } = props;
+
+  const { goBackEnabled = true } = settings;
 
   const { fetchAction, requestAction } = bindPropsToActions(props);
   const fetchParams = bindPropsToParams(props);
@@ -19,7 +21,7 @@ const withReduxData = (bindPropsToActions = p => ({
   }, [requestFetch]);
 
   if (error) {
-    return <ErrorScreen error={error} onRefresh={requestAction} />;
+    return <ErrorScreen error={error} onRefresh={requestAction} showClose={!goBackEnabled}/>;
   }
 
   return <Wrapper {...props} />;

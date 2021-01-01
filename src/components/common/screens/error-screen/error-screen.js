@@ -6,17 +6,23 @@ import { DefaultTheme } from "../../../../theme/default-theme";
 import { useLocate } from "../../../hooks/locate-hooks";
 import BackButton from "../../../template/buttons/back-button";
 
-export default function ErrorScreen({ error = null, onRefresh = (p) => p }) {
+export default function ErrorScreen({
+  error = null,
+  onRefresh = (p) => p,
+  showClose = true,
+}) {
   const { t } = useLocate();
   const { goBack } = useNavigation();
   return (
     <View style={styles.container}>
-      <BackButton
-        iconColor={DefaultTheme.pallete.colors.primary.main}
-        withBackButton={false}
-        containerStyle={styles.backButtonContainerStyle}
-        onPress={() => goBack()}
-      />
+      {showClose && (
+        <BackButton
+          iconColor={DefaultTheme.pallete.colors.primary.main}
+          withBackButton={false}
+          containerStyle={styles.backButtonContainerStyle}
+          onPress={() => goBack()}
+        />
+      )}
       <View style={styles.textContainer}>
         <Text style={styles.errorText}>{t("Lost Internet connection")}</Text>
       </View>
