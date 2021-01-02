@@ -66,6 +66,7 @@ export default function ImageAnimatedHeader({
         ref={scrollRef}
         contentContainerStyle={{ paddingTop: maxHeight }}
         scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: true }
