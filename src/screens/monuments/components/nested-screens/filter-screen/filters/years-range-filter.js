@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     backgroundColor: DefaultTheme.pallete.colors.primary.main,
     shadowRadius: 0,
     shadowColor: "transparent",
-    width: 12,
-    height: 12,
+    width: 20,
+    height: 20,
     borderWidth: 0,
   },
   selected: {
