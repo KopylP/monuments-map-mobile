@@ -20,7 +20,7 @@ export default function MonumentCard({
   const [key, setKey] = useState(Math.random());
 
   const { data, loading, error } = useData(getPhoto, {
-    params: [monument && monument.majorPhotoImageId, 700],
+    params: [monument && monument.majorPhotoImageId, 600],
     delay: 100,
     numberOfAttempts: 3,
   }, [monument]);

@@ -5,6 +5,7 @@ import { changeSelectedMonument } from "../../../../../../redux/actions/selected
 import MonumentListItem from "./monuments-list-item";
 import { useNavigation } from "@react-navigation/native";
 import EmptyResult from "./empty-result";
+import { VirtualizedList } from "react-native";
 
 function MonumentsList({ monuments, loading, transition }) {
   if (monuments.length == 0 && !loading) return <EmptyResult />;
@@ -27,7 +28,7 @@ function MonumentsList({ monuments, loading, transition }) {
   };
 
   return (
-    <FlatList
+    <VirtualizedList
       style={{ flex: 1 }}
       contentContainerStyle={{
         paddingHorizontal: 20,
@@ -36,7 +37,10 @@ function MonumentsList({ monuments, loading, transition }) {
       }}
       renderItem={renderItem}
       data={monuments}
+      getItemCount={() => monuments.length}
       keyExtractor={(item) => item.id + ""}
+      windowSize={20}
+      getItem={(data, index) => data[index]}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
     />
   );
