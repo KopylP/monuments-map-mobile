@@ -51,7 +51,7 @@ export default class MonumentService {
     cancelCallback
   ) {
     return await this._getRequest(
-      "monument/filter",
+      "monument",
       {
         cities,
         statuses,
