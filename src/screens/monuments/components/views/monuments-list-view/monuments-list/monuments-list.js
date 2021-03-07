@@ -10,6 +10,8 @@ import { VirtualizedList } from "react-native";
 function MonumentsList({ monuments, loading, transition }) {
   if (monuments.length == 0 && !loading) return <EmptyResult />;
 
+  monuments = monuments.filter(p => !p.isEasterEgg);
+
   const navigation = useNavigation();
 
   const handlePress = (monument, imageBase64) => {
