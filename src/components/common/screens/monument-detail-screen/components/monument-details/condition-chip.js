@@ -31,8 +31,10 @@ export default function ConditionChip({
       color = "#57CC99";
   }
 
+  console.log(destroyYear);
+
   const title =
-    condition.name + (destroyYear === null ? "" : ` (${locatedYear})`);
+    condition.name + (!destroyYear ? "" : ` (${locatedYear})`);
 
   return <Chip style={style} color={color} title={title} />;
 }
