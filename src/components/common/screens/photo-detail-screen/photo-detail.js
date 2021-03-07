@@ -55,7 +55,9 @@ function PhotoDetail({
               <PhotoViewButton canPress={touchable} imageBase64={data.image} />
               <SourcesButton style={styles.rightButton} sources={sources} />
             </View>
-            <CopyableText style={styles.description}>{description}</CopyableText>
+            <CopyableText style={styles.description}>
+              {description || ""}
+            </CopyableText>
           </View>
         </ImageAnimatedHeader>
       )}
@@ -69,7 +71,7 @@ function PhotoDetail({
 }
 
 const composed = compose(
-  withMsGetMethod(p => p.getFullSizePhoto),
+  withMsGetMethod((p) => p.getFullSizePhoto),
   withData((_, props) => [props.photoId])
 );
 

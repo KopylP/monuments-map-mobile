@@ -33,7 +33,7 @@ export default function MonumentDetails({ monument }) {
         <ConditionChip {...monument} />
       </View>
       <CopyableText style={styles.description}>
-        {monument.description}
+        {monument.description || ""}
       </CopyableText>
     </View>
   );
