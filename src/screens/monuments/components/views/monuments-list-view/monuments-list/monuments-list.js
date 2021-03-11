@@ -14,7 +14,7 @@ function MonumentsList({ monuments, loading, transition }) {
   const navigation = useNavigation();
 
   const removeEasterEggs = (monument) => {
-    if (!monument.tags || monument.tags.length == 0) return true;
+    if (!monument.tags || monument.tags.length === 0) return true;
     return !monument.tags.includes(Tags.EASTER_EGG);
   };
 
