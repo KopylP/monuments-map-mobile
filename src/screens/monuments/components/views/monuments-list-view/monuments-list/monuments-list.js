@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
 import { changeSelectedMonument } from "../../../../../../redux/actions/selected-monument-actions";
 import MonumentListItem from "./monuments-list-item";
