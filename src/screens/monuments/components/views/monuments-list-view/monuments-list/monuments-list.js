@@ -6,13 +6,17 @@ import MonumentListItem from "./monuments-list-item";
 import { useNavigation } from "@react-navigation/native";
 import EmptyResult from "./empty-result";
 import { VirtualizedList } from "react-native";
+import Tags from "../../../../../../models/tags";
 
 function MonumentsList({ monuments, loading, transition }) {
   if (monuments.length == 0 && !loading) return <EmptyResult />;
 
-  monuments = monuments.filter(p => !p.isEasterEgg);
-
   const navigation = useNavigation();
+
+  const removeEasterEggs = (monument) => {
+    if (!monument.tags || monument.tags.length == 0) return true;
+    return !monument.tags.includes(Tags.EASTER_EGG);
+  };
 
   const handlePress = (monument, imageBase64) => {
     const shareId = `item-${monument.id}`;
@@ -28,6 +32,8 @@ function MonumentsList({ monuments, loading, transition }) {
   const renderItem = ({ item }) => {
     return <MonumentListItem monument={item} onPress={handlePress} />;
   };
+
+  monuments = monuments.filter(removeEasterEggs);
 
   return (
     <VirtualizedList
