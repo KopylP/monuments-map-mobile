@@ -66,13 +66,13 @@ function PhotoDetail({
           </View>
           <View style={styles.buttonsContainer}>
             <PhotoViewButton canPress={touchable} imageBase64={data.image} />
-            <SourcesButton style={styles.rightButton} sources={sources} />
+            <SourcesButton canPress={touchable} style={styles.rightButton} sources={sources} />
           </View>
           <CopyableText style={styles.description}>
             {description || ""}
           </CopyableText>
         </View>
-      </ImageAnimatedHeader>
+      </ImageAnimatedHeader>  
     );
 }
 
