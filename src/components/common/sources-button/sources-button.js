@@ -26,7 +26,7 @@ export default function SourcesButton({
       textColor="white"
       title={t("sources")}
       style={style}
-      onPress={canPress && handlePress}
+      onPress={canPress ? handlePress : p => p}
     />
   );
 }
