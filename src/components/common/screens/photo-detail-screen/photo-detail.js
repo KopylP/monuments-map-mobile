@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { compose } from "redux";
 import { SCREEN_SIZE } from "../../../../helpers/dimensions-helpers";
@@ -12,6 +13,8 @@ import DetailYear from "../../dates/year-detail";
 import SourcesButton from "../../sources-button/sources-button";
 import Loader from "./loader";
 import PhotoViewButton from "./photo-view-button";
+import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import timeout from "../../../../helpers/timeout-promise";
 
 function PhotoDetail({
   photo,
@@ -26,10 +29,17 @@ function PhotoDetail({
 }) {
   const { t } = useLocate();
 
-  if (loading)
-    return (
-      <Loader imageHeight={SCREEN_SIZE / photo.imageScale} />
-    );
+  const [headerBackground, setHeaderBackground] = useState(null);
+  const makeCancelable = useCancelablePromise();
+
+  if (loading) return <Loader imageHeight={SCREEN_SIZE / photo.imageScale} />;
+  else {
+    if (headerBackground !== DefaultTheme.palette.colors.primary.main) {
+      makeCancelable(timeout(200)).then(() => {
+        setHeaderBackground(DefaultTheme.palette.colors.primary.main);
+      });
+    }
+  }
 
   if (data)
     return (
@@ -38,6 +48,7 @@ function PhotoDetail({
         imageHeight={SCREEN_SIZE / photo.imageScale}
         title={title}
         showBackButton={false}
+        headerBackground={headerBackground}
         source={{
           uri: data.image,
         }}
