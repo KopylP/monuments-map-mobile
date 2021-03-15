@@ -7,11 +7,13 @@ import { useNavigation } from "@react-navigation/native";
 import EmptyResult from "./empty-result";
 import { VirtualizedList } from "react-native";
 import Tags from "../../../../../../models/tags";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 function MonumentsList({ monuments, loading, transition }) {
   if (monuments.length == 0 && !loading) return <EmptyResult />;
 
   const navigation = useNavigation();
+  const { top } = useSafeAreaInsets();
 
   const removeEasterEggs = (monument) => {
     if (!monument.tags || monument.tags.length === 0) return true;
@@ -40,7 +42,7 @@ function MonumentsList({ monuments, loading, transition }) {
       style={{ flex: 1 }}
       contentContainerStyle={{
         paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingTop: 20 + 70 + top,
         paddingBottom: 20,
       }}
       renderItem={renderItem}

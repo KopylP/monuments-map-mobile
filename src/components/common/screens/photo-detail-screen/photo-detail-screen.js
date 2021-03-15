@@ -2,12 +2,15 @@ import ViewPager from "@react-native-community/viewpager";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BackButton from "../../../template/buttons/back-button";
 import PhotoDetail from "./photo-detail";
 
 export default function PhotoDetailScreen({ route }) {
   const { selectedIndex, monumentPhotos, title } = route.params;
   const { goBack } = useNavigation();
+
+  const { top } = useSafeAreaInsets();
 
   const [canTouch, setCanTouch] = useState(true);
 
@@ -33,6 +36,8 @@ export default function PhotoDetailScreen({ route }) {
     }
   };
 
+  const iconViewTop = 11 + top;
+
   return (
     <View style={StyleSheet.absoluteFill}>
       <ViewPager
@@ -50,7 +55,7 @@ export default function PhotoDetailScreen({ route }) {
           </View>
         ))}
       </ViewPager>
-      <BackButton containerStyle={styles.iconView} onPress={goBack} />
+      <BackButton containerStyle={[styles.iconView, { top: iconViewTop }]} onPress={goBack} />
     </View>
   );
 }
@@ -58,7 +63,6 @@ export default function PhotoDetailScreen({ route }) {
 const styles = StyleSheet.create({
   iconView: {
     position: "absolute",
-    top: 11,
     left: 15,
   },
 });

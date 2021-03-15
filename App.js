@@ -28,9 +28,9 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         <SafeAreaProvider>
-          <SafeArea>
+          {/* <SafeArea> */}
             <MainScreen />
-          </SafeArea>
+          {/* </SafeArea> */}
         </SafeAreaProvider>
       </Provider>
     </AppContext.Provider>

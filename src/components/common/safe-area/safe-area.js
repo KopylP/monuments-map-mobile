@@ -8,7 +8,7 @@ import { DefaultTheme } from "../../../theme/default-theme";
 export default function SafeArea({ children }) {
   return (
     <React.Fragment>
-      {isIOS && <SafeAreaView style={styles.statusBar} />}
+      {/* {isIOS && <SafeAreaView style={styles.statusBar} />} */}
       <View style={StyleSheet.absoluteFill}>
         <SafeAreaView style={styles.container}>{children}</SafeAreaView>
         <StatusBar

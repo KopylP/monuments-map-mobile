@@ -4,15 +4,20 @@ import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import LogoImage from "./logo-image";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
-import * as Linking from 'expo-linking';
+import * as Linking from "expo-linking";
 import { host } from "../../../../config";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Logo() {
   const { t } = useLocate();
 
+  let { top } = useSafeAreaInsets();
+
+  top = top + 13;
+
   const handleGoButtonPress = () => {
     Linking.openURL(host);
-  }
+  };
 
   const handlePress = () => {
     Alert.alert(
@@ -21,7 +26,7 @@ export default function Logo() {
       [
         {
           text: t("Go"),
-          onPress: handleGoButtonPress
+          onPress: handleGoButtonPress,
         },
         {
           text: t("Cancel"),
@@ -32,7 +37,10 @@ export default function Logo() {
 
   return (
     <>
-      <TouchableOpacity style={styles.container} onPress={handlePress}>
+      <TouchableOpacity
+        style={[styles.container, { top }]}
+        onPress={handlePress}
+      >
         <LogoImage />
       </TouchableOpacity>
     </>
@@ -42,7 +50,6 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     left: 15,
-    top: 23,
     width: 35,
     height: 35,
     borderRadius: 25 / 2,

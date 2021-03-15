@@ -84,12 +84,7 @@ function FilterView({
   };
 
   return (
-    <View
-      style={[
-        StyleSheet.absoluteFill,
-        { paddingHorizontal: 15, paddingBottom: 65 },
-      ]}
-    >
+    <View style={{ paddingHorizontal: 15, paddingBottom: 65, flex: 1 }}>
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{
@@ -138,7 +133,7 @@ const bindDispatchToProps = {
   requestMonumentsFetch,
   changeStatuses,
   changeConditions,
-  changeYearsRange
+  changeYearsRange,
 };
 
 export default connect(bindStateToProps, bindDispatchToProps)(FilterView);

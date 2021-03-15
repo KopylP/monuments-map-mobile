@@ -33,7 +33,7 @@ export default function AnimatedDataContainer({ show, children }) {
     <Animated.View
       style={{
         flex: 1,
-        zIndex: 200,
+        zIndex: 3,
         opacity: heightAnim,
         backgroundColor: DefaultTheme.palette.colors.screenBackground.main,
       }}

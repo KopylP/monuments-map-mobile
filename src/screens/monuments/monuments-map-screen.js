@@ -17,6 +17,7 @@ import { useLocate } from "../../components/hooks/locate-hooks";
 import monumentDetailScreenOptions from "../../components/common/screens/monument-detail-screen/monument-detail-screen.options";
 import SourcesScreen from "../../components/common/screens/sources-screen/sources-sreen";
 import { enableDialog } from "../../redux/actions/selected-monument-actions";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -27,6 +28,7 @@ const MonumentsMapScreen = ({
 }) => {
   const makeCancelable = useCancelablePromise();
   const { t } = useLocate();
+  const { top } = useSafeAreaInsets();
 
   return (
     <Stack.Navigator
@@ -39,7 +41,7 @@ const MonumentsMapScreen = ({
         gestureEnabled: false,
         headerStyle: {
           backgroundColor: DefaultTheme.palette.colors.primary.dark,
-          height: 60,
+          height: 60 + top,
         },
         headerTitleStyle: {
           fontWeight: "400",

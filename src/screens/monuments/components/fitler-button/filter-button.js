@@ -8,9 +8,12 @@ import { isIOS } from "../../../../helpers/platform-helpers";
 import { compose } from "redux";
 import { yearsRange } from "../../../../config";
 import { arraysAreEquals } from "../../../../helpers/array-helpers";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 function FilterButton({ filters }) {
   const { navigate } = useNavigation();
+
+  const { top } = useSafeAreaInsets();
 
   const handlePress = () => {
     navigate("Filters");
@@ -31,7 +34,7 @@ function FilterButton({ filters }) {
     <View
       style={{
         position: "absolute",
-        top: 24,
+        top: 14 + top,
         right: 15,
         alignSelf: "center",
       }}

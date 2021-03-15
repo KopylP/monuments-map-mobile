@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import SelectedTabs from "../../../../components/template/controls/selected-tabs/selected-tabs";
@@ -16,10 +16,13 @@ import { useLocate } from "../../../../components/hooks/locate-hooks";
 import withReduxData from "../../../../components/hoc-helpers/with-redux-data";
 import MapIndicator from "../map-indicator/map-indicator";
 import Logo from "../logo/logo";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 function MapListScreen() {
   const [tab, setTab] = useState(0);
   const { t } = useLocate();
+
+  const { top } = useSafeAreaInsets();
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -33,7 +36,7 @@ function MapListScreen() {
         secondTabTitle={t("list")}
         style={{
           position: "absolute",
-          top: 25,
+          top: 15 + top,
           alignSelf: "center",
         }}
         onChangeTab={setTab}
@@ -74,7 +77,7 @@ const bindPropsToParams = ({ statuses, conditions, cities, yearsRange }) => [
   cities,
   statuses,
   conditions,
-  yearsRange
+  yearsRange,
 ];
 
 const composed = compose(

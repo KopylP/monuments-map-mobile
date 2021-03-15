@@ -8,10 +8,9 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SharedElement } from "react-navigation-shared-element";
 import BackButton from "../buttons/back-button";
-
-const HEADER_MIN_HEIGHT = 60;
 
 export default function ImageAnimatedHeader({
   maxHeight,
@@ -28,6 +27,10 @@ export default function ImageAnimatedHeader({
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
+
+  const { top } = useSafeAreaInsets();
+
+  const HEADER_MIN_HEIGHT = 60 + top;
 
   const headerScrollDistance = maxHeight - HEADER_MIN_HEIGHT;
 
@@ -59,6 +62,9 @@ export default function ImageAnimatedHeader({
     outputRange: [0, 0, 1],
     extrapolate: "clamp",
   });
+
+  const iconViewTop = 10 + top;
+  const topBarHeight = 50 + top;
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -123,15 +129,22 @@ export default function ImageAnimatedHeader({
           styles.topBar,
           {
             opacity: titleOpacity,
+            height: topBarHeight
           },
         ]}
       >
-        <Text style={styles.title} numberOfLines={1}>
+        <Text
+          style={[styles.title, { marginTop: top }]}
+          numberOfLines={1}
+        >
           {title}
         </Text>
       </Animated.View>
       {showBackButton && (
-        <BackButton onPress={onBack} containerStyle={styles.iconView} />
+        <BackButton
+          onPress={onBack}
+          containerStyle={[styles.iconView, { top: iconViewTop }]}
+        />
       )}
     </View>
   );
@@ -160,7 +173,6 @@ const styles = StyleSheet.create({
   },
   topBar: {
     marginTop: 5,
-    height: 50,
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
@@ -175,7 +187,6 @@ const styles = StyleSheet.create({
   },
   iconView: {
     position: "absolute",
-    top: 10,
     left: 15,
   },
 });
