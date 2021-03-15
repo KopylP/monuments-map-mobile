@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native";
 import { isIOS } from "../../../helpers/platform-helpers";
 import { DefaultTheme } from "../../../theme/default-theme";
