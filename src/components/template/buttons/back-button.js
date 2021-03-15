@@ -15,16 +15,6 @@ export default function BackButton({
   return (
     <View style={containerStyle}>
       <TouchableOpacity onPress={onPress} style={styles.iconTouchableOpacity}>
-        {withBackButton && (
-          <View style={styles.backIconContainer}>
-            <Icon
-              type="ionicon"
-              name="md-arrow-back"
-              size={iconSize}
-              color={backColor}
-            />
-          </View>
-        )}
         <Icon
           type="ionicon"
           name="md-arrow-back"
