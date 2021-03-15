@@ -35,7 +35,7 @@ export default function AnimatedDataContainer({ show, children }) {
         flex: 1,
         zIndex: 200,
         opacity: heightAnim,
-        backgroundColor: DefaultTheme.pallete.colors.screenBackground.main,
+        backgroundColor: DefaultTheme.palette.colors.screenBackground.main,
       }}
     >
       {children}

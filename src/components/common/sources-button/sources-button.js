@@ -22,7 +22,7 @@ export default function SourcesButton({
     <RectangularButton
       iconName="info"
       iconType="font-awesome"
-      color={DefaultTheme.pallete.colors.primary.extraLight}
+      color={DefaultTheme.palette.colors.primary.extraLight}
       textColor="white"
       title={t("sources")}
       style={style}

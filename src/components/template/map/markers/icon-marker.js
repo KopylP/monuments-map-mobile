@@ -4,7 +4,7 @@ import { Marker } from "react-native-maps";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
 export default function IconMarker(props) {
-  const { color = DefaultTheme.pallete.colors.primary.main } = props;
+  const { color = DefaultTheme.palette.colors.primary.main } = props;
   return (
     <Marker
       {...props}

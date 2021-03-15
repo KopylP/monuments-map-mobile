@@ -16,7 +16,7 @@ export default function AbsoluteIndicator({ backgroundColor = "transparent" }) {
         justifyContent: "center",
       }}
     >
-      <ActivityIndicator color={DefaultTheme.pallete.colors.primary.main} />
+      <ActivityIndicator color={DefaultTheme.palette.colors.primary.main} />
     </View>
   );
 }

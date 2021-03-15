@@ -12,7 +12,7 @@ function MapIndicator({ loading }) {
         <View pointerEvents="none" style={styles.container}>
           <View style={styles.indicatorContainer}>
             <ActivityIndicator
-              color={DefaultTheme.pallete.colors.primary.main}
+              color={DefaultTheme.palette.colors.primary.main}
               size="large"
             />
           </View>

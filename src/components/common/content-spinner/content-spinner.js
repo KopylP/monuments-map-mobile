@@ -18,7 +18,7 @@ export default function ContentSpinner({ borderRadius = 0 }) {
     >
       <ActivityIndicator
         size="large"
-        color={DefaultTheme.pallete.colors.primary.main}
+        color={DefaultTheme.palette.colors.primary.main}
       />
     </View>
   );

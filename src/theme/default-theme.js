@@ -1,6 +1,6 @@
 
 export const DefaultTheme = {
-    pallete: {
+    palette: {
       colors: {
         primary: {
           background: "#957FDE",

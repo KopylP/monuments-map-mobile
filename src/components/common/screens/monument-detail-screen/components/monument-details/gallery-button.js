@@ -13,7 +13,7 @@ export default function GalleryButton({ name, id }) {
     <RectangularButton
       iconName="ios-images"
       iconType="ionicon"
-      color={DefaultTheme.pallete.colors.primary.main}
+      color={DefaultTheme.palette.colors.primary.main}
       textColor="white"
       title={t("gallery")}
       onPress={() =>

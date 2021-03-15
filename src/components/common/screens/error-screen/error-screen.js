@@ -17,7 +17,7 @@ export default function ErrorScreen({
     <View style={styles.container}>
       {showClose && (
         <BackButton
-          iconColor={DefaultTheme.pallete.colors.primary.main}
+          iconColor={DefaultTheme.palette.colors.primary.main}
           withBackButton={false}
           containerStyle={styles.backButtonContainerStyle}
           onPress={() => goBack()}
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   errorText: {
-    color: DefaultTheme.pallete.colors.primary.dark,
+    color: DefaultTheme.palette.colors.primary.dark,
     textAlign: "center",
     fontSize: 16,
   },
   refreshOpacity: {
-    backgroundColor: DefaultTheme.pallete.colors.primary.main,
+    backgroundColor: DefaultTheme.palette.colors.primary.main,
     paddingVertical: 12,
     paddingHorizontal: 15,
     borderRadius: 30,

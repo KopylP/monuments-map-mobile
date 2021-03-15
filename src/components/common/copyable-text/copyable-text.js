@@ -12,7 +12,7 @@ export default function CopyableText({ children, style }) {
         }}
         multiline
         scrollEnabled={false}
-        selectionColor={DefaultTheme.pallete.colors.primary.main}
+        selectionColor={DefaultTheme.palette.colors.primary.main}
         value={children}
         editable={false}
       />
@@ -21,7 +21,7 @@ export default function CopyableText({ children, style }) {
 
   return (
     <Text
-      selectionColor={DefaultTheme.pallete.colors.primary.extraLight}
+      selectionColor={DefaultTheme.palette.colors.primary.extraLight}
       selectable
       style={style}
     >

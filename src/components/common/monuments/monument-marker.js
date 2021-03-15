@@ -14,7 +14,7 @@ export default function MonumentMarker({ monument, onPress = (p) => p }) {
       color = "#dc0a14";
       break;
     default:
-      color = DefaultTheme.pallete.colors.primary.main;
+      color = DefaultTheme.palette.colors.primary.main;
   }
 
   return (

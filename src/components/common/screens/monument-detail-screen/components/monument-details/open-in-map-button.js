@@ -18,7 +18,7 @@ export default function OpenInMapButton({ latitude, longitude, name, style }) {
       onPress={handlePress}
       iconType="ionicon"
       style={style}
-      color={DefaultTheme.pallete.colors.primary.extraLight}
+      color={DefaultTheme.palette.colors.primary.extraLight}
       textColor="white"
       title={t("route")}
     />

@@ -34,7 +34,7 @@ export default function MonumentAddress({ latitude, longitude, style = {} }) {
             type="font-awesome-5"
             style={styles.icon}
             size={20}
-            color={DefaultTheme.pallete.colors.primary.main}
+            color={DefaultTheme.palette.colors.primary.main}
           />
           <Text style={styles.text}>
             {address.city}, {address.road} {address.house_number}
@@ -47,7 +47,7 @@ export default function MonumentAddress({ latitude, longitude, style = {} }) {
 
 const styles = StyleSheet.create({
   text: {
-    color: DefaultTheme.pallete.colors.subtitle.main,
+    color: DefaultTheme.palette.colors.subtitle.main,
     fontSize: 15,
     height: 20,
     // fontWeight: "500"

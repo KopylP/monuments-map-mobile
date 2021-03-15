@@ -21,7 +21,7 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
 
   const handleSetBackground = () => {
     makeCancelable(timeout(200)).then(() => {
-      setHeaderBackground(DefaultTheme.pallete.colors.primary.main);
+      setHeaderBackground(DefaultTheme.palette.colors.primary.main);
     });
   };
 

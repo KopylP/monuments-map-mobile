@@ -62,7 +62,7 @@ export default function MonumentCard({
 
 const shadow = Platform.select({
   ios: {
-    shadowColor: DefaultTheme.pallete.colors.secondary.main,
+    shadowColor: DefaultTheme.palette.colors.secondary.main,
     shadowOffset: {
       width: 0,
       height: 3,

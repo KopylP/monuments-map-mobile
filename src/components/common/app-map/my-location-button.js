@@ -16,7 +16,7 @@ export default function MyLocationButton({ onPress }) {
       <Button
         onPress={onPress}
         buttonStyle={{
-          backgroundColor: DefaultTheme.pallete.colors.primary.main,
+          backgroundColor: DefaultTheme.palette.colors.primary.main,
           padding: 0,
           width: 40,
           height: 40,

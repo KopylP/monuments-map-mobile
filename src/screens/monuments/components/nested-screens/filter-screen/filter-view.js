@@ -26,7 +26,7 @@ function FilterView({
   monumentsError,
   filters,
 }) {
-  const { main } = DefaultTheme.pallete.colors.primary;
+  const { main } = DefaultTheme.palette.colors.primary;
   const { goBack } = useNavigation();
   const { t } = useLocate();
 

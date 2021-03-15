@@ -28,7 +28,7 @@ export default function MainScreen() {
       <Tab.Navigator
         initialRouteName="Map"
         tabBarOptions={{
-          activeTintColor: DefaultTheme.pallete.colors.primary.main,
+          activeTintColor: DefaultTheme.palette.colors.primary.main,
           tabStyle: {
             paddingVertical: 5,
             backgroundColor: "white",

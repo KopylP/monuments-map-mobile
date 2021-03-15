@@ -10,7 +10,7 @@ export default function BackButton({
   iconStyle = {},
   iconSize = 30,
   withBackButton = true,
-  backColor = DefaultTheme.pallete.colors.primary.main,
+  backColor = DefaultTheme.palette.colors.primary.main,
 }) {
   return (
     <View style={containerStyle}>

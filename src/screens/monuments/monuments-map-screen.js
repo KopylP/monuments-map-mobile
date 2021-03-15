@@ -38,7 +38,7 @@ const MonumentsMapScreen = ({
         headerTintColor: "white",
         gestureEnabled: false,
         headerStyle: {
-          backgroundColor: DefaultTheme.pallete.colors.primary.dark,
+          backgroundColor: DefaultTheme.palette.colors.primary.dark,
           height: 60,
         },
         headerTitleStyle: {

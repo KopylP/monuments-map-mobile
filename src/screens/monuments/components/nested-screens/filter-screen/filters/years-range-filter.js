@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
   },
   marker: {
-    backgroundColor: DefaultTheme.pallete.colors.primary.main,
+    backgroundColor: DefaultTheme.palette.colors.primary.main,
     shadowRadius: 0,
     shadowColor: "transparent",
     width: 20,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   selected: {
-    backgroundColor: DefaultTheme.pallete.colors.primary.main,
+    backgroundColor: DefaultTheme.palette.colors.primary.main,
   },
   yearsContainer: {
     justifyContent: "space-between",

@@ -39,7 +39,7 @@ function FilterButton({ filters }) {
       <Button
         onPress={handlePress}
         buttonStyle={{
-          backgroundColor: DefaultTheme.pallete.colors.primary.main,
+          backgroundColor: DefaultTheme.palette.colors.primary.main,
           padding: 5,
           borderRadius: 5,
         }}

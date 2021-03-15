@@ -15,12 +15,11 @@ import { DefaultTheme } from "./src/theme/default-theme";
 import { StatusBar } from "expo-status-bar";
 import { isIOS } from "./src/helpers/platform-helpers";
 import { logEvent } from "expo-firebase-analytics";
+import SafeArea from "./src/components/common/safe-area/safe-area";
 enableScreens();
 
 function App() {
-  const {
-    culture,
-  } = useLocate();
+  const { culture } = useLocate();
 
   const monumentService = new MonumentService(host, culture.code);
   const geocoderService = new GeocoderService(culture.code);
@@ -30,17 +29,9 @@ function App() {
   return (
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
-        {isIOS && <SafeAreaView style={styles.statusBar} />}
-        <View style={StyleSheet.absoluteFill}>
-          <SafeAreaView style={styles.container}>
-            <MainScreen />
-          </SafeAreaView>
-          <StatusBar
-            style="light"
-            translucent={false}
-            backgroundColor={DefaultTheme.pallete.colors.primary.dark}
-          />
-        </View>
+        <SafeArea>
+          <MainScreen />
+        </SafeArea>
       </Provider>
     </AppContext.Provider>
   );
@@ -58,6 +49,6 @@ const styles = StyleSheet.create({
   },
   statusBar: {
     flex: 0,
-    backgroundColor: DefaultTheme.pallete.colors.primary.dark,
+    backgroundColor: DefaultTheme.palette.colors.primary.dark,
   },
 });

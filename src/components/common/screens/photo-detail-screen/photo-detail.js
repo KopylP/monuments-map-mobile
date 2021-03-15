@@ -34,7 +34,7 @@ function PhotoDetail({
           maxHeight={Math.min(SIZE / photo.imageScale, 400)}
           imageHeight={SIZE / photo.imageScale}
           title={title}
-          headerBackground={DefaultTheme.pallete.colors.primary.main}
+          headerBackground={DefaultTheme.palette.colors.primary.main}
           showBackButton={false}
           source={{
             uri: data.image,
@@ -63,7 +63,7 @@ function PhotoDetail({
       )}
       {loading && (
         <AbsoluteIndicator
-          backgroundColor={DefaultTheme.pallete.colors.screenBackground.main}
+          backgroundColor={DefaultTheme.palette.colors.screenBackground.main}
         />
       )}
     </>

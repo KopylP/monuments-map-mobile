@@ -23,7 +23,7 @@ export default function PhotoViewButton({
     <RectangularButton
       iconName="search-plus"
       iconType="font-awesome"
-      color={DefaultTheme.pallete.colors.primary.main}
+      color={DefaultTheme.palette.colors.primary.main}
       textColor="white"
       title={t("view")}
       style={style}

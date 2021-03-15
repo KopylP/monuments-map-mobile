@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   text: {
-    color: DefaultTheme.pallete.colors.primary.dark,
+    color: DefaultTheme.palette.colors.primary.dark,
     fontSize: 16,
     textAlign: "center",
   },

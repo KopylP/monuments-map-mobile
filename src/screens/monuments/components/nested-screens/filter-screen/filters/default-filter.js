@@ -32,7 +32,7 @@ export default function DefaultFilter({
     logEvent("FilterPressed", { name: filterChip.abbreviation });
   };
 
-  const { background, main } = DefaultTheme.pallete.colors.primary;
+  const { background, main } = DefaultTheme.palette.colors.primary;
 
   return (
     <View style={[{ width: "100%" }, style]}>

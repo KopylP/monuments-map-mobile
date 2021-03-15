@@ -45,7 +45,7 @@ export default function AnimatedHeader({ show }) {
             }),
           },
         ],
-        backgroundColor: DefaultTheme.pallete.colors.primary.main,
+        backgroundColor: DefaultTheme.palette.colors.primary.main,
       }}
     >      
     </Animated.View>

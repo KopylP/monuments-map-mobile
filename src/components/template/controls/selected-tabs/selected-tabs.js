@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: DefaultTheme.pallete.colors.primary.dark,
+    borderColor: DefaultTheme.palette.colors.primary.dark,
   },
   tabTitle: {
     fontWeight: "500",
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   animatedBackgroundStyle: {
     position: "absolute",
-    backgroundColor: DefaultTheme.pallete.colors.primary.dark,
+    backgroundColor: DefaultTheme.palette.colors.primary.dark,
     height: "100%",
     width: 100,
     left: 0,
