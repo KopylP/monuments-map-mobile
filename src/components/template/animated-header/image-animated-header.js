@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SharedElement } from "react-navigation-shared-element";
+import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button";
 
 export default function ImageAnimatedHeader({
@@ -116,8 +117,10 @@ export default function ImageAnimatedHeader({
                   alignSelf: "flex-start",
                   resizeMode: "cover",
                   height: imageHeight,
+                  backgroundColor: DefaultTheme.palette.colors.screenBackground.main
                 }}
                 source={source}
+                fadeDuration={200}
                 onLoadEnd={onImageLoad}
               />
             </TouchableWithoutFeedback>
