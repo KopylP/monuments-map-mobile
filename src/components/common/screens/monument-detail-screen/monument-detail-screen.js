@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import ImageAnimatedHeader from "../../../template/animated-header/image-animated-header";
@@ -10,12 +10,18 @@ import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
 import withRouteParams from "../../../hoc-helpers/with-route-params";
 import withData from "../../../hoc-helpers/with-data";
 import withParamsScreenLog from "../../../hoc-helpers/analytics/with-params-screen-log";
+import useValueWithDelay from "../../../hooks/use-value-with-delay";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
   const { monument, shareId, imageBase64 } = params;
+
   const navigation = useNavigation();
+  const imageBackground = useValueWithDelay(DefaultTheme.palette.colors.primary.main);
+
+  const [backClicked, setBackClicked] = useState(false);
 
   const handleBack = () => {
+    setBackClicked(true);
     navigation.goBack();
   };
 
@@ -26,7 +32,7 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
         shareId={`image-${shareId}`}
         title={monument.name}
         onBack={handleBack}
-        headerBackground={DefaultTheme.palette.colors.primary.main}
+        headerBackground={backClicked ? null: imageBackground}
         source={{
           uri: imageBase64,
         }}
