@@ -54,10 +54,10 @@ export default function AnimatedHeader({ show }) {
       }}
     >
       <BlurView
-        intensity={90}
+        intensity={100}
         style={{flex: 1}}
       >
-      <View style={{backgroundColor: DefaultTheme.palette.colors.primary.dark, flex: 1, opacity: 0.8}}></View>
+      <View style={{backgroundColor: DefaultTheme.palette.colors.primary.dark, flex: 1, opacity: 0.9}}></View>
       </BlurView>
     </Animated.View>
   );
