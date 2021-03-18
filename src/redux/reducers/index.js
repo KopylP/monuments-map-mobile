@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import conditionsReducer from "./conditions-reducer";
 import filterReducer from "./filter-reducer";
+import modalReducer from "./modal-reducer";
 import monumentsReducer from "./monuments-reducer";
 import selectedMonumentReducer from "./selected-monument-reducer";
 import statusesReducer from "./statuses-reducer";
@@ -12,7 +13,8 @@ const reducer = combineReducers({
   transition: transitionReducer,
   filter: filterReducer,
   statuses: statusesReducer,
-  conditions: conditionsReducer
+  conditions: conditionsReducer,
+  modal: modalReducer
 });
 
 export default reducer;

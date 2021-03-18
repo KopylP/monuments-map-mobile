@@ -23,6 +23,7 @@
     "axios": "^0.21.0",
     "expo": "~39.0.2",
     "expo-asset": "~8.2.0",
+    "expo-blur": "~8.2.0",
     "expo-constants": "~9.2.0",
     "expo-firebase-analytics": "~2.5.0",
     "expo-linear-gradient": "~8.3.0",
@@ -45,6 +46,7 @@
     "react-native-maps": "0.27.1",
     "react-native-markdown-display": "^7.0.0-alpha.2",
     "react-native-markdown-renderer": "^3.2.8",
+    "react-native-modal": "^11.7.0",
     "react-native-paper": "^4.4.0",
     "react-native-photo-gallery": "^0.2.4",
     "react-native-reanimated": "~1.13.0",
@@ -69,8 +71,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
-    "roman-numbers": "^1.0.1",
-    "expo-blur": "~8.2.0"
+    "roman-numbers": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

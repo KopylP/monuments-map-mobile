@@ -13,7 +13,7 @@ import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { DefaultTheme } from "./src/theme/default-theme";
 import { logEvent } from "expo-firebase-analytics";
-import SafeArea from "./src/components/common/safe-area/safe-area";
+import ModalSwitch from "./src/components/modal/modal-switch";
 enableScreens();
 
 function App() {
@@ -28,9 +28,8 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         <SafeAreaProvider>
-          {/* <SafeArea> */}
-            <MainScreen />
-          {/* </SafeArea> */}
+          <ModalSwitch />
+          <MainScreen />
         </SafeAreaProvider>
       </Provider>
     </AppContext.Provider>
