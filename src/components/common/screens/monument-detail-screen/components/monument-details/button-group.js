@@ -9,9 +9,11 @@ import OpenInMapButton from "./open-in-map-button";
 export default function ButtonGroup({ monument }) {
   return (
     <HorizontalButtonsGroup
-      buttonWidth={80}
+      buttonWidth={70}
       containerPaddingHorizontal={15}
       minButtonMargin={6}
+      scrollEnabled={false}
+      paddingBottom={10}
     >
       <GalleryButton {...monument} style={styles.button} />
       <OpenInMapButton style={styles.button} {...monument} />

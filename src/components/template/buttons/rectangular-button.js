@@ -31,6 +31,7 @@ export default function RectangularButton({
             color: textColor,
             ...styles.text,
           }}
+          numberOfLines={1}
         >
           {title}
         </Text>
@@ -41,8 +42,8 @@ export default function RectangularButton({
 
 const styles = StyleSheet.create({
   container: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -59,5 +60,6 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "600",
     margin: 2,
+    fontSize: 12,
   },
 });

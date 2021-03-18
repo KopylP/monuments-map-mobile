@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginHorizontal
   },
   chips: {
-    marginTop: 20,
+    marginTop: 10,
     alignItems: "flex-start",
     marginHorizontal
   },
