@@ -13,7 +13,7 @@ export default function MonumentPodcastsList({ sources, style = {}, }) {
       renderItem={({ item }) => {
         return <MonumentPodcastItem title={item.key} sources={item.values} />;
       }}
-      keyExtractor={(item) => item.sourceLink}
+      keyExtractor={(item) => item.key}
       ItemSeparatorComponent={() => <Divider style={{
           backgroundColor: DefaultTheme.palette.colors.primary.extraLight,
           opacity: 0.3,

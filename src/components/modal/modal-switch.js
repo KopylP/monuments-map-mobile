@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import MonumentPodcasts, {
@@ -15,29 +15,38 @@ function ModalSwitch({ modalId, modalData, open, closeModal }) {
       modalBody = <MonumentPodcasts sources={modalData} />;
   }
 
+  const [showBody, setShowBody] = useState(true);
+
+  const handleHide = () => setShowBody(false);
+  const handleWillShow = () => setShowBody(true);
+
   return (
     <Modal
       isVisible={open}
+      onModalWillShow={handleWillShow}
       onBackdropPress={closeModal}
       onBackButtonPress={closeModal}
       onSwipeComplete={closeModal}
-      useNativeDriver={true}
-      propagateSwipe
       useNativeDriverForBackdrop={true}
+      onModalHide={handleHide}
     >
-      <View
-        style={{
-          backgroundColor: "white",
-          padding: 22,
-          justifyContent: "center",
-          alignItems: "center",
-          maxHeight: "80%",
-          borderRadius: 4,
-          borderColor: "rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        {modalBody}
-      </View>
+      {showBody ? (
+        <View
+          style={{
+            backgroundColor: "white",
+            padding: 22,
+            justifyContent: "center",
+            alignItems: "center",
+            maxHeight: "80%",
+            borderRadius: 4,
+            borderColor: "rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          {modalBody}
+        </View>
+      ) : (
+        <View />
+      )}
     </Modal>
   );
 }
@@ -50,4 +59,4 @@ const bindStateToProps = ({ modal: { modalId, modalData, open } }) => ({
 
 const bindMethodToProps = { closeModal };
 
-export default connect(bindStateToProps, bindMethodToProps)(ModalSwitch);
+export default memo(connect(bindStateToProps, bindMethodToProps)(ModalSwitch));
