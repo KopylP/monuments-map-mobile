@@ -4,7 +4,7 @@ import { DefaultTheme } from "../../../../../../theme/default-theme";
 import { useLocate } from "../../../../../hooks/locate-hooks";
 import RectangularButton from "../../../../../template/buttons/rectangular-button";
 
-export default function GalleryButton({ name, id }) {
+export default function GalleryButton({ name, id, style = {} }) {
 
   const { navigate } = useNavigation();
   const { t } = useLocate();
@@ -14,6 +14,7 @@ export default function GalleryButton({ name, id }) {
       iconName="ios-images"
       iconType="ionicon"
       color={DefaultTheme.palette.colors.primary.main}
+      style={style}
       textColor="white"
       title={t("gallery")}
       onPress={() =>
