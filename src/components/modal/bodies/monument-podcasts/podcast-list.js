@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 import { Linking } from "react-native";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
@@ -12,14 +13,20 @@ export default function PodcastList({ sources }) {
 
   return (
     <View style={styles.iconContainer}>
-      {sources.map((source, i) => (
-        <TouchableOpacity onPress={() => handleClick(source.sourceLink)} key={i}>
-          <PodcastIcon
-            style={styles.icon}
-            type={convertSourceTypeToIconType(source.sourceType)}
-          />
-        </TouchableOpacity>
-      ))}
+      <FlatList
+        columnWrapperStyle={{ flexWrap: "wrap" }}
+        numColumns={5}
+        data={sources}
+        keyExtractor={(item) => item.sourceLink}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={{padding: 2}} onPress={() => handleClick(item.sourceLink)}>
+            <PodcastIcon
+              style={styles.icon}
+              type={convertSourceTypeToIconType(item.sourceType)}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
@@ -32,6 +39,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   icon: {
-    marginRight: 10,
+    // marginRight: 10,
+    // marginTop: 10,
   },
 });
