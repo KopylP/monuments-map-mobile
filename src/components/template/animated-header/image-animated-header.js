@@ -104,6 +104,7 @@ export default function ImageAnimatedHeader({
             },
             { height: maxHeight },
           ]}
+          pointerEvents="none"
         >
           <SharedElement id={shareId} style={{ flex: 1 }}>
             <TouchableWithoutFeedback
@@ -135,6 +136,7 @@ export default function ImageAnimatedHeader({
             height: topBarHeight
           },
         ]}
+        pointerEvents="none"
       >
         <Text
           style={[styles.title, { marginTop: top }]}
