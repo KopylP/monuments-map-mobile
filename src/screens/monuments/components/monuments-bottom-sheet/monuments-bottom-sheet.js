@@ -9,6 +9,9 @@ import {
 import MapMonumentCard from "./map-monument-card/map-monument-card";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../../../helpers/timeout-promise";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SCREEN_HEIGHT } from "../../../../helpers/dimensions-helpers";
+import { Dimensions } from "react-native";
 
 function MonumentsBottomSheet({
   openDialog,
@@ -16,9 +19,9 @@ function MonumentsBottomSheet({
   dialogEnabled,
   disableDialog,
 }) {
-
   const bottomRef = useRef();
   const makeCancelable = useCancelablePromise();
+  const { top } = useSafeAreaInsets();
 
   useEffect(() => {
     if (openDialog) {
@@ -37,6 +40,7 @@ function MonumentsBottomSheet({
       ref={bottomRef}
       onChange={handleChange}
       enabled={dialogEnabled}
+      height={SCREEN_HEIGHT / 2 - top - 20}
     >
       <View
         style={{

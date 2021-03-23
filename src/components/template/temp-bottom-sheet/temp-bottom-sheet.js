@@ -43,7 +43,11 @@ export default class TempBottomSheet extends Component {
 
   render() {
     const screenHeight = Math.round(Dimensions.get("window").height);
-    const { height = screenHeight, renderHeader = () => <View />, enabled =  true } = this.props;
+    const {
+      height = screenHeight / 2 - 45,
+      renderHeader = () => <View />,
+      enabled = true,
+    } = this.props;
     const { open } = this.state;
 
     return (
@@ -52,7 +56,7 @@ export default class TempBottomSheet extends Component {
         initialSnapIndex={0}
         enabled={enabled}
         handleComponent={renderHeader}
-        snapPoints={[0, height / 2 - 45]}
+        snapPoints={[0, height]}
         animationDuration={open ? 200 : 300}
         onChange={this._handleChange}
       >
