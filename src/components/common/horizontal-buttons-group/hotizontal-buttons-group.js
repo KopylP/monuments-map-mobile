@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { SCREEN_SIZE } from "../../../helpers/dimensions-helpers";
+import { SCREEN_WIDTH } from "../../../helpers/dimensions-helpers";
 
 export default function HorizontalButtonsGroup({
   children,
@@ -12,7 +12,7 @@ export default function HorizontalButtonsGroup({
   scrollEnabled = true,
   paddingBottom = 0
 }) {
-  const screenWidth = SCREEN_SIZE;
+  const screenWidth = SCREEN_WIDTH;
 
   const delta = Math.floor(buttonWidth / 3);
 

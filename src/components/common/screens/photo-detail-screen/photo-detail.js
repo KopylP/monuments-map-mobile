@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { compose } from "redux";
-import { SCREEN_SIZE } from "../../../../helpers/dimensions-helpers";
+import { SCREEN_WIDTH } from "../../../../helpers/dimensions-helpers";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import withData from "../../../hoc-helpers/with-data";
 import withMsGetMethod from "../../../hoc-helpers/with-ms-get-method";
@@ -26,13 +26,13 @@ function PhotoDetail({
 }) {
   const { t } = useLocate();
 
-  if (loading) return <Loader imageHeight={SCREEN_SIZE / photo.imageScale} />;
+  if (loading) return <Loader imageHeight={SCREEN_WIDTH / photo.imageScale} />;
 
   if (data)
     return (
       <ImageAnimatedHeader
-        maxHeight={SCREEN_SIZE / photo.imageScale}
-        imageHeight={SCREEN_SIZE / photo.imageScale}
+        maxHeight={SCREEN_WIDTH / photo.imageScale}
+        imageHeight={SCREEN_WIDTH / photo.imageScale}
         title={title}
         showBackButton={false}
         headerBackground={DefaultTheme.palette.colors.primary.main}
