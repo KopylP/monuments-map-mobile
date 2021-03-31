@@ -7,13 +7,13 @@ import store from "./src/redux/store";
 import MonumentService from "./src/services/monument-service";
 import GeocoderService from "./src/services/geocoder-service";
 import { enableScreens } from "react-native-screens";
-import MainScreen from "./src/screens/main-screen";
 import LocateProvider from "./src/context/locate-context";
 import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { DefaultTheme } from "./src/theme/default-theme";
 import { logEvent } from "expo-firebase-analytics";
 import ModalSwitch from "./src/components/modal/modal-switch";
+import MainNavigation from "./src/navigations/main-navigation/main-navigation";
 enableScreens();
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
       <Provider store={store}>
         <SafeAreaProvider>
           <ModalSwitch />
-          <MainScreen />
+          <MainNavigation />
         </SafeAreaProvider>
       </Provider>
     </AppContext.Provider>
