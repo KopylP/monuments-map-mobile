@@ -17,12 +17,22 @@ import MapIndicator from "./components/map-indicator";
 import Logo from "./components/logo/logo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MonumentsMap from "./components/monuments-map/monuments-map";
+import useAndroidBack from "../../components/hooks/use-android-back";
+import { closeSelectedMonumentDialog } from "../../redux/actions/selected-monument-actions";
 
-function MonumentsMapScreen() {
+function MonumentsMapScreen({ openDialog, closeSelectedMonumentDialog }) {
   const [tab, setTab] = useState(0);
   const { t } = useLocate();
-
   const { top } = useSafeAreaInsets();
+
+
+  useAndroidBack(() => {
+    if (openDialog) {
+      closeSelectedMonumentDialog();
+      return true;
+    }
+    return false;
+  });
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -51,6 +61,7 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
     {
       fetchAction: fetchMonuments(monumentService),
       requestAction: requestMonumentsFetch,
+      closeSelectedMonumentDialog: closeSelectedMonumentDialog
     },
     dispatch
   );
@@ -59,6 +70,7 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
 const bindStateToProps = ({
   monuments: { requestFetch, error },
   filter: { statuses, conditions, cities, yearsRange },
+  selectedMonument: { openDialog }
 }) => ({
   requestFetch,
   statuses,
@@ -66,6 +78,7 @@ const bindStateToProps = ({
   cities,
   yearsRange,
   error,
+  openDialog
 });
 
 const bindPropsToActions = (p) => ({
