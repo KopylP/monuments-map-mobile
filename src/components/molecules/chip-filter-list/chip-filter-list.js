@@ -4,7 +4,7 @@ import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { Icon } from "react-native-elements";
 import { logEvent } from "expo-firebase-analytics";
-import FilterTitle from "../../atoms/filter-title";
+import Subtitle from "../../atoms/typography/subtitle";
 
 export default function ChipFilterList({
   selectedValues,
@@ -36,7 +36,7 @@ export default function ChipFilterList({
 
   return (
     <View style={[{ width: "100%" }, style]}>
-      <FilterTitle title={title} />
+      <Subtitle title={title} style={{margin: 5}}/>
       <View
         style={{
           flexDirection: "row",

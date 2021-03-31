@@ -1,14 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MonumentsMapNavigation, {
-  mapTabOptions,
-} from "../monuments-map-navigation";
+import MonumentsMapNavigation from "../monuments-map-navigation";
 import { DefaultTheme } from "../../theme/default-theme";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useLocate } from "../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../screens/about-app-screen";
 import { aboutAppTabOptions } from "../../screens/about-app-screen/about-app-screen";
+import { mapTabOptions } from "../monuments-map-navigation/monuments-map-navigation";
 
 const Tab = createBottomTabNavigator();
 

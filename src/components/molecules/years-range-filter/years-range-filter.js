@@ -1,14 +1,11 @@
 import React from "react";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import { View } from "react-native";
-import FilterTitle from "../../atoms/filter-title/filter-title";
+import Subtitle from "../../atoms/typography/subtitle/subtitle";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
-import { Dimensions } from "react-native";
-import { useLocate } from "../../hooks/locate-hooks";
-
-const screenWidth = Math.round(Dimensions.get("window").width);
+import { SCREEN_WIDTH } from "../../../helpers/dimensions-helpers";
 
 export default function YearsRangeFilter({
   style,
@@ -18,21 +15,20 @@ export default function YearsRangeFilter({
   changeYearsRange,
   minYear,
   maxYear,
-  title
+  title,
+  sliderLength = SCREEN_WIDTH - 50
 }) {
-
-  const { t } = useLocate();
 
   return (
     <View style={[styles.container, style]}>
-      <FilterTitle title={title} />
+      <Subtitle title={title} />
       <View style={styles.sliderView}>
         <MultiSlider
           values={selectedYearsRange}
           onValuesChange={changeYearsRange}
           min={minYear}
           max={maxYear}
-          sliderLength={screenWidth - 50}
+          sliderLength={sliderLength}
           selectedStyle={styles.selected}
           markerStyle={styles.marker}
           onValuesChangeStart={onValuesChangeStart}

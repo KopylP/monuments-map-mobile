@@ -11,7 +11,7 @@ import {
 } from "../../../../redux/actions/filter-actions";
 import { requestMonumentsFetch } from "../../../../redux/actions/monuments-actions";
 import { DefaultTheme } from "../../../../theme/default-theme";
-import ToolbarClearButton from "../../../../components/atoms/toolbar-clean-button";
+import ToolbarClearButton from "../../../../components/atoms/buttons/toolbar-clean-button";
 import ConditionsFilter from "../conditions-filter";
 import StatusesFilter from "../statuses-filter";
 import YearsRangeFilter from "../../../../components/molecules/years-range-filter";
@@ -96,6 +96,7 @@ function FilterView({
         <StatusesFilter
           changeStatuses={setStatuses}
           selectedStatuses={statuses}
+          style={styles.filter}
         />
         <ConditionsFilter
           style={styles.filter}
@@ -150,5 +151,6 @@ const styles = StyleSheet.create({
   },
   filter: {
     marginTop: 15,
+    marginBottom: 5,
   },
 });

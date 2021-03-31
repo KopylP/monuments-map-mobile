@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
-import AppMap from "../../../../components/common/app-map/app-map";
-import MonumentMarker from "../../../../components/common/monuments/monument-marker";
+import AppMap from "../../../../components/atoms/app-map/app-map";
+import MonumentMarker from "../../../../components/molecules/monument-marker/monument-marker";
 import { changeSelectedMonument } from "../../../../redux/actions/selected-monument-actions";
 
 

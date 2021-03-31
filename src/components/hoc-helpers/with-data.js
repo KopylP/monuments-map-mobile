@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ErrorScreen from "../common/screens/error-screen/error-screen";
+import ErrorScreen from "../../screens/error-screen/error-screen";
 import useData from "../hooks/use-data";
 
 const withData = (bindRouteParamsToMethodParamList, options = {}) => (Wrapper) => (props) => {

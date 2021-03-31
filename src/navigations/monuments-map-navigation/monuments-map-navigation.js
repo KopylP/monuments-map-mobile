@@ -7,15 +7,15 @@ import {
 } from "../../redux/actions/transition-actions";
 import MonumentsMapScreen from "../../screens/monuments-map-screen";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
-import MonumentGalleryScreen from "../../components/common/screens/monument-gallary-screen/monument-gallery-screen";
+import MonumentGalleryScreen from "../../screens/monument-gallary-screen/monument-gallery-screen";
 import { DefaultTheme } from "../../theme/default-theme";
 import { Icon } from "react-native-elements";
-import PhotoDetailScreen from "../../components/common/screens/photo-detail-screen/photo-detail-screen";
-import PhotoViewScreen from "../../components/common/screens/photo-view-screen/photo-view-screen";
+import PhotoDetailScreen from "../../screens/photo-detail-screen/photo-detail-screen";
+import PhotoViewScreen from "../../screens/photo-view-screen/photo-view-screen";
 import FilterScreen from "../../screens/monuments-map-filter-screen";
 import { useLocate } from "../../components/hooks/locate-hooks";
-import monumentDetailScreenOptions from "../../components/common/screens/monument-detail-screen/monument-detail-screen.options";
-import SourcesScreen from "../../components/common/screens/sources-screen/sources-sreen";
+import monumentDetailScreenOptions from "../../screens/monument-detail-screen/monument-detail-screen.options";
+import SourcesScreen from "../../screens/sources-screen/sources-sreen";
 import { enableDialog } from "../../redux/actions/selected-monument-actions";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 

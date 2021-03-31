@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import SelectedTabs from "../../components/template/controls/selected-tabs/selected-tabs";
+import SelectedTabs from "../../components/atoms/controls/selected-tabs/selected-tabs";
 import MonumentsMapFilterButton from "./components/monuments-map-fitler-button";
 import MonumentsBottomSheet from "./components/monuments-bottom-sheet";
 import MonumentsListView from "./components/monuments-list-view/monuments-list-view";

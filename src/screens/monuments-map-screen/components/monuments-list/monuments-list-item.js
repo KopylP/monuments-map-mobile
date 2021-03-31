@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import MonumentCard from "../../../../components/common/monuments/monument-card";
+import MonumentCard from "../../../../components/molecules/monument-card/monument-card";
 
 export default function MonumentListItem({ monument, onPress = (p) => p }) {
   const shareId = `item-${monument.id}`;

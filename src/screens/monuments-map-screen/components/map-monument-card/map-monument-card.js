@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { connect } from "react-redux";
-import MonumentCard from "../../../../components/common/monuments/monument-card";
+import MonumentCard from "../../../../components/molecules/monument-card/monument-card";
 
 function MapMonumentCard({ selectedMonument, transition, onPress = p => p }) {
   const navigation = useNavigation();

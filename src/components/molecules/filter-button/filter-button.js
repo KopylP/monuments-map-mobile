@@ -1,6 +1,6 @@
 import React from "react";
 import { DefaultTheme } from "../../../theme/default-theme";
-import ButtonWithBadge from "../../atoms/button-with-badge";
+import ButtonWithBadge from "../../atoms/buttons/button-with-badge";
 
 export default function FilterButton({ style, onPress, selectedFiltersCount }) {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ErrorScreen from "../common/screens/error-screen/error-screen";
+import ErrorScreen from "../../screens/error-screen/error-screen";
 
 const withReduxData = (bindPropsToActions = p => ({
     fetchAction: p.fetchAction,

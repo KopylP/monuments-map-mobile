@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import withMonumentService from "../../components/hoc-helpers/with-monument-service";
-import AbsoluteIndicator from "../../components/template/indicators/absolute-indicator/absolute-indicator";
+import AbsoluteIndicator from "../../components/atoms/indicators/absolute-indicator/absolute-indicator";
 import { fetchConditions } from "../../redux/actions/conditions-actions";
 import { fetchStatuses } from "../../redux/actions/statuses-actions";
 import FilterView from "./components/filter-view";

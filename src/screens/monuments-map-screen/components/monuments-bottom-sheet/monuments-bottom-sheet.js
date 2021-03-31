@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
-import TempBottomSheet from "../../../../components/template/temp-bottom-sheet/temp-bottom-sheet";
+import TempBottomSheet from "../../../../components/atoms/temp-bottom-sheet/temp-bottom-sheet";
 import {
   closeSelectedMonumentDialog,
   disableDialog,
