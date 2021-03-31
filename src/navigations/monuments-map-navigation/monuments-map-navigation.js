@@ -1,5 +1,4 @@
 import React from "react";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { connect } from "react-redux";
 import {
   transitionEnd,
@@ -8,18 +7,26 @@ import {
 import MonumentsMapScreen from "../../screens/monuments-map-screen";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import MonumentGalleryScreen from "../../screens/monument-gallary-screen/monument-gallery-screen";
-import { DefaultTheme } from "../../theme/default-theme";
 import { Icon } from "react-native-elements";
 import PhotoDetailScreen from "../../screens/photo-detail-screen/photo-detail-screen";
 import PhotoViewScreen from "../../screens/photo-view-screen/photo-view-screen";
 import FilterScreen from "../../screens/monuments-map-filter-screen";
 import { useLocate } from "../../components/hooks/locate-hooks";
 import monumentDetailScreenOptions from "../../screens/monument-detail-screen/monument-detail-screen.options";
-import SourcesScreen from "../../screens/sources-screen/sources-sreen";
+import SourcesScreen from "../../screens/sources-screen/sources-screen";
 import { enableDialog } from "../../redux/actions/selected-monument-actions";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  FILTER_SCREEN,
+  MONUMENTS_GALLERY_SCREEN,
+  MONUMENTS_MAP_SCREEN,
+  PHOTO_DETAIL_SCREEN,
+  PHOTO_VIEW_SCREEN,
+  SOURCES_SCREEN,
+} from "../route-consts/monuments-map-navigation-consts";
+import CreateModalNavigator from "../../components/atoms/navigators/modal-navigator/create-modal-navigator";
 
-const Stack = createSharedElementStackNavigator();
+const Stack = CreateModalNavigator();
 
 const MonumentsMapNavigation = ({
   transitionStart,
@@ -28,58 +35,18 @@ const MonumentsMapNavigation = ({
 }) => {
   const makeCancelable = useCancelablePromise();
   const { t } = useLocate();
-  const { top } = useSafeAreaInsets();
 
   return (
-    <Stack.Navigator
-      mode="modal"
-      screenOptions={{
-        headerBackTitle: " ",
-        cardShadowEnabled: false,
-        useNativeDrawer: true,
-        headerTintColor: "white",
-        gestureEnabled: false,
-        headerStyle: {
-          backgroundColor: DefaultTheme.palette.colors.primary.dark,
-          height: 60 + top,
-        },
-        headerTitleStyle: {
-          fontWeight: "400",
-          fontSize: 16,
-        },
-        headerLeft: ({ onPress }) => {
-          return (
-            <Icon type="ionicon" name="md-arrow-back" size={30} color="white" onPress={onPress}/>
-          );
-        },
-        headerLeftContainerStyle: {
-          left: 25
-        },
-        transitionSpec: {
-          open: {
-            animation: "timing",
-            config: {
-              duration: 150,
-            },
-          },
-          close: {
-            animation: "timing",
-            config: {
-              duration: 150,
-            },
-          },
-        },
-      }}
-    >
+    <Stack.Navigator>
       <Stack.Screen
-        name="List"
+        name={MONUMENTS_MAP_SCREEN}
         component={MonumentsMapScreen}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="Gallery"
+        name={MONUMENTS_GALLERY_SCREEN}
         options={({ route }) => ({
           headerShown: true,
           title: route.params.title,
@@ -87,21 +54,21 @@ const MonumentsMapNavigation = ({
         component={MonumentGalleryScreen}
       />
       <Stack.Screen
-        name="PhotoDetail"
+        name={PHOTO_DETAIL_SCREEN}
         options={{
           headerShown: false,
         }}
         component={PhotoDetailScreen}
       />
       <Stack.Screen
-        name="PhotoView"
+        name={PHOTO_VIEW_SCREEN}
         options={{
           headerShown: false,
         }}
         component={PhotoViewScreen}
       />
       <Stack.Screen
-        name="Filters"
+        name={FILTER_SCREEN}
         options={{
           title: t("Filters"),
         }}
@@ -116,7 +83,7 @@ const MonumentsMapNavigation = ({
         )}
       />
       <Stack.Screen
-        name="Sources"
+        name={SOURCES_SCREEN}
         options={{ title: t("sources") }}
         component={SourcesScreen}
       />

@@ -11,6 +11,8 @@ import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../../../helpers/timeout-promise";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SCREEN_HEIGHT } from "../../../../helpers/dimensions-helpers";
+import { useRoute } from "@react-navigation/native";
+import { MONUMENTS_MAP_SCREEN } from "../../../../navigations/route-consts/monuments-map-navigation-consts";
 
 function MonumentsBottomSheet({
   openDialog,
@@ -21,17 +23,25 @@ function MonumentsBottomSheet({
   const bottomRef = useRef();
   const makeCancelable = useCancelablePromise();
   const { top } = useSafeAreaInsets();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { name } = useRoute();
 
   useEffect(() => {
     if (openDialog) {
       makeCancelable(timeout(100)).then(() => bottomRef.current.open());
-    }
+    } else if (!openDialog && currentIndex !== 0 && name == MONUMENTS_MAP_SCREEN) closeDialog();
   }, [openDialog]);
 
   const handleChange = (index) => {
+    setCurrentIndex(index);
     if (index === 0) {
       closeSelectedMonumentDialog();
     }
+  };
+
+  const closeDialog = () => {
+    setCurrentIndex(0);
+    bottomRef.current.close();
   };
 
   return (

@@ -8,12 +8,19 @@ import { useLocate } from "../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../screens/about-app-screen";
 import { aboutAppTabOptions } from "../../screens/about-app-screen/about-app-screen";
 import { mapTabOptions } from "../monuments-map-navigation/monuments-map-navigation";
+import {
+  PHOTO_DETAIL_SCREEN,
+  PHOTO_VIEW_SCREEN,
+  SOURCES_SCREEN,
+} from "../route-consts/monuments-map-navigation-consts";
 
 const Tab = createBottomTabNavigator();
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
-  if (["PhotoView", "PhotoDetail", "Sources"].includes(routeName)) {
+  if (
+    [PHOTO_VIEW_SCREEN, PHOTO_DETAIL_SCREEN, SOURCES_SCREEN].includes(routeName)
+  ) {
     return false;
   }
 
@@ -50,14 +57,14 @@ export default function MainNavigation() {
             };
           }}
         />
-        <Tab.Screen name="AboutApp"
-        component={AboutAppScreen}
-        options={{
-          ...aboutAppTabOptions,
-          tabBarLabel: t("About app"),
-        }}>
-
-        </Tab.Screen>
+        <Tab.Screen
+          name="AboutApp"
+          component={AboutAppScreen}
+          options={{
+            ...aboutAppTabOptions,
+            tabBarLabel: t("About app"),
+          }}
+        ></Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
