@@ -21,9 +21,7 @@ export default function monumentDetailScreenOptions({
       },
     },
     sharedElementsConfig: (route, otherRoute, showing) => {
-      const { shareId = null } = route.params;
-
-      if (!shareId) return [{}];
+      const { shareId } = route.params;
 
       if (
         route.name === MONUMENT_DETAIL_SCREEN &&

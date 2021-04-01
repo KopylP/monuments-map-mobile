@@ -11,8 +11,6 @@ import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../../../helpers/timeout-promise";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SCREEN_HEIGHT } from "../../../../helpers/dimensions-helpers";
-import { useRoute } from "@react-navigation/native";
-import { MONUMENTS_MAP_SCREEN } from "../../../../navigations/route-consts/monuments-map-navigation-consts";
 
 function MonumentsBottomSheet({
   openDialog,
@@ -24,12 +22,11 @@ function MonumentsBottomSheet({
   const makeCancelable = useCancelablePromise();
   const { top } = useSafeAreaInsets();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { name } = useRoute();
 
   useEffect(() => {
     if (openDialog) {
       makeCancelable(timeout(100)).then(() => bottomRef.current.open());
-    } else if (!openDialog && currentIndex !== 0 && name == MONUMENTS_MAP_SCREEN) closeDialog();
+    } else if (!openDialog && currentIndex !== 0) closeDialog();
   }, [openDialog]);
 
   const handleChange = (index) => {
@@ -45,22 +42,22 @@ function MonumentsBottomSheet({
   };
 
   return (
-    <TempBottomSheet
-      ref={bottomRef}
-      onChange={handleChange}
-      enabled={dialogEnabled}
-      height={SCREEN_HEIGHT / 2 - top - 20}
-    >
-      <View
-        style={{
-          flex: 1,
-          paddingHorizontal: 20,
-          paddingBottom: 20,
-        }}
+      <TempBottomSheet
+        ref={bottomRef}
+        onChange={handleChange}
+        enabled={dialogEnabled}
+        height={SCREEN_HEIGHT / 2 - top - 20}
       >
-        <MapMonumentCard onPress={disableDialog} />
-      </View>
-    </TempBottomSheet>
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: 20,
+            paddingBottom: 20,
+          }}
+        >
+          <MapMonumentCard onPress={disableDialog} />
+        </View>
+      </TempBottomSheet>
   );
 }
 

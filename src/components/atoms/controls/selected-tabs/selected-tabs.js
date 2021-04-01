@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -11,16 +11,16 @@ import { DefaultTheme } from "../../../../theme/default-theme";
 export default function SelectedTabs({
   firstTabTitle,
   secondTabTitle,
+  selectedTab,
   onChangeTab = (tabIndex) => tabIndex,
   style={}
 }) {
-  const [selectedTab, setSelectedTab] = useState(0);
   const backTransAnim = useRef(new Animated.Value(0)).current;
-  const handleSelectTab = (index) => {
-    animateBack(index);
-    setSelectedTab(index);
-    onChangeTab(index);
+  const handleSelectTab = () => {
+    animateBack(selectedTab);
   };
+
+  useEffect(handleSelectTab, [selectedTab]);
 
   const translateX = backTransAnim.interpolate({
     inputRange: [0, 1],
@@ -46,12 +46,12 @@ export default function SelectedTabs({
       <Tab
         title={firstTabTitle}
         selected={selectedTab === 0}
-        onTabSelected={() => handleSelectTab(0)}
+        onTabSelected={() => onChangeTab(0)}
       />
       <Tab
         title={secondTabTitle}
         selected={selectedTab === 1}
-        onTabSelected={() => handleSelectTab(1)}
+        onTabSelected={() => onChangeTab(1)}
       />
     </View>
   );

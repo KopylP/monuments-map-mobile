@@ -10,12 +10,14 @@ export default function RectangularButton({
   title,
   textColor = "white",
   style,
-  onPress  = p => p
+  onPress  = p => p,
+  disabled = false
 }) {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.5}
+      disabled={disabled}
       style={[
         {
           backgroundColor: color,

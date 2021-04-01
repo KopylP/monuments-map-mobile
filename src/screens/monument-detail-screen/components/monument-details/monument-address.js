@@ -49,8 +49,7 @@ const styles = StyleSheet.create({
   text: {
     color: DefaultTheme.palette.colors.subtitle.main,
     fontSize: 15,
-    height: 20,
-    // fontWeight: "500"
+    minHeight: 20,
   },
   icon: {
     marginRight: 5,

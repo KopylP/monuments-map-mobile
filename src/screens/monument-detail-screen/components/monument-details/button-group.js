@@ -16,18 +16,21 @@ export default function ButtonGroup({ monument }) {
     (source) => !IsPodcast(source.sourceType)
   );
 
-  var podcastsButton = podcastsAvailable ? (
-    <PodcastsButton style={styles.button} sources={podcastSources} />
-  ) : (
-    <View style={styles.invisibleButton} />
-  );
+  const podcastButtonStyles = {
+    ...styles.button,
+    ...(!podcastsAvailable ? styles.invisible : {}),
+  }
 
   return (
     <View style={styles.container}>
       <GalleryButton {...monument} style={styles.button} />
       <OpenInMapButton style={styles.button} {...monument} />
       <SourcesButton style={styles.button} sources={sourcesWithoutPodcasts} />
-      {podcastsButton}
+      <PodcastsButton
+        style={podcastButtonStyles}
+        sources={podcastSources}
+        disabled={!podcastsAvailable}
+      />
     </View>
   );
 }
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
-  invisibleButton: {
-    width: 80,
+  invisible: {
+    opacity: 0,
   },
 });

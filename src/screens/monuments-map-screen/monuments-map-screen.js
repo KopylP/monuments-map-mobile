@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import SelectedTabs from "../../components/atoms/controls/selected-tabs/selected-tabs";
 import MonumentsMapFilterButton from "./components/monuments-map-fitler-button";
 import MonumentsBottomSheet from "./components/monuments-bottom-sheet";
 import MonumentsListView from "./components/monuments-list-view/monuments-list-view";
@@ -11,48 +10,43 @@ import {
   fetchMonuments,
   requestMonumentsFetch,
 } from "../../redux/actions/monuments-actions";
-import { useLocate } from "../../components/hooks/locate-hooks";
 import withReduxData from "../../components/hoc-helpers/with-redux-data";
 import MapIndicator from "./components/map-indicator";
 import Logo from "./components/logo/logo";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MonumentsMap from "./components/monuments-map/monuments-map";
 import useAndroidBack from "../../components/hooks/use-android-back";
 import { closeSelectedMonumentDialog } from "../../redux/actions/selected-monument-actions";
+import FocusContainer from "../../components/containers/focus-container";
+import MonumentSelectedTab from "./components/monument-selected-tab";
 
 function MonumentsMapScreen({ openDialog, closeSelectedMonumentDialog }) {
   const [tab, setTab] = useState(0);
-  const { t } = useLocate();
-  const { top } = useSafeAreaInsets();
-
+  
+  const [focused, setFocused] = useState(false);
 
   useAndroidBack(() => {
-    if (openDialog) {
+    if (openDialog && tab == 0 && focused) {
       closeSelectedMonumentDialog();
+      return true;
+    } else if (tab == 1) {
+      setTab(0);
       return true;
     }
     return false;
   });
 
   return (
-    <View style={StyleSheet.absoluteFill}>
-      <MonumentsMap />
-      <MonumentsBottomSheet />
-      <MonumentsListView show={tab == 1} />
-      <Logo />
-      <MonumentsMapFilterButton />
-      <SelectedTabs
-        firstTabTitle={t("map")}
-        secondTabTitle={t("list")}
-        style={{
-          position: "absolute",
-          top: 15 + top,
-          alignSelf: "center",
-        }}
-        onChangeTab={setTab}
-      />
-      <MapIndicator />
-    </View>
+    <FocusContainer onChange={setFocused}>
+      <View style={StyleSheet.absoluteFill}>
+        <MonumentsMap />
+        <MonumentsBottomSheet />
+        <MonumentsListView show={tab == 1} />
+        <Logo />
+        <MonumentsMapFilterButton />
+        <MonumentSelectedTab tab={tab} onChangeTab={setTab} />
+        <MapIndicator />
+      </View>
+    </FocusContainer>
   );
 }
 
@@ -61,7 +55,7 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
     {
       fetchAction: fetchMonuments(monumentService),
       requestAction: requestMonumentsFetch,
-      closeSelectedMonumentDialog: closeSelectedMonumentDialog
+      closeSelectedMonumentDialog: closeSelectedMonumentDialog,
     },
     dispatch
   );
@@ -70,7 +64,7 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
 const bindStateToProps = ({
   monuments: { requestFetch, error },
   filter: { statuses, conditions, cities, yearsRange },
-  selectedMonument: { openDialog }
+  selectedMonument: { openDialog },
 }) => ({
   requestFetch,
   statuses,
@@ -78,7 +72,7 @@ const bindStateToProps = ({
   cities,
   yearsRange,
   error,
-  openDialog
+  openDialog,
 });
 
 const bindPropsToActions = (p) => ({

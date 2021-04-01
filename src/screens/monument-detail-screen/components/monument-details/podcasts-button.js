@@ -5,7 +5,7 @@ import { DefaultTheme } from "../../../../theme/default-theme";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 import RectangularButton from "../../../../components/atoms/buttons/rectangular-button/rectangular-button";
 
-function PodcastsButton({ sources, openMonumentPodcastModal, style = {} }) {
+function PodcastsButton({ sources, openMonumentPodcastModal, style = {}, disabled = false }) {
   const { t } = useLocate();
 
   return (
@@ -15,6 +15,7 @@ function PodcastsButton({ sources, openMonumentPodcastModal, style = {} }) {
       color={DefaultTheme.palette.colors.primary.extraLight}
       style={style}
       textColor="white"
+      disabled={disabled}
       title={t("Podcasts")}
       onPress={() => openMonumentPodcastModal(sources)}
     />
