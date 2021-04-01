@@ -8,13 +8,9 @@ import OpenInMapButton from "./open-in-map-button";
 import PodcastsButton from "./podcasts-button";
 
 export default function ButtonGroup({ monument }) {
-  const podcastSources = monument.sources.filter((source) =>
-    IsPodcast(source.sourceType)
-  );
+  const podcastSources = monument.sources.filter(IsPodcast);
   const podcastsAvailable = podcastSources.length;
-  const sourcesWithoutPodcasts = monument.sources.filter(
-    (source) => !IsPodcast(source.sourceType)
-  );
+  const sourcesWithoutPodcasts = monument.sources.filter(IsPodcast);
 
   const podcastButtonStyles = {
     ...styles.button,

@@ -24,6 +24,6 @@ export function GetPodcastSourceTypes() {
   ];
 }
 
-export function IsPodcast(sourceType) {
+export function IsPodcast({ sourceType }) {
     return GetPodcastSourceTypes().includes(sourceType);
 }
