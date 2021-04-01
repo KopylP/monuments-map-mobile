@@ -11,6 +11,7 @@ import withRouteParams from "../../components/hoc-helpers/with-route-params";
 import withData from "../../components/hoc-helpers/with-data";
 import withParamsScreenLog from "../../components/hoc-helpers/analytics/with-params-screen-log";
 import useValueWithDelay from "../../components/hooks/use-value-with-delay";
+import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
   const { monument, shareId, imageBase64 } = params;
@@ -59,5 +60,13 @@ const composed = compose(
   withParamsScreenLog("MonumentsDetailsScreen", bindRouteParamsToLogObject),
   withData(bindRouteParamsToMethodProps)
 );
+
+export const navigateToMonumentsDetailScreen = (navigate) => (monument, imageBase64, shareId) => {
+  navigate(MONUMENT_DETAIL_SCREEN, {
+    monument,
+    imageBase64,
+    shareId
+  })
+}
 
 export default composed(MonumentDetailScreen);

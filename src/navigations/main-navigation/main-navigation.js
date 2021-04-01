@@ -1,8 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MonumentsMapNavigation from "../monuments-map-navigation";
-import { DefaultTheme } from "../../theme/default-theme";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useLocate } from "../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../screens/about-app-screen";
@@ -12,9 +10,10 @@ import {
   PHOTO_DETAIL_SCREEN,
   PHOTO_VIEW_SCREEN,
   SOURCES_SCREEN,
-} from "../route-consts/monuments-map-navigation-consts";
+} from "../route-consts/monuments-detail-navigation-consts";
+import CreateApplicationBottomTabNavigator from "../navigators/application-bottom-tab-navigator";
 
-const Tab = createBottomTabNavigator();
+const Tab = CreateApplicationBottomTabNavigator();
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
@@ -32,20 +31,7 @@ export default function MainNavigation() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Map"
-        tabBarOptions={{
-          activeTintColor: DefaultTheme.palette.colors.primary.main,
-          tabStyle: {
-            paddingVertical: 5,
-            backgroundColor: "white",
-            zIndex: 0,
-          },
-          style: {
-            zIndex: 0,
-          },
-        }}
-      >
+      <Tab.Navigator initialRouteName="Map">
         <Tab.Screen
           name="Map"
           component={MonumentsMapNavigation}
@@ -64,7 +50,7 @@ export default function MainNavigation() {
             ...aboutAppTabOptions,
             tabBarLabel: t("About app"),
           }}
-        ></Tab.Screen>
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

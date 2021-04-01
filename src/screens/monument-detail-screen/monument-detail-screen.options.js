@@ -1,15 +1,14 @@
-import { Platform } from "react-native";
-import timeout from "../../helpers/timeout-promise";
+import { isIOS } from "../../helpers/platform-helpers";
+import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 import MonumentDetailScreen from "./monument-detail-screen";
 
-export default function monumentDetailScreenOptions(
-  makeCancelable,
-  transitionStart,
-  transitionEnd,
-  enableDialog
-) {
+export default function monumentDetailScreenOptions({
+  onCloseTransitionStarts,
+  initialRouteName,
+  backTransitionShareIdIncludes,
+}) {
   return {
-    name: "Detail",
+    name: MONUMENT_DETAIL_SCREEN,
     options: {
       headerShown: false,
     },
@@ -17,20 +16,25 @@ export default function monumentDetailScreenOptions(
     listeners: {
       transitionStart: (e) => {
         if (e.data.closing) {
-          enableDialog();
-          transitionStart();
-          makeCancelable(timeout(300)).then(() => {
-            transitionEnd();
-          });
-        } else {
+          onCloseTransitionStarts();
         }
       },
     },
     sharedElementsConfig: (route, otherRoute, showing) => {
-      const { shareId } = route.params;
-      if (route.name === "Detail" && otherRoute.name !== "List") return [{}];
-      if (route.name === "Detail" && (showing || shareId.includes("map"))) {
-        if (Platform.OS === "ios") {
+      const { shareId = null } = route.params;
+
+      if (!shareId) return [{}];
+
+      if (
+        route.name === MONUMENT_DETAIL_SCREEN &&
+        otherRoute.name !== initialRouteName
+      )
+        return [{}];
+      if (
+        route.name === MONUMENT_DETAIL_SCREEN &&
+        (showing || shareId.includes(backTransitionShareIdIncludes))
+      ) {
+        if (isIOS) {
           return [
             {
               id: `image-${shareId}`,

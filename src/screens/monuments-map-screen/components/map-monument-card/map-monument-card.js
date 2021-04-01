@@ -2,9 +2,10 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { connect } from "react-redux";
 import MonumentCard from "../../../../components/molecules/monument-card/monument-card";
+import { navigateToMonumentsDetailScreen } from "../../../monument-detail-screen/monument-detail-screen";
 
-function MapMonumentCard({ selectedMonument, transition, onPress = p => p }) {
-  const navigation = useNavigation();
+function MapMonumentCard({ selectedMonument, transition, onPress = (p) => p }) {
+  const { navigate } = useNavigation();
   const shareId = `map-${selectedMonument ? selectedMonument.id : 0}`;
   return (
     <MonumentCard
@@ -13,11 +14,11 @@ function MapMonumentCard({ selectedMonument, transition, onPress = p => p }) {
       onPress={(monument, imageBase64) => {
         if (!transition) {
           onPress();
-          navigation.navigate("Detail", {
+          navigateToMonumentsDetailScreen(navigate)(
             monument,
             imageBase64,
-            shareId,
-          });
+            shareId
+          );
         }
       }}
     />

@@ -2,17 +2,18 @@ import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { Icon } from "react-native-elements";
-import { DefaultTheme } from "../../../../theme/default-theme";
+import { DefaultTheme } from "../../../theme/default-theme";
 
 export default function CreateModalNavigator() {
   const Stack = createSharedElementStackNavigator();
 
-  const Navigator = ({ children }) => {
+  const Navigator = ({ children, initialRouteName }) => {
     const { top } = useSafeAreaInsets();
 
     return (
       <Stack.Navigator
         mode="modal"
+        initialRouteName={initialRouteName}
         screenOptions={{
           headerBackTitle: " ",
           cardShadowEnabled: false,
