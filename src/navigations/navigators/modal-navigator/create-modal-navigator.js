@@ -46,7 +46,7 @@ export default function CreateModalNavigator() {
             open: {
               animation: "timing",
               config: {
-                duration: 150,
+                duration: 100,
               },
             },
             close: {

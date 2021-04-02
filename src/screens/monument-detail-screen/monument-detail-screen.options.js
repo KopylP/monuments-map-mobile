@@ -20,18 +20,14 @@ export default function monumentDetailScreenOptions({
         }
       },
     },
-    sharedElementsConfig: (route, otherRoute, showing) => {
+    sharedElements: (route, otherRoute, showing) => {
       const { shareId } = route.params;
-
       if (
         route.name === MONUMENT_DETAIL_SCREEN &&
         otherRoute.name !== initialRouteName
       )
         return [{}];
-      if (
-        route.name === MONUMENT_DETAIL_SCREEN &&
-        (showing || shareId.includes(backTransitionShareIdIncludes))
-      ) {
+      if (showing || shareId.includes(backTransitionShareIdIncludes)) {
         if (isIOS) {
           return [
             {
