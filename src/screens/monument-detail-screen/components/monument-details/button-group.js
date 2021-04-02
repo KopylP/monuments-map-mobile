@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
-import { IsPodcast } from "../../../../models/source-type";
+import { IsDefaultSource, IsPodcast } from "../../../../models/source-type";
 import SourcesButton from "../../../../components/molecules/sources-button/sources-button";
 import GalleryButton from "./gallery-button";
 import OpenInMapButton from "./open-in-map-button";
@@ -10,7 +10,7 @@ import PodcastsButton from "./podcasts-button";
 export default function ButtonGroup({ monument }) {
   const podcastSources = monument.sources.filter(IsPodcast);
   const podcastsAvailable = podcastSources.length;
-  const sourcesWithoutPodcasts = monument.sources.filter(IsPodcast);
+  const sourcesWithoutPodcasts = monument.sources.filter(IsDefaultSource);
 
   const podcastButtonStyles = {
     ...styles.button,

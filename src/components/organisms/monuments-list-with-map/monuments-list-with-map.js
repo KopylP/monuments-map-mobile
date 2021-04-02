@@ -22,13 +22,18 @@ function MonumentsListWithMap({
   const [openModal, setOpenModal] = useState(false);
 
   useAndroidBack(() => {
-    if (openDialog && tab == 0 && focused) {
-      setOpenModal(false);
-      return true;
-    } else if (tab == 1) {
-      setTab(0);
-      return true;
+    if (focused) {
+      if (openDialog && tab == 0) {
+        setOpenModal(false);
+        return true;
+      }
+
+      if (tab == 1 && focused) {
+        setTab(0);
+        return true;
+      }
     }
+
     return false;
   });
 

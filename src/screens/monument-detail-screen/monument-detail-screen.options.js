@@ -15,9 +15,9 @@ export default function monumentDetailScreenOptions({
     component: MonumentDetailScreen,
     listeners: {
       transitionStart: (e) => {
-        // if (e.data.closing) {
-        //   onCloseTransitionStarts();
-        // }
+        if (e.data.closing) {
+          onCloseTransitionStarts();
+        }
       },
     },
     sharedElementsConfig: (route, otherRoute, showing) => {

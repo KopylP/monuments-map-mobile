@@ -8,7 +8,7 @@ const SourceType = {
   VIDEO: "VIDEO",
   INSTAGRAM: "INSTAGRAM",
   PODCASTS_PODLINK: "PODCASTS_PODLINK",
-  PODCASTS_SPOTIFY: "PODCASTS_SPOTIFY"
+  PODCASTS_SPOTIFY: "PODCASTS_SPOTIFY",
 };
 
 export default SourceType;
@@ -20,10 +20,18 @@ export function GetPodcastSourceTypes() {
     SourceType.PODCASTS_POCKETCASTS,
     SourceType.PODCASTS_CASTBOX,
     SourceType.PODCASTS_PODLINK,
-    SourceType.PODCASTS_SPOTIFY
+    SourceType.PODCASTS_SPOTIFY,
   ];
 }
 
+export function GetDefaultSourceTypes() {
+  return [SourceType.LINK, SourceType.BOOK];
+}
+
 export function IsPodcast({ sourceType }) {
-    return GetPodcastSourceTypes().includes(sourceType);
+  return GetPodcastSourceTypes().includes(sourceType);
+}
+
+export function IsDefaultSource({ sourceType }) {
+  return GetDefaultSourceTypes().includes(sourceType);
 }
