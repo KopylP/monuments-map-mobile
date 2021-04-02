@@ -2,10 +2,9 @@ import React from "react";
 import { ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
-import { connect } from "react-redux";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
-function MapIndicator({ loading }) {
+export default function MapIndicator({ loading }) {
   return (
     <>
       {loading && (
@@ -41,7 +40,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-const bindStateToProps = ({ monuments: { loading } }) => ({ loading });
-
-export default connect(bindStateToProps)(MapIndicator);

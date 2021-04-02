@@ -1,52 +1,36 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import MonumentsMapFilterButton from "./components/monuments-map-fitler-button";
-import MonumentsBottomSheet from "./components/monuments-bottom-sheet";
-import MonumentsListView from "./components/monuments-list-view/monuments-list-view";
 import withMonumentService from "../../components/hoc-helpers/with-monument-service";
 import {
   fetchMonuments,
   requestMonumentsFetch,
 } from "../../redux/actions/monuments-actions";
 import withReduxData from "../../components/hoc-helpers/with-redux-data";
-import MapIndicator from "./components/map-indicator";
 import Logo from "./components/logo/logo";
-import MonumentsMap from "./components/monuments-map/monuments-map";
-import useAndroidBack from "../../components/hooks/use-android-back";
 import { closeSelectedMonumentDialog } from "../../redux/actions/selected-monument-actions";
-import FocusContainer from "../../components/containers/focus-container";
-import MonumentSelectedTab from "./components/monument-selected-tab";
+import MonumentsListWithMap from "../../components/organisms/monuments-list-with-map/monuments-list-with-map";
+import { useNavigation } from "@react-navigation/native";
+import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
 
-function MonumentsMapScreen({ openDialog, closeSelectedMonumentDialog }) {
-  const [tab, setTab] = useState(0);
-  
-  const [focused, setFocused] = useState(false);
+function MonumentsMapScreen({ monuments, loading }) {
 
-  useAndroidBack(() => {
-    if (openDialog && tab == 0 && focused) {
-      closeSelectedMonumentDialog();
-      return true;
-    } else if (tab == 1) {
-      setTab(0);
-      return true;
-    }
-    return false;
-  });
+  const { navigate } = useNavigation();
+
+  const handleMonumentPress = (monument, image, shareId) => {
+    navigateToMonumentsDetailScreen(navigate)(monument, image, shareId);
+  };
 
   return (
-    <FocusContainer onChange={setFocused}>
-      <View style={StyleSheet.absoluteFill}>
-        <MonumentsMap />
-        <MonumentsBottomSheet />
-        <MonumentsListView show={tab == 1} />
-        <Logo />
-        <MonumentsMapFilterButton />
-        <MonumentSelectedTab tab={tab} onChangeTab={setTab} />
-        <MapIndicator />
-      </View>
-    </FocusContainer>
+    <MonumentsListWithMap
+      monuments={monuments}
+      loading={loading}
+      onMonumentPress={handleMonumentPress}
+      enableClick={true}
+      LeftComponent={<Logo/>}
+      RightComponent={<MonumentsMapFilterButton/>}
+    />
   );
 }
 
@@ -62,9 +46,8 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
 };
 
 const bindStateToProps = ({
-  monuments: { requestFetch, error },
+  monuments: { requestFetch, error, monuments, loading },
   filter: { statuses, conditions, cities, yearsRange },
-  selectedMonument: { openDialog },
 }) => ({
   requestFetch,
   statuses,
@@ -72,7 +55,8 @@ const bindStateToProps = ({
   cities,
   yearsRange,
   error,
-  openDialog,
+  monuments,
+  loading,
 });
 
 const bindPropsToActions = (p) => ({

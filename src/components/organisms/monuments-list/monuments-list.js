@@ -1,18 +1,15 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
-import { connect } from "react-redux";
-import { changeSelectedMonument } from "../../../../redux/actions/selected-monument-actions";
 import MonumentListItem from "./monuments-list-item";
-import { useNavigation } from "@react-navigation/native";
-import MonumentsEmptyResult from "../../../../components/molecules/monuments-empty-result/monuments-empty-result";
 import { VirtualizedList } from "react-native";
-import Tags from "../../../../models/tags";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Tags from "../../../models/tags";
+import MonumentsEmptyResult from "../../molecules/monuments-empty-result/monuments-empty-result";
 
-function MonumentsList({ monuments, loading, transition }) {
-  if (monuments.length == 0 && !loading) return <MonumentsEmptyResult />;
+function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
+  if (monuments.length == 0 && showEmpty) return <MonumentsEmptyResult />;
 
-  const navigation = useNavigation();
   const { top } = useSafeAreaInsets();
 
   const removeEasterEggs = (monument) => {
@@ -22,12 +19,8 @@ function MonumentsList({ monuments, loading, transition }) {
 
   const handlePress = (monument, imageBase64) => {
     const shareId = `item-${monument.id}`;
-    if (!transition) {
-      navigation.navigate("Detail", {
-        monument,
-        shareId,
-        imageBase64,
-      });
+    if (enableClick) {
+      onClick(monument, imageBase64, shareId);
     }
   };
 
@@ -56,10 +49,4 @@ function MonumentsList({ monuments, loading, transition }) {
   );
 }
 
-const bindStateToProps = ({
-  monuments: { monuments, loading },
-  transition: { transition },
-}) => ({ monuments, transition, loading });
-const bindDispatchToProps = { changeSelectedMonument };
-
-export default connect(bindStateToProps, bindDispatchToProps)(MonumentsList);
+export default memo(MonumentsList);

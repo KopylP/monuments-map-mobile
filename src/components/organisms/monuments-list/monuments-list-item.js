@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import MonumentCard from "../../../../components/molecules/monument-card/monument-card";
+import MonumentsCard from "../../molecules/monument-card";
 
 export default function MonumentListItem({ monument, onPress = (p) => p }) {
   const shareId = `item-${monument.id}`;
@@ -11,11 +11,7 @@ export default function MonumentListItem({ monument, onPress = (p) => p }) {
         height: 250,
       }}
     >
-      <MonumentCard
-        monument={monument}
-        shareId={shareId}
-        onPress={onPress}
-      />
+      <MonumentsCard monument={monument} shareId={shareId} onPress={onPress} />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Image, Platform, Text } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
@@ -8,7 +8,7 @@ import AppContext from "../../../context/app-context";
 import useData from "../../hooks/use-data";
 import { isIOS } from "../../../helpers/platform-helpers";
 
-export default function MonumentCard({
+function MonumentCard({
   monument,
   shareId,
   onPress = (p) => p,
@@ -95,3 +95,5 @@ const styles = StyleSheet.create({
     fontWeight: isIOS ? "600": "700",
   },
 });
+
+export default memo(MonumentCard);
