@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { Badge, Button } from "react-native-elements";
 import { isIOS } from "../../../../helpers/platform-helpers";
 
-export default function ButtonWithBadge({
+function ButtonWithBadge({
   onPress,
   style = {},
   badgeCount,
@@ -43,3 +43,5 @@ export default function ButtonWithBadge({
     </View>
   );
 }
+
+export default memo(ButtonWithBadge);

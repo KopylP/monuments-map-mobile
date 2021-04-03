@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import {
   View,
   StyleSheet,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
-export default function SelectedTabs({
+function SelectedTabs({
   firstTabTitle,
   secondTabTitle,
   selectedTab,
@@ -100,3 +100,5 @@ const styles = StyleSheet.create({
     left: 0,
   },
 });
+
+export default memo(SelectedTabs);

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { Animated } from "react-native";
 import { DefaultTheme } from "../../../theme/default-theme";
 
-export default function ShowingListContainer({ show, children }) {
+function ShowingListContainer({ show, children }) {
   const heightAnim = useRef(new Animated.Value(0)).current;
 
   const startFadeIn = () => {
@@ -42,3 +42,5 @@ export default function ShowingListContainer({ show, children }) {
     </Animated.View>
   );
 }
+
+export default memo(ShowingListContainer);

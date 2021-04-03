@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { Icon } from "react-native-elements";
 import { Marker } from "react-native-maps";
 import { DefaultTheme } from "../../../theme/default-theme";
 
-export default function IconMarker(props) {
+function IconMarker(props) {
   const { color = DefaultTheme.palette.colors.primary.main } = props;
   return (
     <Marker
@@ -22,3 +22,5 @@ export default function IconMarker(props) {
     </Marker>
   );
 }
+
+export default memo(IconMarker);

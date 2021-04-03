@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Chip({ title, color, textColor = "white", style = {} }) {
+function Chip({ title, color, textColor = "white", style = {} }) {
   return (
     <View
       style={[
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
 });
+
+export default memo(Chip);

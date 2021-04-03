@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import {
   Animated,
@@ -41,7 +41,7 @@ import { TouchableWithoutFeedback as TouchableWithoutFeedbackAndroid } from "rea
  * @property {number} [pressOutFriction]
  * @property {boolean} [useNativeDriver]
  */
-export default class TouchableScale extends React.Component {
+class TouchableScale extends React.Component {
   constructor(...args) {
     super(...args);
     /** @type {TouchableScaleProps} */
@@ -153,3 +153,5 @@ TouchableScale.defaultProps = {
   friction: 3,
   useNativeDriver: true,
 };
+
+export default memo(TouchableScale);

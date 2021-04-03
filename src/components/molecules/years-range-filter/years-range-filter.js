@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import { View } from "react-native";
 import Subtitle from "../../atoms/typography/subtitle/subtitle";
@@ -7,7 +7,7 @@ import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { SCREEN_WIDTH } from "../../../helpers/dimensions-helpers";
 
-export default function YearsRangeFilter({
+function YearsRangeFilter({
   style,
   onValuesChangeStart,
   onValuesChangeFinish,
@@ -74,3 +74,5 @@ const styles = StyleSheet.create({
     marginTop: -5,
   },
 });
+
+export default memo(YearsRangeFilter);

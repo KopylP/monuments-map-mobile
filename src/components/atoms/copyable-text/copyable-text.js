@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { TextInput, Text } from "react-native";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { isIOS } from "../../../helpers/platform-helpers";
-export default function CopyableText({ children, style }) {
+function CopyableText({ children, style }) {
   if (isIOS) {
     return (
       <TextInput
@@ -29,3 +29,5 @@ export default function CopyableText({ children, style }) {
     </Text>
   );
 }
+
+export default memo(CopyableText);

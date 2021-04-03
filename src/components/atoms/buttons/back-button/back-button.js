@@ -1,16 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-elements";
-import { DefaultTheme } from "../../../../theme/default-theme";
 
-export default function BackButton({
+function BackButton({
   containerStyle = {},
   onPress = (p) => p,
   iconColor = "white",
   iconStyle = {},
-  iconSize = 30,
-  withBackButton = true,
-  backColor = DefaultTheme.palette.colors.primary.main,
+  iconSize = 30
 }) {
   return (
     <View style={containerStyle}>
@@ -39,3 +36,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 });
+
+export default memo(BackButton);

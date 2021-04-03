@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { useLocate } from "../../../hooks/locate-hooks";
 
@@ -23,4 +23,4 @@ function ToolbarClearButton({ onClear = (p) => p }) {
   );
 }
 
-export default ToolbarClearButton;
+export default memo(ToolbarClearButton);

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,7 +13,7 @@ import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button/back-button";
 
-export default function CollapsedToolbar({
+function CollapsedToolbar({
   maxHeight,
   shareId,
   source,
@@ -195,3 +195,5 @@ const styles = StyleSheet.create({
     left: 15,
   },
 });
+
+export default memo(CollapsedToolbar);

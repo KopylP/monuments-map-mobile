@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { Button } from "react-native-elements";
 
-export default function ShadowButton(props) {
+function ShadowButton(props) {
   return (
     <View
       style={{
@@ -21,3 +21,5 @@ export default function ShadowButton(props) {
     </View>
   );
 }
+
+export default memo(ShadowButton);

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
-export default function MapIndicator({ loading }) {
+function MapIndicator({ loading }) {
   return (
     <>
       {loading && (
@@ -40,3 +40,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default memo(MapIndicator);

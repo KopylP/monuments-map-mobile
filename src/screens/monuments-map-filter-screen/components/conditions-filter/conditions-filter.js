@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { connect } from "react-redux";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 import ChipFilterList from "../../../../components/molecules/chip-filter-list/chip-filter-list";
@@ -22,4 +22,4 @@ const bindStateToProps = ({ conditions }) => ({
   data: conditions.conditions,
 });
 
-export default connect(bindStateToProps)(ConditionsFilter);
+export default connect(bindStateToProps)(memo(ConditionsFilter));

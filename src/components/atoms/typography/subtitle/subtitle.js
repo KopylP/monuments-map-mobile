@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Text, StyleSheet } from "react-native";
 
-export default function Subtitle({ title, style = {} }) {
+function Subtitle({ title, style = {} }) {
   return <Text style={[styles.text, style]}>{title}</Text>;
 }
 
@@ -11,3 +11,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 });
+
+export default memo(Subtitle);

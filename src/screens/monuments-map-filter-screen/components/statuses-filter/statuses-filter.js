@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { connect } from "react-redux";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
 import ChipFilterList from "../../../../components/molecules/chip-filter-list/chip-filter-list";
@@ -21,5 +21,5 @@ function StatusesFilter({ selectedStatuses, data, changeStatuses, style = {} }) 
 const bindStateToProps = ({ statuses }) => ({
   data: statuses.statuses,
 });
-export default connect(bindStateToProps)(StatusesFilter);
+export default connect(bindStateToProps)(memo(StatusesFilter));
 

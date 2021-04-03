@@ -5,21 +5,20 @@ import { Icon } from "react-native-elements";
 import { DefaultTheme } from "../../../theme/default-theme";
 
 export default function CreateModalNavigator() {
-  const Stack = createSharedElementStackNavigator();
+  const Stack = createStackNavigator();
 
   const Navigator = ({ children, initialRouteName }) => {
     const { top } = useSafeAreaInsets();
 
     return (
       <Stack.Navigator
-        mode="modal"
+        mode="card"
         initialRouteName={initialRouteName}
         screenOptions={{
           headerBackTitle: " ",
           cardShadowEnabled: false,
-          useNativeDrawer: true,
           headerTintColor: "white",
-          gestureEnabled: false,
+          // gestureEnabled: false,
           headerStyle: {
             backgroundColor: DefaultTheme.palette.colors.primary.dark,
             height: 60 + top,

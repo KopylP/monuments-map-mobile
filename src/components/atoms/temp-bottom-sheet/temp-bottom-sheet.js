@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 import { Dimensions, View } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
 
-export default class TempBottomSheet extends Component {
+class TempBottomSheet extends Component {
   state = {
     open: false,
   };
@@ -65,3 +65,5 @@ export default class TempBottomSheet extends Component {
     );
   }
 }
+
+export default memo(TempBottomSheet);

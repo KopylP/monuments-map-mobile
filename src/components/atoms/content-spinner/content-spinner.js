@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { ActivityIndicator } from "react-native";
 import { View } from "react-native";
 import { DefaultTheme } from "../../../theme/default-theme";
 
-export default function ContentSpinner({ borderRadius = 0 }) {
+function ContentSpinner({ borderRadius = 0 }) {
   return (
     <View
       style={{
@@ -23,3 +23,5 @@ export default function ContentSpinner({ borderRadius = 0 }) {
     </View>
   );
 }
+
+export default memo(ContentSpinner);

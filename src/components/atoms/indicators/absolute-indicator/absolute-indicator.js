@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
 
-export default function AbsoluteIndicator({ backgroundColor = "transparent" }) {
+function AbsoluteIndicator({ backgroundColor = "transparent" }) {
   return (
     <View
       style={{
@@ -20,3 +20,5 @@ export default function AbsoluteIndicator({ backgroundColor = "transparent" }) {
     </View>
   );
 }
+
+export default memo(AbsoluteIndicator);

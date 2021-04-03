@@ -1,11 +1,11 @@
 import { BlurView } from 'expo-blur';
-import React, { useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { View } from 'react-native';
 import { Animated } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DefaultTheme } from "../../../theme/default-theme";
 
-export default function OutgoingHeader({ show }) {
+function OutgoingHeader({ show }) {
   const heightAnim = useRef(new Animated.Value(0)).current;
   const { top } = useSafeAreaInsets();
 
@@ -62,3 +62,5 @@ export default function OutgoingHeader({ show }) {
     </Animated.View>
   );
 }
+
+export default memo(OutgoingHeader);

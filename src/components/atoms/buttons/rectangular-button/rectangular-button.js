@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 
 
-export default function RectangularButton({
+function RectangularButton({
   color,
   iconName,
   iconType,
@@ -65,3 +65,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+export default memo(RectangularButton);

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text } from "react-native";
 import { isIOS } from "../../../../helpers/platform-helpers";
 
-export default function Title({ title, style = {} }) {
+function Title({ title, style = {} }) {
   return (
     <Text style={[styles.title, style]} selectable>
       {title}
@@ -16,3 +16,5 @@ const styles = StyleSheet.create({
     fontWeight: isIOS ? "600" : "700",
   },
 });
+
+export default memo(Title);

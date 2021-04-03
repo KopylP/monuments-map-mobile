@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { DefaultTheme } from "../../../theme/default-theme";
 import ButtonWithBadge from "../../atoms/buttons/button-with-badge";
 
-export default function FilterButton({ style, onPress, selectedFiltersCount }) {
+function FilterButton({ style, onPress, selectedFiltersCount }) {
   return (
     <ButtonWithBadge
       style={style}
@@ -22,3 +22,5 @@ export default function FilterButton({ style, onPress, selectedFiltersCount }) {
     />
   );
 }
+
+export default memo(FilterButton);

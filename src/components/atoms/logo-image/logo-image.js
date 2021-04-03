@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Image } from "react-native";
 
-export default function LogoImage() {
+function LogoImage() {
   return (
     <Image
       style={{
@@ -12,3 +12,5 @@ export default function LogoImage() {
     />
   );
 }
+
+export default memo(LogoImage);

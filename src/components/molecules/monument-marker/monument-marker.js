@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { DefaultTheme } from "../../../theme/default-theme";
 import IconMarker from "../../atoms/icon-marker";
 
-export default function MonumentMarker({ monument, onPress = (p) => p }) {
+function MonumentMarker({ monument, onPress = (p) => p }) {
 
   const { condition: { abbreviation } } = monument;
 
@@ -30,3 +30,5 @@ export default function MonumentMarker({ monument, onPress = (p) => p }) {
     />
   );
 }
+
+export default memo(MonumentMarker);

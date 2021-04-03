@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
 import ShadowButton from "../shadow-button/shadow-button";
 
-export default function FadeShadowButton(props) {
+function FadeShadowButton(props) {
   const { isShowInitial, bottom, duration, show } = props;
   const fadeAnim = useRef(new Animated.Value(isShowInitial ? 1 : 0)).current;
 
@@ -52,3 +52,5 @@ export default function FadeShadowButton(props) {
     </Animated.View>
   );
 }
+
+export default memo(FadeShadowButton);
