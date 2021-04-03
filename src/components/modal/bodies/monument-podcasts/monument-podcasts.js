@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { groupBy } from "../../../../helpers/array-helpers";
 import { useLocate } from "../../../hooks/locate-hooks";
 import MonumentPodcastsList from "./monument-podcasts-list";
 
-export default function MonumentPodcasts({ sources }) {
+function MonumentPodcasts({ sources }) {
 
   const groupSources = groupBy(sources, "title");
   const { t } = useLocate();
@@ -27,5 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+export default memo(MonumentPodcasts);
 
 export const MONUMENT_PODCAST_MODAL = "MONUMENT_PODCAST_MODAL";
