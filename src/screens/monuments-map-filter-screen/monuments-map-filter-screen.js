@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -14,18 +14,23 @@ function MonumentsMapFilterScreen({
   fetchStatuses,
   fetchConditions,
 }) {
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     if (statusesState.requestFetch || conditionsState.requestFetch) {
       fetchStatuses();
       fetchConditions();
     }
+    
+    setShow(true);
   }, []);
 
   if (
     statusesState.loading ||
     conditionsState.loading ||
     statusesState.requestFetch ||
-    conditionsState.requestFetch
+    conditionsState.requestFetch ||
+    !show
   ) {
     return <AbsoluteIndicator />;
   }
