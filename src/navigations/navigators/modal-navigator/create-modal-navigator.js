@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 import { DefaultTheme } from "../../../theme/default-theme";
 
 export default function CreateModalNavigator() {
-  const Stack = createStackNavigator();
+  const Stack = createSharedElementStackNavigator();
 
   const Navigator = ({ children, initialRouteName }) => {
     const { top } = useSafeAreaInsets();
