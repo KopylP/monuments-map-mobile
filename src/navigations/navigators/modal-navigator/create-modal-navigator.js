@@ -12,13 +12,13 @@ export default function CreateModalNavigator() {
 
     return (
       <Stack.Navigator
-        mode="card"
+        mode="modal"
         initialRouteName={initialRouteName}
         screenOptions={{
           headerBackTitle: " ",
           cardShadowEnabled: false,
           headerTintColor: "white",
-          // gestureEnabled: false,
+          gestureEnabled: false,
           headerStyle: {
             backgroundColor: DefaultTheme.palette.colors.primary.dark,
             height: 60 + top,
