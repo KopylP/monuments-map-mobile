@@ -59,4 +59,4 @@ const bindStateToProps = ({ modal: { modalId, modalData, open } }) => ({
 
 const bindMethodToProps = { closeModal };
 
-export default memo(connect(bindStateToProps, bindMethodToProps)(ModalSwitch));
+export default connect(bindStateToProps, bindMethodToProps)(ModalSwitch);
