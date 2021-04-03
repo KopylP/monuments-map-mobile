@@ -4,11 +4,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect } from "react-redux";
 import { useLocate } from "../../../../components/hooks/locate-hooks";
-import {
-  changeConditions,
-  changeStatuses,
-  changeYearsRange,
-} from "../../../../redux/actions/filter-actions";
+import { changeAllFilters } from "../../../../redux/actions/filter-actions";
 import { requestMonumentsFetch } from "../../../../redux/actions/monuments-actions";
 import { DefaultTheme } from "../../../../theme/default-theme";
 import ToolbarClearButton from "../../../../components/atoms/buttons/toolbar-clean-button";
@@ -20,9 +16,7 @@ import { yearsRange as defaultYearsRange } from "../../../../config";
 function FilterView({
   monumentsLoading,
   requestMonumentsFetch,
-  changeStatuses,
-  changeConditions,
-  changeYearsRange,
+  changeAllFilters,
   monumentsError,
   filters,
 }) {
@@ -40,11 +34,11 @@ function FilterView({
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    changeStatuses(statuses);
-    changeConditions(conditions);
+    changeAllFilters(statuses, conditions, yearsRange);
     setUpdatingMonuments(true);
-    changeYearsRange(yearsRange);
-    requestMonumentsFetch();
+    setTimeout(() => {
+      requestMonumentsFetch();
+    }, 0);
   };
 
   const onFailure = (error) => {
@@ -84,7 +78,7 @@ function FilterView({
   };
 
   return (
-    <View style={{ paddingHorizontal: 15, paddingBottom: 65, flex: 1 }}>
+    <View style={{ paddingHorizontal: 15, paddingBottom: 65, ...StyleSheet.absoluteFill }}>
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{
@@ -119,6 +113,7 @@ function FilterView({
         mode="contained"
         loading={updatingMonuments}
         onPress={handleButtonPress}
+        na
         style={styles.button}
       >
         {t("Filter")}
@@ -135,9 +130,7 @@ const bindStateToProps = ({ monuments: { loading, error }, filter }) => ({
 
 const bindDispatchToProps = {
   requestMonumentsFetch,
-  changeStatuses,
-  changeConditions,
-  changeYearsRange,
+  changeAllFilters,
 };
 
 export default memo(connect(bindStateToProps, bindDispatchToProps)(FilterView));

@@ -3,14 +3,15 @@ import {
   CHANGE_CONDITIONS,
   CHANGE_STATUSES,
   CLEAR_FILTERS,
-  CHANGE_YEARS_RANGE
+  CHANGE_YEARS_RANGE,
+  CHANGE_ALL_FILTERS,
 } from "../constants";
 
 const initialState = {
   conditions: [],
   statuses: [],
   cities: [],
-  yearsRange: yearsRange
+  yearsRange: yearsRange,
 };
 
 export default filterReducer = (state = initialState, action) => {
@@ -29,8 +30,14 @@ export default filterReducer = (state = initialState, action) => {
     case CHANGE_YEARS_RANGE: {
       return {
         ...state,
-        yearsRange: action.payload
-      }
+        ...action.payload
+      };
+    }
+    case CHANGE_ALL_FILTERS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
     }
     case CLEAR_FILTERS: {
       return initialState;

@@ -2,7 +2,8 @@ import {
   CHANGE_CONDITIONS,
   CHANGE_STATUSES,
   CLEAR_FILTERS,
-  CHANGE_YEARS_RANGE
+  CHANGE_YEARS_RANGE,
+  CHANGE_ALL_FILTERS,
 } from "../constants";
 
 export const changeStatuses = (statuses) => {
@@ -23,6 +24,17 @@ export const changeYearsRange = (range) => {
   return {
     type: CHANGE_YEARS_RANGE,
     payload: range,
+  };
+};
+
+export const changeAllFilters = (statuses, conditions, yearsRange) => {
+  return {
+    type: CHANGE_ALL_FILTERS,
+    payload: {
+      statuses,
+      conditions,
+      yearsRange,
+    },
   };
 };
 

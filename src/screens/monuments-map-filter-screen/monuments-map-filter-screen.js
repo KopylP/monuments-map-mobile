@@ -21,16 +21,20 @@ function MonumentsMapFilterScreen({
     }
   }, []);
 
+  if (
+    statusesState.loading ||
+    conditionsState.loading ||
+    statusesState.requestFetch ||
+    conditionsState.requestFetch
+  ) {
+    return <AbsoluteIndicator />;
+  }
+
   return (
-    <View style={StyleSheet.absoluteFill}>
-      {(statusesState.loading || conditionsState.loading) && (
-        <AbsoluteIndicator />
-      )}
-      {!statusesState.loading && !conditionsState.loading && <FilterView />}
-      {/* TODO Для обробки помилок треба додати стан, 
+    <FilterView />
+    /* TODO Для обробки помилок треба додати стан, 
               який буде змінюватися кожного разу, коли користувач
-              захоче оновити фільтри*/}
-    </View>
+              захоче оновити фільтри*/
   );
 }
 
