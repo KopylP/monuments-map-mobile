@@ -34,9 +34,9 @@ function FilterView({
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    changeAllFilters(statuses, conditions, yearsRange);
     setUpdatingMonuments(true);
     setTimeout(() => {
+      changeAllFilters(statuses, conditions, yearsRange);
       requestMonumentsFetch();
     }, 0);
   };
@@ -78,7 +78,13 @@ function FilterView({
   };
 
   return (
-    <View style={{ paddingHorizontal: 15, paddingBottom: 65, ...StyleSheet.absoluteFill }}>
+    <View
+      style={{
+        paddingHorizontal: 15,
+        paddingBottom: 65,
+        ...StyleSheet.absoluteFill,
+      }}
+    >
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{

@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import MonumentListItem from "./monuments-list-item";
-import { VirtualizedList } from "react-native";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Tags from "../../../models/tags";
 import MonumentsEmptyResult from "../../molecules/monuments-empty-result/monuments-empty-result";
+import { FlatList } from "react-native";
 
 function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   if (monuments.length == 0 && showEmpty) return <MonumentsEmptyResult />;
@@ -31,7 +31,7 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   monuments = monuments.filter(removeEasterEggs);
 
   return (
-    <VirtualizedList
+    <FlatList
       style={{ flex: 1 }}
       contentContainerStyle={{
         paddingHorizontal: 20,
@@ -39,11 +39,11 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
         paddingBottom: 20,
       }}
       renderItem={renderItem}
+      render
       data={monuments}
-      getItemCount={() => monuments.length}
+      // getItemCount={() => monuments.length}
       keyExtractor={(item) => item.id + ""}
-      windowSize={20}
-      getItem={(data, index) => data[index]}
+      windowSize={10}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
     />
   );
