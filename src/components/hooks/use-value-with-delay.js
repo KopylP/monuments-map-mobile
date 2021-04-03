@@ -5,7 +5,7 @@ import timeout from "../../helpers/timeout-promise";
 export default function useValueWithDelay(
   value,
   defaultValue = null,
-  delay = 200
+  delay = 300
 ) {
   const makeCancelable = useCancelablePromise();
   const [mutableValue, setMutableValue] = useState(defaultValue);

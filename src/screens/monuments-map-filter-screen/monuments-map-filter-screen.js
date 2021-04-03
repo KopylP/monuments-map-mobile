@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -14,7 +14,6 @@ function MonumentsMapFilterScreen({
   fetchStatuses,
   fetchConditions,
 }) {
-  
   useEffect(() => {
     if (statusesState.requestFetch || conditionsState.requestFetch) {
       fetchStatuses();
@@ -50,6 +49,8 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
   );
 };
 
-export default withMonumentService()(
-  connect(bindStateToProps, bindDispatchToProps)(MonumentsMapFilterScreen)
+export default memo(
+  withMonumentService()(
+    connect(bindStateToProps, bindDispatchToProps)(MonumentsMapFilterScreen)
+  )
 );

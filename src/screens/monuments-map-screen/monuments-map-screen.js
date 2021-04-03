@@ -9,7 +9,6 @@ import {
 } from "../../redux/actions/monuments-actions";
 import withReduxData from "../../components/hoc-helpers/with-redux-data";
 import Logo from "./components/logo/logo";
-import { closeSelectedMonumentDialog } from "../../redux/actions/selected-monument-actions";
 import MonumentsListWithMap from "../../components/organisms/monuments-list-with-map/monuments-list-with-map";
 import { useNavigation } from "@react-navigation/native";
 import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
@@ -39,7 +38,6 @@ const bindDispatchToProps = (dispatch, { monumentService }) => {
     {
       fetchAction: fetchMonuments(monumentService),
       requestAction: requestMonumentsFetch,
-      closeSelectedMonumentDialog: closeSelectedMonumentDialog,
     },
     dispatch
   );

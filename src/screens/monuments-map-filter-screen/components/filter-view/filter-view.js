@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { memo, useEffect, useLayoutEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect } from "react-redux";
@@ -140,7 +140,7 @@ const bindDispatchToProps = {
   changeYearsRange,
 };
 
-export default connect(bindStateToProps, bindDispatchToProps)(FilterView);
+export default memo(connect(bindStateToProps, bindDispatchToProps)(FilterView));
 
 const styles = StyleSheet.create({
   button: {

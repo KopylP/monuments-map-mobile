@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../theme/default-theme";
@@ -6,7 +6,7 @@ import { Icon } from "react-native-elements";
 import { logEvent } from "expo-firebase-analytics";
 import Subtitle from "../../atoms/typography/subtitle";
 
-export default function ChipFilterList({
+function ChipFilterList({
   selectedValues,
   setSelectedValues,
   data,
@@ -82,3 +82,5 @@ export default function ChipFilterList({
     </View>
   );
 }
+
+export default memo(ChipFilterList);

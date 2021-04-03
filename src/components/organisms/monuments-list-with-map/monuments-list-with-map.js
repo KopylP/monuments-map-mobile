@@ -23,7 +23,7 @@ function MonumentsListWithMap({
 
   useAndroidBack(() => {
     if (focused) {
-      if (openDialog && tab == 0) {
+      if (openModal && tab == 0) {
         setOpenModal(false);
         return true;
       }

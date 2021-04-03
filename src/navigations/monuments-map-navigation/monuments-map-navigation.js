@@ -8,7 +8,6 @@ import MonumentsMapScreen from "../../screens/monuments-map-screen";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import { Icon } from "react-native-elements";
 import { useLocate } from "../../components/hooks/locate-hooks";
-import { enableDialog } from "../../redux/actions/selected-monument-actions";
 import {
   MONUMENTS_MAP_SCREEN,
   FILTER_SCREEN,
@@ -22,13 +21,11 @@ const Stack = CreateMonumentDetailNavigator();
 const MonumentsMapNavigation = ({
   transitionStart,
   transitionEnd,
-  enableDialog,
 }) => {
   const makeCancelable = useCancelablePromise();
   const { t } = useLocate();
 
   const handleCloseTransitionStarts = () => {
-    enableDialog();
     transitionStart();
     makeCancelable(timeout(300)).then(() => {
       transitionEnd();
@@ -59,7 +56,7 @@ const MonumentsMapNavigation = ({
   );
 };
 
-const bindDispatchToProps = { transitionStart, transitionEnd, enableDialog };
+const bindDispatchToProps = { transitionStart, transitionEnd };
 
 export default connect(null, bindDispatchToProps)(MonumentsMapNavigation);
 
