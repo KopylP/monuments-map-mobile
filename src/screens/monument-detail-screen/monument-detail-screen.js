@@ -63,10 +63,9 @@ const composed = compose(
   withData(bindRouteParamsToMethodProps)
 );
 
-export const navigateToMonumentsDetailScreen = (navigate) => (monument, imageBase64, shareId) => {
+export const navigateToMonumentsDetailScreen = (navigate) => (monument, shareId) => {
   navigate(MONUMENT_DETAIL_SCREEN, {
     monument,
-    imageBase64,
     shareId
   })
 }

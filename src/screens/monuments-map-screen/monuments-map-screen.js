@@ -17,8 +17,8 @@ function MonumentsMapScreen({ monuments, loading }) {
 
   const { navigate } = useNavigation();
 
-  const handleMonumentPress = (monument, image, shareId) => {
-    navigateToMonumentsDetailScreen(navigate)(monument, image, shareId);
+  const handleMonumentPress = (monument, shareId) => {
+    navigateToMonumentsDetailScreen(navigate)(monument, shareId);
   };
 
   return (

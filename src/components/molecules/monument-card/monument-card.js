@@ -3,27 +3,27 @@ import { StyleSheet, View, Image, Platform, Text } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import TouchableScale from "../../atoms/buttons/touchable-button/touchable-scale";
-import ContentSpinner from "../../atoms/content-spinner/content-spinner";
-import AppContext from "../../../context/app-context";
-import useData from "../../hooks/use-data";
 import { isIOS } from "../../../helpers/platform-helpers";
 import CachedImage from "../../atoms/cached-image";
 import { getPhotoUrlById } from "../../../services/photo-service";
 
 function MonumentCard({
-  monument,
+  majorPhotoImageId,
   shareId,
+  id,
+  name,
   onPress = (p) => p,
+  style={}
 }) {
   const [key, setKey] = useState(Math.random());
 
   useEffect(() => {
-    if (monument != null) {
+    if (majorPhotoImageId != null) {
       setKey(Math.random());
     }
-  }, [monument]);
+  }, [majorPhotoImageId]);
 
-  const uri = getPhotoUrlById(monument && monument.majorPhotoImageId, 500);
+  const uri = getPhotoUrlById(majorPhotoImageId, 500);
 
   return (
     <TouchableScale
@@ -32,24 +32,21 @@ function MonumentCard({
       friction={7}
       useNativeDriver
       onPress={
-        (p) => onPress(monument)
+        (p) => onPress({ id, majorPhotoImageId, name })
       }
-      style={styles.container}
+      style={{...styles.container, ...style}}
     >
-      <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
         <SharedElement id={`image-${shareId}`} style={styles.image}>
           <CachedImage
             style={styles.image}
             key={key}
-            cacheKey={(monument ? monument.id: 0) + ""}
+            cacheKey={(id ? id: 0) + ""}
             source={{ uri }}
           />
         </SharedElement>
         <View style={styles.dataContainer}>
-          <Text style={styles.title}>{monument && monument.name}</Text>
+          <Text style={styles.title}>{name}</Text>
         </View>
-      </View>
-      {/* {loading && <ContentSpinner borderRadius={10} />} */}
     </TouchableScale>
   );
 }
@@ -70,7 +67,6 @@ const shadow = Platform.select({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    flex: 1,
     ...shadow,
   },
   image: {

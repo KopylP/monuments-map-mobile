@@ -1,15 +1,22 @@
 import React from "react";
 import MonumentsCard from "../monument-card";
 
-export default function MapMonumentCard({ monument, enabled = true, onPress = (p) => p }) {
+export default function MapMonumentCard({
+  monument,
+  enabled = true,
+  onPress = (p) => p,
+}) {
   const shareId = `map-${monument ? monument.id : 0}`;
   return (
     <MonumentsCard
-      monument={monument}
+      {...monument}
       shareId={shareId}
-      onPress={(monument, imageBase64) => {
+      style={{
+        flex: 1,
+      }}
+      onPress={(monument) => {
         if (enabled) {
-          onPress(monument, imageBase64, shareId);
+          onPress(monument, shareId);
         }
       }}
     />
