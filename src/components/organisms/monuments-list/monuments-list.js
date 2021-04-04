@@ -13,8 +13,7 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   const { top } = useSafeAreaInsets();
 
   const removeEasterEggs = (monument) => {
-    if (!monument.tags || monument.tags.length === 0) return true;
-    return !monument.tags.includes(Tags.EASTER_EGG);
+    return !monument.isEasterEgg;
   };
 
   const handlePress = (monument, imageBase64) => {

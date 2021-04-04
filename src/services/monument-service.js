@@ -51,7 +51,7 @@ export default class MonumentService {
     yearsRange, // [from, to]
     cancelCallback
   ) {
-    return await this._getRequest(
+    const monuments = await this._getRequest(
       "monument",
       {
         cities,
@@ -62,6 +62,18 @@ export default class MonumentService {
       },
       cancelCallback
     );
+
+    return monuments.map(p => ({
+      slug: p.slug,
+      name: p.name,
+      id: p.id,
+      isEasterEgg: p.tags != null && p.tags.includes("easter_egg"),
+      latitude: p.latitude,
+      longitude: p.longitude,
+      majorPhotoImageId: p.majorPhotoImageId,
+      condition: p.condition,
+      id: p.id
+    }));
   }
 
   getMonumentById = async (id) => {

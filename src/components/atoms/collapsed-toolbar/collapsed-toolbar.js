@@ -6,12 +6,12 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
-  ImageBackground,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button/back-button";
+import CachedImage from "../cached-image";
 
 function CollapsedToolbar({
   maxHeight,
@@ -25,6 +25,7 @@ function CollapsedToolbar({
   onPress = null,
   imageHeight = null,
   showBackButton = true,
+  cacheKey,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
@@ -106,19 +107,17 @@ function CollapsedToolbar({
           ]}
           pointerEvents="none"
         >
-          <SharedElement id={shareId} style={{ flex: 1 }}>
+          <SharedElement id={shareId} style={{ flex: 1 }} >
             <TouchableWithoutFeedback
               disabled={!onPress}
               onPress={onPress}
               style={{ width: "100%", height: maxHeight }}
             >
-              <ImageBackground
-                style={[styles.headerImage]}
-                imageStyle={{
-                  alignSelf: "flex-start",
-                  resizeMode: "cover",
-                  height: imageHeight,
-                  backgroundColor: DefaultTheme.palette.colors.screenBackground.main
+              <CachedImage
+                cacheKey={cacheKey}
+                style={{
+                  ...styles.headerImage,
+                  ...(imageHeight ? { height: imageHeight } : {}),
                 }}
                 source={source}
                 fadeDuration={200}
@@ -133,15 +132,12 @@ function CollapsedToolbar({
           styles.topBar,
           {
             opacity: titleOpacity,
-            height: topBarHeight
+            height: topBarHeight,
           },
         ]}
         pointerEvents="none"
       >
-        <Text
-          style={[styles.title, { marginTop: top }]}
-          numberOfLines={1}
-        >
+        <Text style={[styles.title, { marginTop: top }]} numberOfLines={1}>
           {title}
         </Text>
       </Animated.View>
@@ -174,7 +170,10 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     flex: 1,
-    overflow: "hidden",
+    // overflow: "hidden",
+    // alignSelf: "flex-start",
+    resizeMode: "cover",
+    backgroundColor: DefaultTheme.palette.colors.screenBackground.main,
   },
   topBar: {
     marginTop: 5,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { compose } from "redux";
 import CopyableText from "../../components/atoms/copyable-text/copyable-text";
@@ -36,6 +36,7 @@ function PhotoDetail({
         title={title}
         showBackButton={false}
         headerBackground={DefaultTheme.palette.colors.primary.main}
+        cacheKey={photo.id + ""}
         source={{
           uri: data.image,
         }}
@@ -53,13 +54,17 @@ function PhotoDetail({
           </View>
           <View style={styles.buttonsContainer}>
             <PhotoViewButton canPress={touchable} imageBase64={data.image} />
-            <SourcesButton canPress={touchable} style={styles.rightButton} sources={sources} />
+            <SourcesButton
+              canPress={touchable}
+              style={styles.rightButton}
+              sources={sources}
+            />
           </View>
           <CopyableText style={styles.description}>
             {description || ""}
           </CopyableText>
         </View>
-      </CollapsedToolbar>  
+      </CollapsedToolbar>
     );
 }
 
@@ -68,7 +73,7 @@ const composed = compose(
   withData((_, props) => [props.photoId])
 );
 
-export default composed(PhotoDetail);
+export default memo(composed(PhotoDetail));
 
 const styles = StyleSheet.create({
   buttonsContainer: {

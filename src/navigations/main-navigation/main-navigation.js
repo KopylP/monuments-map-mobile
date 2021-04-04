@@ -10,6 +10,7 @@ import {
   PHOTO_DETAIL_SCREEN,
   PHOTO_VIEW_SCREEN,
   SOURCES_SCREEN,
+  MONUMENTS_GALLERY_SCREEN
 } from "../route-consts/monuments-detail-navigation-consts";
 import CreateApplicationBottomTabNavigator from "../navigators/application-bottom-tab-navigator";
 
@@ -18,7 +19,7 @@ const Tab = CreateApplicationBottomTabNavigator();
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
   if (
-    [PHOTO_VIEW_SCREEN, PHOTO_DETAIL_SCREEN, SOURCES_SCREEN].includes(routeName)
+    [MONUMENTS_GALLERY_SCREEN, PHOTO_VIEW_SCREEN, PHOTO_DETAIL_SCREEN, SOURCES_SCREEN].includes(routeName)
   ) {
     return false;
   }

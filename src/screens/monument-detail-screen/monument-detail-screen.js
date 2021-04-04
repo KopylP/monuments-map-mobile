@@ -12,9 +12,10 @@ import withData from "../../components/hoc-helpers/with-data";
 import withParamsScreenLog from "../../components/hoc-helpers/analytics/with-params-screen-log";
 import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
+import { getPhotoUrlById } from "../../services/photo-service";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
-  const { monument, shareId, imageBase64 } = params;
+  const { monument, shareId } = params;
 
   const navigation = useNavigation();
   const imageBackground = useValueWithDelay(DefaultTheme.palette.colors.primary.main);
@@ -33,9 +34,10 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
         shareId={`image-${shareId}`}
         title={monument.name}
         onBack={handleBack}
-        headerBackground={backClicked ? null: imageBackground}
+        cacheKey={monument.id + ""}
+      headerBackground={backClicked ? null: imageBackground}
         source={{
-          uri: imageBase64,
+          uri: getPhotoUrlById(monument.majorPhotoImageId, 500),
         }}
       >
         <View style={{ flex: 1 }}>

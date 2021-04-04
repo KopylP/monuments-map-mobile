@@ -58,6 +58,7 @@ function ChipFilterList({
                 }}
                 textStyle={{
                   color: "white",
+                  fontSize: 13,
                 }}
                 icon={({ size }) =>
                   isChipSelected(option.id) && (

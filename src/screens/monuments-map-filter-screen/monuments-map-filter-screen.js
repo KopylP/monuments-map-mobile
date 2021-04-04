@@ -7,6 +7,8 @@ import AbsoluteIndicator from "../../components/atoms/indicators/absolute-indica
 import { fetchConditions } from "../../redux/actions/conditions-actions";
 import { fetchStatuses } from "../../redux/actions/statuses-actions";
 import FilterView from "./components/filter-view";
+import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 
 function MonumentsMapFilterScreen({
   statusesState,
@@ -14,15 +16,13 @@ function MonumentsMapFilterScreen({
   fetchStatuses,
   fetchConditions,
 }) {
-  const [show, setShow] = useState(false);
+  var show = useValueWithDelay(true, false, 150);
 
   useEffect(() => {
     if (statusesState.requestFetch || conditionsState.requestFetch) {
       fetchStatuses();
       fetchConditions();
     }
-    
-    setShow(true);
   }, []);
 
   if (

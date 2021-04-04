@@ -7,30 +7,23 @@ import ContentSpinner from "../../atoms/content-spinner/content-spinner";
 import AppContext from "../../../context/app-context";
 import useData from "../../hooks/use-data";
 import { isIOS } from "../../../helpers/platform-helpers";
+import CachedImage from "../../atoms/cached-image";
+import { getPhotoUrlById } from "../../../services/photo-service";
 
 function MonumentCard({
   monument,
   shareId,
   onPress = (p) => p,
 }) {
-  const {
-    monumentService: { getPhoto },
-  } = useContext(AppContext);
-
   const [key, setKey] = useState(Math.random());
 
-  const { data, loading, error } = useData(getPhoto, {
-    params: [monument && monument.majorPhotoImageId, 600],
-    delay: 100,
-    numberOfAttempts: 3,
-  }, [monument]);
-  /* TODO handle error */
-
   useEffect(() => {
-    if (data != null) {
+    if (monument != null) {
       setKey(Math.random());
     }
-  }, [data]);
+  }, [monument]);
+
+  const uri = getPhotoUrlById(monument && monument.majorPhotoImageId, 500);
 
   return (
     <TouchableScale
@@ -39,23 +32,24 @@ function MonumentCard({
       friction={7}
       useNativeDriver
       onPress={
-        loading && !error ? (p) => p : (p) => onPress(monument, data.image)
+        (p) => onPress(monument)
       }
       style={styles.container}
     >
       <View style={{ flex: 1, borderRadius: 10, overflow: "hidden" }}>
         <SharedElement id={`image-${shareId}`} style={styles.image}>
-          <Image
+          <CachedImage
             style={styles.image}
             key={key}
-            source={{ uri: data && data.image }}
+            cacheKey={(monument ? monument.id: 0) + ""}
+            source={{ uri }}
           />
         </SharedElement>
         <View style={styles.dataContainer}>
           <Text style={styles.title}>{monument && monument.name}</Text>
         </View>
       </View>
-      {loading && <ContentSpinner borderRadius={10} />}
+      {/* {loading && <ContentSpinner borderRadius={10} />} */}
     </TouchableScale>
   );
 }
@@ -83,7 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: DefaultTheme.palette.colors.screenBackground.main,
   },
   dataContainer: {
     backgroundColor: "white",
