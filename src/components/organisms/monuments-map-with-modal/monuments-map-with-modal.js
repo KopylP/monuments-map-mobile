@@ -23,7 +23,6 @@ function MonumentsMapWithModal({
       <MonumentsMap monuments={monuments} onClickMonument={handleMonumentMarkerClick} />
       <MonumentsModal
         open={openModal}
-        waitBeforeOpen={0}
         onCardPress={onMonumentPress}
         monument={monument}
         enabled={enabledDialog}

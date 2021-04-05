@@ -1,18 +1,22 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import TempBottomSheet from "../../atoms/temp-bottom-sheet/temp-bottom-sheet";
 import MapMonumentCard from "../map-monument-card";
 import { SCREEN_HEIGHT } from "../../../helpers/dimensions-helpers";
 
-function MonumentsModal({
-  open,
-  monument,
-  onChange = (p) => p, // true if open
-  onCardPress = (p) => p,
-  enabled,
-  enableClick,
-}) {
+function MonumentsModal(props) {
+  const {
+    open,
+    monument,
+    onChange = (p) => p, // true if open
+    onCardPress = (p) => p,
+    enabled,
+    enableClick,
+  } = props;
+
+  console.log(props);
+
   const bottomRef = useRef();
   const { top } = useSafeAreaInsets();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,10 +26,14 @@ function MonumentsModal({
     else if (!open && currentIndex === 1) bottomRef.current.close();
   }, [open]);
 
-  const handleChange = (index) => {
-    setCurrentIndex(index);
-    onChange(index === 1);
-  };
+  const handleChange = useCallback((index) => {
+    if (index == 0) {
+      setCurrentIndex(index);
+      onChange(false);
+    } else {
+      onChange(true);
+    }
+  }, []);
 
   return (
     <TempBottomSheet
@@ -51,4 +59,16 @@ function MonumentsModal({
   );
 }
 
-export default memo(MonumentsModal);
+export default memo(MonumentsModal, (prevProps, nextProps) => {
+  if (prevProps.monument == null && nextProps.monument == null) return true;
+  if (prevProps.monument == null && nextProps.monument != null) return false;
+  if (
+    prevProps.open == nextProps.open &&
+    prevProps.monument.id == nextProps.monument.id &&
+    prevProps.enabled == nextProps.enabled &&
+    prevProps.enableClick == nextProps.enableClick
+  )
+    return true;
+
+  return false;
+});
