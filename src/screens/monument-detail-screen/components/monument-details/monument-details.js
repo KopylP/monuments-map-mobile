@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { isIOS } from "../../../../helpers/platform-helpers";
 import Title from "../../../../components/atoms/typography/title";
@@ -9,7 +9,7 @@ import ConditionChip from "./condition-chip";
 import MonumentAddress from "./monument-address";
 import MonumentStatus from "./monument-status";
 
-export default function MonumentDetails({ monument }) {
+function MonumentDetails({ monument }) {
   return (
     <View
       style={styles.container}
@@ -69,3 +69,5 @@ const styles = StyleSheet.create({
     marginHorizontal
   },
 });
+
+export default memo(MonumentDetails);

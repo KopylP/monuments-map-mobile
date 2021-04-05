@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Dimensions } from "react-native";
 import GalleryThumb from "./gallery-thumb";
 import { useNavigation } from "@react-navigation/native";
+import { FlatList } from "react-native";
 
 const SIZE = Math.floor(Dimensions.get("window").width / 3) - 2;
 
@@ -17,30 +18,29 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
     });
   };
 
+  const renderItem = useCallback(({ item, index }) => (
+    <GalleryThumb
+      {...item.photo}
+      size={SIZE}
+      onPress={() => handleImageSelected(index)}
+    />
+  ), []);
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {monumentPhotos.map((mp, i) => {
-          return (
-            <GalleryThumb
-              {...mp.photo}
-              key={"" + mp.id}
-              size={SIZE}
-              onPress={() => handleImageSelected(i)}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
+    <View style={StyleSheet.absoluteFill}>
+      <FlatList
+        style={{ flex: 1 }}
+        numColumns={3}
+        data={monumentPhotos}
+        renderItem={renderItem}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    flexWrap: "wrap",
   },
   imageThumbnail: {
     height: SIZE,

@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import AppMap from "../../atoms/app-map/app-map";
 import MonumentMarker from "../monument-marker/monument-marker";
 
 
 
-export default function MonumentsMap({ monuments, onClickMonument }) {
+function MonumentsMap({ monuments, onClickMonument }) {
   const mapRef = useRef();
 
   const handleMarkerPress = (monument) => {
@@ -28,3 +28,5 @@ export default function MonumentsMap({ monuments, onClickMonument }) {
     </AppMap>
   );
 }
+
+export default memo(MonumentsMap);
