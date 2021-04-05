@@ -15,8 +15,6 @@ function MonumentsModal(props) {
     enableClick,
   } = props;
 
-  console.log(props);
-
   const bottomRef = useRef();
   const { top } = useSafeAreaInsets();
   const [currentIndex, setCurrentIndex] = useState(0);
