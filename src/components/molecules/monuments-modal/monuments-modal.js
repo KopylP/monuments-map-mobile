@@ -5,15 +5,14 @@ import TempBottomSheet from "../../atoms/temp-bottom-sheet/temp-bottom-sheet";
 import MapMonumentCard from "../map-monument-card";
 import { SCREEN_HEIGHT } from "../../../helpers/dimensions-helpers";
 
-function MonumentsModal(props) {
-  const {
-    open,
-    monument,
-    onChange = (p) => p, // true if open
-    onCardPress = (p) => p,
-    enabled,
-    enableClick,
-  } = props;
+function MonumentsModal({
+  open,
+  monument,
+  onChange = (p) => p, // true if open
+  onCardPress = (p) => p,
+  enabled,
+  enableClick,
+}) {
 
   const bottomRef = useRef();
   const { top } = useSafeAreaInsets();
