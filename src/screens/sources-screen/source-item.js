@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as Linking from "expo-linking";
 
-export default function SourceItem({ sourceLink, title }) {
+function SourceItem({ sourceLink, title }) {
   const handleClick = () => {
     if (sourceLink) Linking.openURL(sourceLink);
   };
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default memo(SourceItem);

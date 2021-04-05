@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { memo, useEffect, useLayoutEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect } from "react-redux";
@@ -25,21 +25,21 @@ function FilterView({
   const { t } = useLocate();
 
   const [updatingMonuments, setUpdatingMonuments] = useState(false);
-  const [statuses, setStatuses] = useState(filters.statuses);
-  const [conditions, setConditions] = useState(filters.conditions);
-  const [yearsRange, setYearsRange] = useState(filters.yearsRange);
+  const [statuses, setStatuses] = useState(() => filters.statuses);
+  const [conditions, setConditions] = useState(() => filters.conditions);
+  const [yearsRange, setYearsRange] = useState(() => filters.yearsRange);
 
   const [scrollEnabled, setScrollEnabled] = useState(true);
 
   const navigation = useNavigation();
 
-  const handleButtonPress = () => {
+  const handleButtonPress = useCallback(() => {
     setUpdatingMonuments(true);
     setTimeout(() => {
       changeAllFilters(statuses, conditions, yearsRange);
       requestMonumentsFetch();
     }, 0);
-  };
+  }, [statuses, conditions, yearsRange]);
 
   const onFailure = (error) => {
     goBack();
@@ -139,7 +139,7 @@ const bindDispatchToProps = {
   changeAllFilters,
 };
 
-export default memo(connect(bindStateToProps, bindDispatchToProps)(FilterView));
+export default connect(bindStateToProps, bindDispatchToProps)(memo(FilterView));
 
 const styles = StyleSheet.create({
   button: {

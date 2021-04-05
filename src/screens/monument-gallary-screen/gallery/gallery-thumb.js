@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { Image, StyleSheet } from "react-native";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function GalleryThumb({ id, size, onPress = (p) => p }) {
+function GalleryThumb({ id, size, onPress = (p) => p }) {
   return (
     <TouchableOpacity
       style={[
@@ -30,4 +30,8 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     flex: 1,
   },
+});
+
+export default memo(GalleryThumb, (prevProps, nextProps) => {
+  return prevProps.id === nextProps.id;
 });

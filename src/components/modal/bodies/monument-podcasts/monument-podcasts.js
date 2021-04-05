@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import { View, Text } from "react-native";
-import { groupBy } from "../../../../helpers/array-helpers";
 import { useLocate } from "../../../hooks/locate-hooks";
 import MonumentPodcastsList from "./monument-podcasts-list";
 
@@ -11,7 +10,7 @@ function MonumentPodcasts({ sources }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{t("Podcasts")}</Text>
-      <MonumentPodcastsList sources={sources} style={{ marginTop: 10, width: "100%", }} />
+      <MonumentPodcastsList sources={sources} style={{ marginTop: 10, width: "100%" }} />
     </View>
   );
 }

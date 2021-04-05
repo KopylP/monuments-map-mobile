@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { FlatList } from "react-native";
 import DialogDivider from "../../../atoms/dividers/dialog-divider";
 import MonumentPodcastItem from "./monument-podcast-item";
 
-export default function MonumentPodcastsList({ sources, style = {} }) {
+function MonumentPodcastsList({ sources, style = {} }) {
   const renderItem = useCallback(({ item }) => {
     return <MonumentPodcastItem title={item.key} sources={item.values} />;
   }, []);
@@ -20,3 +20,5 @@ export default function MonumentPodcastsList({ sources, style = {} }) {
     />
   );
 }
+
+export default memo(MonumentPodcastsList);

@@ -57,7 +57,7 @@ export default function PhotoDetailScreen({ route }) {
         initialPage={selectedIndex}
         onPageScrollStateChanged={handlePageScrollStateChanged}
         style={{ flex: 1 }}
-        offscreenPageLimit={3}      
+        offscreenPageLimit={3}
       >
         {monumentPhotos.map((monumentPhoto, i) => (
           <View style={{ flex: 1 }} key={i}>

@@ -1,19 +1,20 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import MonumentListItem from "./monuments-list-item";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MonumentsEmptyResult from "../../molecules/monuments-empty-result/monuments-empty-result";
 import { FlatList } from "react-native";
+import { shallowEqual } from "react-redux";
+
+const removeEasterEggs = (monument) => {
+  return !monument.isEasterEgg;
+};
 
 function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   if (monuments.length == 0 && showEmpty) return <MonumentsEmptyResult />;
 
   const { top } = useSafeAreaInsets();
-
-  const removeEasterEggs = (monument) => {
-    return !monument.isEasterEgg;
-  };
 
   const handlePress = (monument) => {
     const shareId = `item-${monument.id}`;
@@ -26,7 +27,7 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
     return <MonumentListItem {...item} onPress={handlePress} />;
   }, []);
 
-  monuments = monuments.filter(removeEasterEggs);
+  monuments = useMemo(() => monuments.filter(removeEasterEggs), [monuments]);
 
   return (
     <FlatList
@@ -47,4 +48,6 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   );
 }
 
-export default memo(MonumentsList);
+export default memo(MonumentsList, (prevProps, nextProps) => {
+  return shallowEqual(prevProps, nextProps)
+});

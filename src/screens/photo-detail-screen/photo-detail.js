@@ -73,7 +73,10 @@ const composed = compose(
   withData((_, props) => [props.photoId])
 );
 
-export default memo(composed(PhotoDetail));
+export default memo(
+  composed(PhotoDetail),
+  (prevProps, nextProps) => prevProps.id === nextProps.id
+);
 
 const styles = StyleSheet.create({
   buttonsContainer: {
