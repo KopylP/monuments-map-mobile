@@ -21,14 +21,15 @@ function MonumentsListWithMap({
   const [focused, setFocused] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
+
   useAndroidBack(() => {
     if (focused) {
-      if (openModal && tab == 0) {
+      if (tab == 0 && openModal) {
         setOpenModal(false);
         return true;
       }
 
-      if (tab == 1 && focused) {
+      if (tab == 1) {
         setTab(0);
         return true;
       }

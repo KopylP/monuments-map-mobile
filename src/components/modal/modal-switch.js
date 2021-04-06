@@ -25,6 +25,12 @@ function ModalSwitch({ modalId, modalData, open, closeModal }) {
       isVisible={open}
       onModalWillShow={handleWillShow}
       onBackdropPress={closeModal}
+      animationIn="fadeIn"
+      animationOut="fadeOut"
+      backdropTransitionInTiming={200}
+      backdropTransitionOutTiming={200}
+      animationInTiming={200}
+      animationOutTiming={200}
       onBackButtonPress={closeModal}
       onSwipeComplete={closeModal}
       useNativeDriverForBackdrop={true}

@@ -45,13 +45,13 @@ export default function CreateModalNavigator() {
             open: {
               animation: "timing",
               config: {
-                duration: 150,
+                duration: 120,
               },
             },
             close: {
               animation: "timing",
               config: {
-                duration: 150,
+                duration: 120,
               },
             },
           },
