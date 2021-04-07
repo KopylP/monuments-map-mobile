@@ -11,6 +11,9 @@ const removeEasterEggs = (monument) => {
   return !monument.isEasterEgg;
 };
 
+const keyExtractor = (item) => item.id + "";
+const ItemSeparatorComponent = () => <View style={{ height: 20 }} />
+
 function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
   if (monuments.length == 0 && showEmpty) return <MonumentsEmptyResult />;
 
@@ -40,10 +43,10 @@ function MonumentsList({ monuments, showEmpty, enableClick, onClick }) {
       renderItem={renderItem}
       render
       data={monuments}
-      keyExtractor={(item) => item.id + ""}
+      keyExtractor={keyExtractor}
       windowSize={8}
       initialNumToRender={6}
-      ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+      ItemSeparatorComponent={ItemSeparatorComponent}
     />
   );
 }
