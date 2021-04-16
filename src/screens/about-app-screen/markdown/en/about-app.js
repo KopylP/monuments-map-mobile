@@ -1,7 +1,7 @@
 const text = `
 Monuments of Poltava is an interactive map featuring important monuments of the city with their description and gallery. We created it to promote public attention to the problem of a decline in the cultural legacy of our city.
 
-This project was done completely by an initiative of volunteers and students, without any financial support.
+This project was done completely by an initiative of volunteers and students, without any financial support. Now developing with *[#SavePoltava](https://savepoltava.city/)* support.
 
 With our map you can:
 

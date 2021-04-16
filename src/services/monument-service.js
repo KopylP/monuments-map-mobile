@@ -108,11 +108,11 @@ export default class MonumentService {
     return await this._getRequest(`monument/${monumentId}/monumentPhotos`);
   };
 
-  getPhoto = async (id, size, base64 = true) => {
-    return await this._getRequestWithoutCulture(`photo/${id}/image/${size}?base64=${base64}`);
+  getPhoto = async (id, size, base64 = true, webp = true) => {
+    return await this._getRequestWithoutCulture(`photo/${id}/image/${size}?base64=${base64}&webp=${webp}`);
   };
 
-  getFullSizePhoto = async (id, base64 = true) => {
-    return await this._getRequestWithoutCulture(`photo/${id}/image/${1000}?base64=${base64}`); // TODO Update Api
+  getFullSizePhoto = async (id, base64 = true, webp = true) => {
+    return await this._getRequestWithoutCulture(`photo/${id}/image/${1000}?base64=${base64}&webp=${webp}`); // TODO Update Api
   };
 }

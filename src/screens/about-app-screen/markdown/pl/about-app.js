@@ -1,7 +1,7 @@
 const text = `
 Zabytki Połtawy — to interaktywna mapa z głównymi zabytkami architektonicznymi miasta, ich opisem i galerią. Stworzyliśmy ją, aby zwrócić uwagę na problem niszczenia dziedzictwa kulturowego naszego miasta.
 
-To całkowicie wolontariacki, studencki projekt, który powstał tylko z inicjatywy zespołu bez pozyskiwania środków od organizacji.
+To całkowicie wolontariacki, studencki projekt, który powstał tylko z inicjatywy zespołu bez pozyskiwania środków od organizacji. Teraz projekt rozwija się za wsparcia zespolu *[#SavePoltava](https://savepoltava.city/)*.
 
 Dzięki tej mapie możesz:
 
