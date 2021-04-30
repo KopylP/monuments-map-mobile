@@ -1,9 +1,8 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "web": "expo start --web",
     "eject": "expo eject"
   },
@@ -36,7 +35,7 @@
     "react": "16.13.1",
     "react-content-loader": "^5.1.4",
     "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native": "~0.63.4",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-gallery": "^2.1.5",
@@ -72,10 +71,15 @@
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
     "roman-numbers": "^1.0.1",
-    "expo-linking": "~2.2.3"
+    "expo-linking": "~2.2.3",
+    "expo-splash-screen": "~0.10.2",
+    "expo-updates": "~0.5.4",
+    "react-native-unimodules": "~0.13.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "monuments-map-mobile",
+  "version": "1.0.0"
 }
