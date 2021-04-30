@@ -1,4 +1,3 @@
-import ViewPager from "@react-native-community/viewpager";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -8,6 +7,7 @@ import AbsoluteIndicator from "../../components/atoms/indicators/absolute-indica
 import PhotoDetail from "./photo-detail";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../helpers/timeout-promise";
+import PagerView from "react-native-pager-view";
 
 export default function PhotoDetailScreen({ route }) {
   const { selectedIndex, monumentPhotos, title } = route.params;
@@ -53,7 +53,7 @@ export default function PhotoDetailScreen({ route }) {
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <ViewPager
+      <PagerView
         initialPage={selectedIndex}
         onPageScrollStateChanged={handlePageScrollStateChanged}
         style={{ flex: 1 }}
@@ -68,7 +68,7 @@ export default function PhotoDetailScreen({ route }) {
             />
           </View>
         ))}
-      </ViewPager>
+      </PagerView>
       <BackButton
         containerStyle={[styles.iconView, { top: iconViewTop }]}
         onPress={goBack}
