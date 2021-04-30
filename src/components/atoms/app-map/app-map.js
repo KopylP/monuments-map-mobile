@@ -17,7 +17,7 @@ class AppMap extends Component {
   }
 
   handleMapReady = async () => {
-    let { status } = await Location.requestPermissionsAsync();
+    let { status } = await Location.requestForegroundPermissionsAsync();
     if (status === "granted") {
       this.setState({
         userAccessLocation: true,
