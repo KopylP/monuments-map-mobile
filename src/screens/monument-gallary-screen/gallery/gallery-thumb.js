@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Image, StyleSheet } from "react-native";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import FastImage from "react-native-fast-image";
 
 function GalleryThumb({ id, size, onPress = (p) => p }) {
   return (
@@ -15,7 +16,7 @@ function GalleryThumb({ id, size, onPress = (p) => p }) {
       ]}
       onPress={onPress}
     >
-      <Image
+      <FastImage
         style={styles.imageThumbnail}
         source={{ uri: getPhotoUrlById(id, 400) }}
       />

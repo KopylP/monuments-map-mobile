@@ -7,11 +7,11 @@ import {
   Platform,
   TouchableWithoutFeedback,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button/back-button";
-import CachedImage from "../cached-image";
 
 function CollapsedToolbar({
   maxHeight,
@@ -113,8 +113,7 @@ function CollapsedToolbar({
               onPress={onPress}
               style={{ width: "100%", height: maxHeight }}
             >
-              <CachedImage
-                cacheKey={cacheKey}
+              <FastImage
                 style={{
                   ...styles.headerImage,
                   ...(imageHeight ? { height: imageHeight } : {}),

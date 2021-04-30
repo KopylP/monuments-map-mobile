@@ -1,11 +1,11 @@
-import React, { memo, useContext, useEffect, useState } from "react";
-import { StyleSheet, View, Image, Platform, Text } from "react-native";
+import React, { memo, useEffect, useState } from "react";
+import { StyleSheet, View, Platform, Text } from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import TouchableScale from "../../atoms/buttons/touchable-button/touchable-scale";
 import { isIOS } from "../../../helpers/platform-helpers";
-import CachedImage from "../../atoms/cached-image";
 import { getPhotoUrlById } from "../../../services/photo-service";
+import FastImage from "react-native-fast-image";
 
 function MonumentCard({
   majorPhotoImageId,
@@ -37,7 +37,7 @@ function MonumentCard({
       style={{...styles.container, ...style}}
     >
         <SharedElement id={`image-${shareId}`} style={styles.image}>
-          <CachedImage
+          <FastImage
             style={styles.image}
             key={key}
             cacheKey={(id ? id: 0) + ""}
