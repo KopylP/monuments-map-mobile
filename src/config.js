@@ -15,4 +15,4 @@ export const supportedCultures = [
   { code: "ru-RU", name: "Русский" },
 ];
 
-export const host = "http://monuments.pl.ua/";
+export const host = "https://monuments.pl.ua/";

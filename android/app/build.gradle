@@ -135,8 +135,8 @@ android {
         applicationId 'com.kopyl.monumentsmap'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 31
-        versionName "1.5.0"
+        versionCode 33
+        versionName "1.6.1"
     }
     splits {
         abi {
@@ -153,6 +153,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file("./poltava-monuments.jks")
+            storePassword "4b213e46310a41f3bc8cf40209099dfd"
+            keyAlias "QGtvcHlscC9wb2x0YXZhLW1vbnVtZW50cw=="
+            keyPassword "554342fac5c140aa98d85a6fc1cfaae0"
+        }
     }
     buildTypes {
         debug {
@@ -161,7 +167,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
