@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { host } from "./src/config";
 import AppContext from "./src/context/app-context";
@@ -28,6 +28,7 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         <SafeAreaProvider>
+          <StatusBar translucent backgroundColor="transparent" />
           <ModalSwitch />
           <MainNavigation />
         </SafeAreaProvider>
