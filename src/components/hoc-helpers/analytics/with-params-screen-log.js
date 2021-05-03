@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { logApplicationEvent } from "../../../helpers/application-analitics";
+import { logApplicationEvent } from "../../../helpers/application-analytics";
 
 const withParamsScreenLog = (name, bindParamsToLogObject = p => {}) => (Wrapper) => (props) => {
     

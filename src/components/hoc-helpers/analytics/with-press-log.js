@@ -1,5 +1,5 @@
 import React from "react";
-import { logApplicationEvent } from "../../../helpers/application-analitics";
+import { logApplicationEvent } from "../../../helpers/application-analytics";
 
 const withPressLog = (name, bindPropsToLogObject = p => {}) => (Wrapper) => (props) => {
     

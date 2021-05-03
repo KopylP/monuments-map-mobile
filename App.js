@@ -12,7 +12,7 @@ import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ModalSwitch from "./src/components/modal/modal-switch";
 import MainNavigation from "./src/navigations/main-navigation/main-navigation";
-import { logApplicationEvent } from "./src/helpers/application-analitics";
+import { logApplicationEvent } from "./src/helpers/application-analytics";
 enableScreens();
 
 function App() {

@@ -4,7 +4,7 @@ import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { Icon } from "react-native-elements";
 import Subtitle from "../../atoms/typography/subtitle";
-import { logApplicationEvent } from "../../../helpers/application-analitics";
+import { logApplicationEvent } from "../../../helpers/application-analytics";
 
 function ChipFilterList({
   selectedValues,
