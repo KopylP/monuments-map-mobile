@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 20,
     fontSize: 16,
+    color: "black"
   },
   yearContainer: {
     flexDirection: "row",
@@ -97,5 +98,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 18,
     marginTop: 20,
+    color: "black"
   },
 });

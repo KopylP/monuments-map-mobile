@@ -33,6 +33,7 @@ export default function AboutAppText() {
         style={{
           text: {
             fontSize: 15,
+            color: "black"
           },
           bullet_list_icon: {
             marginLeft: 10,

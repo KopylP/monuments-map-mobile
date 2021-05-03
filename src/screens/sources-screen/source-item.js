@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "500",
     fontSize: 16,
+    color: "black"
   },
 });
 

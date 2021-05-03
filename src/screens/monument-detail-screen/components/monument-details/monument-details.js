@@ -47,17 +47,20 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 20,
     fontSize: 16,
-    marginHorizontal
+    marginHorizontal,
+    color: "black"
   },
   status: {
     fontWeight: isIOS ? "600" : "700",
     marginTop: 5,
-    marginHorizontal
+    marginHorizontal,
+    color: "black"
   },
   year: {
     fontWeight: isIOS ? "600" : "700",
     marginTop: 15,
-    marginHorizontal
+    marginHorizontal,
+    color: "black"
   },
   address: {
     marginTop: 3,

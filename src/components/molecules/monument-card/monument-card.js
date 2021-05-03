@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 22,
     fontWeight: isIOS ? "600": "700",
+    color: 'black'
   },
 });
 
