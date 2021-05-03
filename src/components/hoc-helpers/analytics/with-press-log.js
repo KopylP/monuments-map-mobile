@@ -1,11 +1,11 @@
-import * as Analytics from 'expo-firebase-analytics';
 import React from "react";
+import { logApplicationEvent } from "../../../helpers/application-analitics";
 
 const withPressLog = (name, bindPropsToLogObject = p => {}) => (Wrapper) => (props) => {
     
     const { onPress } = props;
     const handlePress = (e) => {
-        Analytics.logEvent(name, bindPropsToLogObject);
+        logApplicationEvent(name, bindPropsToLogObject);
         onPress(e);
     }
 

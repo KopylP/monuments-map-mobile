@@ -1,12 +1,12 @@
-import * as Analytics from 'expo-firebase-analytics';
 import React, { useEffect } from "react";
+import { logApplicationEvent } from "../../../helpers/application-analitics";
 
 const withParamsScreenLog = (name, bindParamsToLogObject = p => {}) => (Wrapper) => (props) => {
     
     const { params } = props;
 
     useEffect(() => {
-        Analytics.logEvent(name, bindParamsToLogObject(params))
+        logApplicationEvent(name, bindParamsToLogObject(params))
     }, []);
 
     return <Wrapper {...props}/>

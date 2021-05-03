@@ -15,6 +15,7 @@ function ButtonWithBadge({
       style={{
         ...style,
         alignSelf: "center",
+        alignItems: "center"
       }}
     >
       <Button

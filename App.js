@@ -10,9 +10,9 @@ import { enableScreens } from "react-native-screens";
 import LocateProvider from "./src/context/locate-context";
 import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { logEvent } from "expo-firebase-analytics";
 import ModalSwitch from "./src/components/modal/modal-switch";
 import MainNavigation from "./src/navigations/main-navigation/main-navigation";
+import { logApplicationEvent } from "./src/helpers/application-analitics";
 enableScreens();
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   const monumentService = new MonumentService(host, culture.code);
   const geocoderService = new GeocoderService(culture.code);
 
-  logEvent("Culture", culture);
+  logApplicationEvent("Culture", culture);
 
   return (
     <AppContext.Provider value={{ monumentService, geocoderService }}>

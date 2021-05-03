@@ -16,3 +16,5 @@ export const supportedCultures = [
 ];
 
 export const host = "https://monuments.pl.ua/";
+
+export const canLogUserEvents = false;

@@ -3,8 +3,8 @@ import { View } from "react-native";
 import { Chip } from "react-native-paper";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { Icon } from "react-native-elements";
-import { logEvent } from "expo-firebase-analytics";
 import Subtitle from "../../atoms/typography/subtitle";
+import { logApplicationEvent } from "../../../helpers/application-analitics";
 
 function ChipFilterList({
   selectedValues,
@@ -29,7 +29,7 @@ function ChipFilterList({
 
   const logFilterClick = (id) => {
     const filterChip = data.find((p) => p.id === id);
-    logEvent("FilterPressed", { name: filterChip.abbreviation });
+    logApplicationEvent("FilterPressed", { name: filterChip.abbreviation });
   };
 
   const { background, main } = DefaultTheme.palette.colors.primary;
