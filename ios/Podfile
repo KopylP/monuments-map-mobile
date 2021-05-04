@@ -18,6 +18,5 @@ target 'PoltavaMonuments' do
   #     flipper_post_install(installer)
   #   end
   # end
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 end
