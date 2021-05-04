@@ -134,8 +134,8 @@ android {
         applicationId 'com.kopyl.monumentsmap'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 39
-        versionName "1.7.0"
+        versionCode 41
+        versionName "1.7.2"
     }
     splits {
         abi {
@@ -203,7 +203,31 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
-    addUnimodulesDependencies()
+    addUnimodulesDependencies([exclude: [            
+            'expo-camera',
+            // 'expo-constants',
+            'expo-file-system',
+            'expo-image-loader',
+            'expo-local-authentication', // explicitly added for use
+            'expo-payments-stripe',
+            'expo-permissions',
+            'expo-secure-store',  // explicitly added for use
+            'expo-video-thumbnails',
+            // 'unimodules-app-loader', // required by react-native-adapter (android only)
+            'unimodules-barcode-scanner-interface',
+            'unimodules-camera-interface',
+            // 'unimodules-constants-interface', // required by expo-local-authentication
+            'unimodules-face-detector-interface',
+            'unimodules-file-system-interface',
+            'unimodules-font-interface', // required by react-native-adapter
+            'unimodules-image-loader-interface', // required by react-native-adapter (android only)
+            // 'unimodules-permissions-interface', // required by react-native-adapter (android only)
+            // 'unimodules-react-native-adapter', // required for expo modules
+            'unimodules-sensors-interface',
+            // 'unimodules-task-manager-interface',
+            'expo-keep-awake',
+            'expo-network'
+            ]])
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

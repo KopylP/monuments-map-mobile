@@ -13,6 +13,7 @@ import expo.modules.splashscreen.singletons.SplashScreen;
 import expo.modules.splashscreen.SplashScreenImageResizeMode;
 
 
+
 public class MainActivity extends ReactActivity {
 
     // Added automatically by Expo Config

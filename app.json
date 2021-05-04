@@ -2,7 +2,7 @@
   "expo": {
     "name": "Poltava Monuments",
     "slug": "poltava-monuments",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +24,7 @@
     "android": {
       "package": "com.kopyl.monumentsmap",
       "googleServicesFile": "./assets/android/google-services.json",
-      "versionCode": 40,
+      "versionCode": 41,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

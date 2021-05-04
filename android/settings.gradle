@@ -2,7 +2,31 @@ rootProject.name = 'Poltava Monuments'
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
-includeUnimodulesProjects()
+includeUnimodulesProjects([exclude: [            
+            'expo-camera',
+            // 'expo-constants',
+            'expo-file-system',
+            'expo-image-loader',
+            'expo-local-authentication', // explicitly added for use
+            'expo-payments-stripe',
+            'expo-permissions',
+            'expo-secure-store',  // explicitly added for use
+            'expo-video-thumbnails',
+            // 'unimodules-app-loader', // required by react-native-adapter (android only)
+            'unimodules-barcode-scanner-interface',
+            'unimodules-camera-interface',
+            // 'unimodules-constants-interface', // required by expo-local-authentication
+            'unimodules-face-detector-interface',
+            'unimodules-file-system-interface',
+            // 'unimodules-font-interface', // required by react-native-adapter
+            // 'unimodules-image-loader-interface', // required by react-native-adapter (android only)
+            // 'unimodules-permissions-interface', // required by react-native-adapter (android only)
+            // 'unimodules-react-native-adapter', // required for expo modules
+            'unimodules-sensors-interface',
+            // 'unimodules-task-manager-interface',
+            'expo-keep-awake',
+            'expo-network'
+            ]])
 
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
 applyNativeModulesSettingsGradle(settings)
