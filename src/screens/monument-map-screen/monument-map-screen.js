@@ -2,12 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import withMonumentService from "../../components/hoc-helpers/with-monument-service";
-import {
-  fetchMonuments,
-  requestMonumentsFetch,
-} from "../../redux/actions/monuments-actions";
 import withReduxData from "../../components/hoc-helpers/with-redux-data";
-import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
 import MonumentsMapWithModal from "../../components/organisms/monuments-map-with-modal";
 import {
   fetchMonumentMap,
