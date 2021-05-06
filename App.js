@@ -11,8 +11,8 @@ import LocateProvider from "./src/context/locate-context";
 import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ModalSwitch from "./src/components/modal/modal-switch";
-import MainNavigation from "./src/navigations/main-navigation/main-navigation";
 import { logApplicationEvent } from "./src/helpers/application-analytics";
+import MainTabNavigation from "./src/navigations/main-tab-navigation/main-tab-navigation";
 enableScreens();
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         <SafeAreaProvider>
           <StatusBar translucent backgroundColor="transparent"/>
           <ModalSwitch />
-          <MainNavigation />
+          <MainTabNavigation />
         </SafeAreaProvider>
       </Provider>
     </AppContext.Provider>

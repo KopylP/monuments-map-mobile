@@ -10,16 +10,23 @@ import {
   PHOTO_DETAIL_SCREEN,
   PHOTO_VIEW_SCREEN,
   SOURCES_SCREEN,
-  MONUMENTS_GALLERY_SCREEN
+  MONUMENTS_GALLERY_SCREEN,
 } from "../route-consts/monuments-detail-navigation-consts";
 import CreateApplicationBottomTabNavigator from "../navigators/application-bottom-tab-navigator";
+import { View } from "react-native";
+import MonumentMapTab from "../tabs/monument-map-tab";
 
 const Tab = CreateApplicationBottomTabNavigator();
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "";
   if (
-    [MONUMENTS_GALLERY_SCREEN, PHOTO_VIEW_SCREEN, PHOTO_DETAIL_SCREEN, SOURCES_SCREEN].includes(routeName)
+    [
+      MONUMENTS_GALLERY_SCREEN,
+      PHOTO_VIEW_SCREEN,
+      PHOTO_DETAIL_SCREEN,
+      SOURCES_SCREEN,
+    ].includes(routeName)
   ) {
     return false;
   }
@@ -27,7 +34,7 @@ const getTabBarVisibility = (route) => {
   return true;
 };
 
-export default function MainNavigation() {
+export default function MainTabNavigation() {
   const { t } = useLocate();
 
   return (
@@ -35,12 +42,12 @@ export default function MainNavigation() {
       <Tab.Navigator initialRouteName="Map">
         <Tab.Screen
           name="Map"
-          component={MonumentsMapNavigation}
+          component={MonumentMapTab}
           options={({ route }) => {
             return {
               ...mapTabOptions,
               tabBarLabel: t("Monuments"),
-              tabBarVisible: getTabBarVisibility(route),
+              // tabBarVisible: getTabBarVisibility(route),
             };
           }}
         />
