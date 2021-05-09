@@ -5,11 +5,11 @@ import MonumentsModal from "../../molecules/monuments-modal/monuments-modal";
 
 function MonumentsMapWithModal({
   monuments,
-  onMonumentPress,
+  onMonumentPress = p => p,
   enableClick,
   openModal,
-  onChangeModal,
-  enabledDialog,
+  onChangeModal = p => p,
+  enabledDialog = true,
 }) {
   const [monument, setMonument] = useState(null);
 

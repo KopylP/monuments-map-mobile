@@ -12,7 +12,7 @@ import { useLocate } from "./src/components/hooks/locate-hooks";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ModalSwitch from "./src/components/modal/modal-switch";
 import { logApplicationEvent } from "./src/helpers/application-analytics";
-import MainTabNavigation from "./src/navigations/main-tab-navigation/main-tab-navigation";
+import MainNavigator from "./src/navigations/main-navigator";
 enableScreens();
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         <SafeAreaProvider>
-          <StatusBar translucent backgroundColor="transparent"/>
+          <StatusBar translucent backgroundColor="transparent" />
           <ModalSwitch />
-          <MainTabNavigation />
+          <MainNavigator />
         </SafeAreaProvider>
       </Provider>
     </AppContext.Provider>
@@ -41,4 +41,3 @@ export default (props) => (
     <App {...props} />
   </LocateProvider>
 );
-

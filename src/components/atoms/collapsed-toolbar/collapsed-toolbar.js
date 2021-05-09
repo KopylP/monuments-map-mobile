@@ -5,32 +5,28 @@ import {
   Animated,
   View,
   Platform,
-  TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SharedElement } from "react-navigation-shared-element";
 import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button/back-button";
 
 function CollapsedToolbar({
   maxHeight,
-  shareId,
   source,
   title,
   children,
   headerBackground,
   onBack = (p) => p,
   onImageLoad = (p) => p,
-  onPress = null,
   imageHeight = null,
   showBackButton = true,
-  cacheKey,
 }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef();
 
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   const HEADER_MIN_HEIGHT = 60 + top;
 
@@ -72,7 +68,7 @@ function CollapsedToolbar({
     <View style={StyleSheet.absoluteFill}>
       <Animated.ScrollView
         ref={scrollRef}
-        contentContainerStyle={{ paddingTop: maxHeight }}
+        contentContainerStyle={{ paddingTop: maxHeight, paddingBottom: bottom }}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
@@ -107,23 +103,15 @@ function CollapsedToolbar({
           ]}
           pointerEvents="none"
         >
-          <SharedElement id={shareId} style={{ flex: 1 }} >
-            <TouchableWithoutFeedback
-              disabled={!onPress}
-              onPress={onPress}
-              style={{ width: "100%", height: maxHeight }}
-            >
-              <FastImage
-                style={{
-                  ...styles.headerImage,
-                  ...(imageHeight ? { height: imageHeight } : {}),
-                }}
-                source={source}
-                fadeDuration={200}
-                onLoadEnd={onImageLoad}
-              />
-            </TouchableWithoutFeedback>
-          </SharedElement>
+          <Image
+            style={{
+              ...styles.headerImage,
+              ...(imageHeight ? { height: imageHeight } : {}),
+            }}
+            source={source}
+            fadeDuration={200}
+            onLoadEnd={onImageLoad}
+          />
         </Animated.View>
       </Animated.View>
       <Animated.View
@@ -169,8 +157,6 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     flex: 1,
-    // overflow: "hidden",
-    // alignSelf: "flex-start",
     resizeMode: "cover",
     backgroundColor: DefaultTheme.palette.colors.screenBackground.main,
   },

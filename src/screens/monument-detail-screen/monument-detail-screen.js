@@ -13,12 +13,16 @@ import withParamsScreenLog from "../../components/hoc-helpers/analytics/with-par
 import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 import { getPhotoUrlById } from "../../services/photo-service";
+import BottomSafeAreaView from "../../components/atoms/bottom-safe-area-view/bottom-safe-area-view";
+import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
-  const { monument, shareId } = params;
+  const { monument } = params;
 
   const navigation = useNavigation();
-  const imageBackground = useValueWithDelay(DefaultTheme.palette.colors.primary.main);
+  const imageBackground = useValueWithDelay(
+    DefaultTheme.palette.colors.primary.main
+  );
 
   const [backClicked, setBackClicked] = useState(false);
 
@@ -30,12 +34,11 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
   return (
     <View style={StyleSheet.absoluteFill}>
       <CollapsedToolbar
-        maxHeight={250}
-        shareId={`image-${shareId}`}
+        maxHeight={isIPhoneWithMonobrow ? 300 : 250}
         title={monument.name}
         onBack={handleBack}
         cacheKey={monument.id + ""}
-      headerBackground={backClicked ? null: imageBackground}
+        headerBackground={backClicked ? null : imageBackground}
         source={{
           uri: getPhotoUrlById(monument.majorPhotoImageId, 500),
         }}
@@ -53,7 +56,7 @@ const bindRouteParamsToMethodProps = ({ monument }) => [monument.id];
 const bindRouteParamsToLogObject = ({ monument }) => ({
   id: monument.id,
   slug: monument.slug,
-  localizedName: monument.name
+  localizedName: monument.name,
 });
 
 const composed = compose(
@@ -63,11 +66,14 @@ const composed = compose(
   withData(bindRouteParamsToMethodProps)
 );
 
-export const navigateToMonumentsDetailScreen = (navigate) => (monument, shareId) => {
+export const navigateToMonumentsDetailScreen = (navigate) => (
+  monument,
+  shareId
+) => {
   navigate(MONUMENT_DETAIL_SCREEN, {
     monument,
-    shareId
-  })
-}
+    shareId,
+  });
+};
 
 export default composed(MonumentDetailScreen);

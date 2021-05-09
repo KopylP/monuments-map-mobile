@@ -1,4 +1,5 @@
-import React from "react";
+import { useNavigation } from "@react-navigation/core";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import withMonumentService from "../../components/hoc-helpers/with-monument-service";
@@ -8,22 +9,27 @@ import {
   fetchMonumentMap,
   requestMonumentMapFetch,
 } from "../../redux/actions/monument-map-actions";
+import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
 
 function MonumentMapScreen({ monuments, loading }) {
-  // const { navigate } = useNavigation();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // const handleMonumentPress = (monument, shareId) => {
-  //   navigateToMonumentsDetailScreen(navigate)(monument, shareId);
-  // };
+  const { navigate } = useNavigation();
+
+  const handleMonumentPress = (monument, shareId) => {
+    navigateToMonumentsDetailScreen(navigate)(monument, shareId);
+  };
+
+  const handleModalOpen = (isModalOpen) => setModalIsOpen(isModalOpen);
 
   return (
     <MonumentsMapWithModal
       monuments={monuments}
-      // loading={loading}
-      // onMonumentPress={handleMonumentPress}
-      // enableClick={true}
-      // LeftComponent={<Logo/>}
-      // RightComponent={<MonumentsMapFilterButton/>}
+      loading={loading}
+      enableClick={true}
+      openModal={modalIsOpen}
+      onChangeModal={handleModalOpen}
+      onMonumentPress={handleMonumentPress}
     />
   );
 }

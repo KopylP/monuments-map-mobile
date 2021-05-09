@@ -13,7 +13,9 @@ function MonumentGalleryScreen({ params, data, loading }) {
   return (
     <View style={StyleSheet.absoluteFill}>
       {loading && <AbsoluteIndicator />}
-      {data && !loading && <GalleryPhotosList monumentPhotos={data} title={title} />}
+      {data && !loading && (
+        <GalleryPhotosList monumentPhotos={data} title={title} />
+      )}
     </View>
   );
 }

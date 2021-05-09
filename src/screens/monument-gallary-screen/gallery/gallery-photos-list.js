@@ -1,14 +1,17 @@
 import React, { useCallback } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Dimensions } from "react-native";
 import GalleryThumb from "./gallery-thumb";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SIZE = Math.floor(Dimensions.get("window").width / 3) - 2;
 
 export default function GalleryPhotosList({ monumentPhotos, title }) {
   const navigation = useNavigation();
+
+  const { bottom } = useSafeAreaInsets();
 
   const handleImageSelected = (index) => {
     navigation.navigate("PhotoDetail", {
@@ -18,13 +21,16 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
     });
   };
 
-  const renderItem = useCallback(({ item, index }) => (
-    <GalleryThumb
-      {...item.photo}
-      size={SIZE}
-      onPress={() => handleImageSelected(index)}
-    />
-  ), []);
+  const renderItem = useCallback(
+    ({ item, index }) => (
+      <GalleryThumb
+        {...item.photo}
+        size={SIZE}
+        onPress={() => handleImageSelected(index)}
+      />
+    ),
+    []
+  );
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -33,6 +39,9 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
         numColumns={3}
         data={monumentPhotos}
         renderItem={renderItem}
+        contentContainerStyle={{
+          paddingBottom: bottom,
+        }}
       />
     </View>
   );

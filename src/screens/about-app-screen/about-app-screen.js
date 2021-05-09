@@ -26,9 +26,3 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
 });
-
-export const aboutAppTabOptions = {
-  tabBarIcon: ({ color, size }) => (
-    <Icon name="info" type="font-awesome" size={size} color={color} />
-  ),
-};
