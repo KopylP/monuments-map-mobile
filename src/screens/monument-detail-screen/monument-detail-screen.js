@@ -13,7 +13,6 @@ import withParamsScreenLog from "../../components/hoc-helpers/analytics/with-par
 import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 import { getPhotoUrlById } from "../../services/photo-service";
-import BottomSafeAreaView from "../../components/atoms/bottom-safe-area-view/bottom-safe-area-view";
 import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
@@ -66,13 +65,9 @@ const composed = compose(
   withData(bindRouteParamsToMethodProps)
 );
 
-export const navigateToMonumentsDetailScreen = (navigate) => (
-  monument,
-  shareId
-) => {
+export const navigateToMonumentsDetailScreen = (navigate) => (monument) => {
   navigate(MONUMENT_DETAIL_SCREEN, {
     monument,
-    shareId,
   });
 };
 

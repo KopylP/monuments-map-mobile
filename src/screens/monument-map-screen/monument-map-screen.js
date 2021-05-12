@@ -12,23 +12,16 @@ import {
 import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
 
 function MonumentMapScreen({ monuments, loading }) {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const { navigate } = useNavigation();
 
-  const handleMonumentPress = (monument, shareId) => {
-    navigateToMonumentsDetailScreen(navigate)(monument, shareId);
+  const handleMonumentPress = (monument) => {
+    navigateToMonumentsDetailScreen(navigate)(monument);
   };
-
-  const handleModalOpen = (isModalOpen) => setModalIsOpen(isModalOpen);
 
   return (
     <MonumentsMapWithModal
       monuments={monuments}
       loading={loading}
-      enableClick={true}
-      openModal={modalIsOpen}
-      onChangeModal={handleModalOpen}
       onMonumentPress={handleMonumentPress}
     />
   );

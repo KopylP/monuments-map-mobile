@@ -2,7 +2,7 @@
   "expo": {
     "name": "Poltava Monuments",
     "slug": "poltava-monuments",
-    "version": "1.7.1",
+    "version": "2.0.2-developer-beta",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

@@ -134,8 +134,8 @@ android {
         applicationId 'com.kopyl.monumentsmap'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 41
-        versionName "1.7.2"
+        versionCode 101
+        versionName "2.0.2-developer-beta"
     }
     splits {
         abi {

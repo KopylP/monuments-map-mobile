@@ -11,7 +11,7 @@ export default class MonumentService {
       baseURL: this._baseURL,
       headers: {
         Accept: "*",
-        "X-version": "2.0"
+        "X-version": "2.0",
       },
     });
   }
@@ -30,7 +30,11 @@ export default class MonumentService {
     return response.data;
   }
 
-  async _getRequestWithoutCulture(path, params = {}, cancelCallback = (p) => p) {
+  async _getRequestWithoutCulture(
+    path,
+    params = {},
+    cancelCallback = (p) => p
+  ) {
     const response = await this._axios.get(path, {
       params,
       cancelToken: new CancelToken(function executor(c) {
@@ -63,7 +67,7 @@ export default class MonumentService {
       cancelCallback
     );
 
-    return monuments.map(p => ({
+    return monuments.map((p) => ({
       slug: p.slug,
       name: p.name,
       id: p.id,
@@ -72,7 +76,9 @@ export default class MonumentService {
       longitude: p.longitude,
       majorPhotoImageId: p.majorPhotoImageId,
       condition: p.condition,
-      id: p.id
+      id: p.id,
+      year: p.year,
+      period: p.period,
     }));
   }
 
@@ -81,11 +87,15 @@ export default class MonumentService {
   };
 
   getAllStatuses = async (cancelCallback) => {
-    return await this._getRequest("status/", {}, cancelCallback = p => p);
+    return await this._getRequest("status/", {}, (cancelCallback = (p) => p));
   };
 
   getAllConditions = async (cancelCallback) => {
-    return await this._getRequest("condition/", {}, cancelCallback = p => p);
+    return await this._getRequest(
+      "condition/",
+      {},
+      (cancelCallback = (p) => p)
+    );
   };
 
   getAllCities = async () => {
@@ -109,10 +119,14 @@ export default class MonumentService {
   };
 
   getPhoto = async (id, size, base64 = true, webp = true) => {
-    return await this._getRequestWithoutCulture(`photo/${id}/image/${size}?base64=${base64}&webp=${webp}`);
+    return await this._getRequestWithoutCulture(
+      `photo/${id}/image/${size}?base64=${base64}&webp=${webp}`
+    );
   };
 
   getFullSizePhoto = async (id, base64 = true, webp = true) => {
-    return await this._getRequestWithoutCulture(`photo/${id}/image/${1000}?base64=${base64}&webp=${webp}`); // TODO Update Api
+    return await this._getRequestWithoutCulture(
+      `photo/${id}/image/${1000}?base64=${base64}&webp=${webp}`
+    ); // TODO Update Api
   };
 }

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@dudigital/react-native-zoomable-view": "^1.0.15",
-    "@gorhom/bottom-sheet": "^1.4.1",
+    "@gorhom/bottom-sheet": "^3.6.4",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/geolocation": "^2.0.2",

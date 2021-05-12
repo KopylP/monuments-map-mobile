@@ -103,7 +103,7 @@ function CollapsedToolbar({
           ]}
           pointerEvents="none"
         >
-          <Image
+          <FastImage
             style={{
               ...styles.headerImage,
               ...(imageHeight ? { height: imageHeight } : {}),

@@ -5,6 +5,7 @@ import GalleryThumb from "./gallery-thumb";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PHOTO_DETAIL_SCREEN } from "../../../navigations/route-consts/monuments-detail-navigation-consts";
 
 const SIZE = Math.floor(Dimensions.get("window").width / 3) - 2;
 
@@ -14,7 +15,7 @@ export default function GalleryPhotosList({ monumentPhotos, title }) {
   const { bottom } = useSafeAreaInsets();
 
   const handleImageSelected = (index) => {
-    navigation.navigate("PhotoDetail", {
+    navigation.navigate(PHOTO_DETAIL_SCREEN, {
       selectedIndex: index,
       monumentPhotos: monumentPhotos,
       title: title,

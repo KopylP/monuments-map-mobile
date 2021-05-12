@@ -13,7 +13,7 @@ function MonumentCard({
   id,
   name,
   onPress = (p) => p,
-  style={}
+  style = {},
 }) {
   const [key, setKey] = useState(Math.random());
 
@@ -31,22 +31,20 @@ function MonumentCard({
       tension={50}
       friction={7}
       useNativeDriver
-      onPress={
-        (p) => onPress({ id, majorPhotoImageId, name })
-      }
-      style={{...styles.container, ...style}}
+      onPress={(p) => onPress({ id, majorPhotoImageId, name })}
+      style={{ ...styles.container, ...style }}
     >
-        <SharedElement id={`image-${shareId}`} style={styles.image}>
-          <FastImage
-            style={styles.image}
-            key={key}
-            cacheKey={(id ? id: 0) + ""}
-            source={{ uri }}
-          />
-        </SharedElement>
-        <View style={styles.dataContainer}>
-          <Text style={styles.title}>{name}</Text>
-        </View>
+      <SharedElement id={`image-${shareId}`} style={styles.image}>
+        <FastImage
+          style={styles.image}
+          key={key}
+          cacheKey={(id ? id : 0) + ""}
+          source={{ uri }}
+        />
+      </SharedElement>
+      <View style={styles.dataContainer}>
+        <Text style={styles.title}>{name}</Text>
+      </View>
     </TouchableScale>
   );
 }
@@ -82,8 +80,8 @@ const styles = StyleSheet.create({
   title: {
     padding: 20,
     fontSize: 22,
-    fontWeight: isIOS ? "600": "700",
-    color: 'black'
+    fontWeight: isIOS ? "600" : "700",
+    color: "black",
   },
 });
 

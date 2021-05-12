@@ -3,6 +3,7 @@ import React from "react";
 import { DefaultTheme } from "../../../theme/default-theme";
 import { useLocate } from "../../hooks/locate-hooks";
 import RectangularButton from "../../atoms/buttons/rectangular-button/rectangular-button";
+import { SOURCES_SCREEN } from "../../../navigations/route-consts/monuments-detail-navigation-consts";
 
 export default function SourcesButton({
   sources,
@@ -13,7 +14,7 @@ export default function SourcesButton({
   const { navigate } = useNavigation();
 
   const handlePress = () => {
-    navigate("Sources", {
+    navigate(SOURCES_SCREEN, {
       sources: sources,
     });
   };
@@ -26,7 +27,7 @@ export default function SourcesButton({
       textColor="white"
       title={t("sources")}
       style={style}
-      onPress={canPress ? handlePress : p => p}
+      onPress={canPress ? handlePress : (p) => p}
     />
   );
 }

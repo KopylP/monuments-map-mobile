@@ -1,5 +1,6 @@
-export const MONUMENTS_GALLERY_SCREEN = "Gallery";
-export const PHOTO_DETAIL_SCREEN = "PhotoDetail";
-export const PHOTO_VIEW_SCREEN = "PhotoView";
-export const SOURCES_SCREEN = "Sources";
-export const MONUMENT_DETAIL_SCREEN = "Detail";
+export const MONUMENTS_GALLERY_SCREEN = "MONUMENTS_GALLERY_SCREEN";
+export const PHOTO_DETAIL_SCREEN = "PHOTO_DETAIL_SCREEN";
+export const PHOTO_VIEW_SCREEN = "PHOTO_VIEW_SCREEN";
+export const SOURCES_SCREEN = "SOURCES_SCREEN";
+export const MONUMENT_DETAIL_SCREEN = "MONUMENT_DETAIL_SCREEN";
+export const START_SCREEN = "START_SCREEN";

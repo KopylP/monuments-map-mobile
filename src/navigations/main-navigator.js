@@ -7,6 +7,7 @@ import {
   SOURCES_SCREEN,
   MONUMENTS_GALLERY_SCREEN,
   MONUMENT_DETAIL_SCREEN,
+  START_SCREEN,
 } from "./route-consts/monuments-detail-navigation-consts";
 import StartTabs from "./tabs/start-tabs";
 import MonumentGalleryScreen from "../screens/monument-gallary-screen/monument-gallery-screen";
@@ -22,30 +23,53 @@ import {
   createStackNavigator,
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
+import SourcesScreenModalIOS from "./modals/sources-screen-modal-ios";
 
-const Stack = createNativeStackNavigator();
+const Stack = isIOS ? createNativeStackNavigator() : createStackNavigator();
+const ModalStack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
 const navigatorOptions = Platform.select({
-  default: {},
+  ios: {
+    initialRouteName: START_SCREEN,
+    screenOptions: {
+      headerStyle: {
+        backgroundColor: DefaultTheme.palette.colors.primary.dark,
+      },
+      headerTintColor: "white",
+      headerBackTitle: " ",
+    },
+  },
+  android: {
+    initialRouteName: START_SCREEN,
+    screenOptions: {
+      headerStyle: {
+        backgroundColor: DefaultTheme.palette.colors.primary.dark,
+      },
+      headerTintColor: "white",
+      headerBackTitle: " ",
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    },
+  },
 });
 
 export default function MainNavigator() {
   const { t } = useLocate();
 
+  const sourcesOptions = Platform.select({
+    android: {
+      title: t("sources"),
+    },
+    ios: {
+      stackPresentation: "modal",
+    },
+  });
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="StartScreen"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: DefaultTheme.palette.colors.primary.dark,
-          },
-          headerTintColor: "white",
-          headerBackTitle: " ",
-        }}
-      >
+      <Stack.Navigator {...navigatorOptions}>
         <Stack.Screen
-          name="StartScreen"
+          name={START_SCREEN}
           component={StartTabs}
           options={{
             headerShown: false,
@@ -56,7 +80,7 @@ export default function MainNavigator() {
           options={({ route }) => ({
             headerShown: true,
             title: route.params.title,
-            gestureEnabled: true,
+            gestureEnabled: isIOS,
           })}
           component={MonumentGalleryScreen}
         />
@@ -71,6 +95,9 @@ export default function MainNavigator() {
           name={PHOTO_VIEW_SCREEN}
           options={{
             headerShown: false,
+            stackPresentation: "fullScreenModal",
+            cardStyleInterpolator:
+              CardStyleInterpolators.forScaleFromCenterAndroid,
           }}
           component={PhotoViewScreen}
         />
@@ -78,14 +105,15 @@ export default function MainNavigator() {
           name={MONUMENT_DETAIL_SCREEN}
           options={{
             headerShown: false,
-            gestureEnabled: true,
+            gestureEnabled: isIOS,
           }}
           component={MonumentDetailScreen}
         />
+
         <Stack.Screen
           name={SOURCES_SCREEN}
-          options={{ title: t("sources"), gestureEnabled: true }}
-          component={SourcesScreen}
+          options={sourcesOptions}
+          component={isIOS ? SourcesScreenModalIOS : SourcesScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

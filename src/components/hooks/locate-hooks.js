@@ -36,4 +36,4 @@ export const useLocateYear = (year, period) => {
   }
 
   return locatedYear;
-}
+};

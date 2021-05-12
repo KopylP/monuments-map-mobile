@@ -3,16 +3,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CloseButton from "../../../components/atoms/close-button";
 
 export default function Header({ onClose }) {
-
   const { top } = useSafeAreaInsets();
   const paddingTop = top + 10;
   return (
-    <View style={[styles.container, { paddingTop}]}>
-      <TouchableOpacity onPress={onClose} style={styles.iconContainer}>
-        <Icon color="white" type="ionicon" name="md-close" size={25} />
-      </TouchableOpacity>
+    <View style={[styles.container, { paddingTop }]}>
+      <CloseButton onClose={onClose} />
     </View>
   );
 }
@@ -24,13 +22,5 @@ const styles = StyleSheet.create({
     left: 0,
     position: "absolute",
     zIndex: 5,
-  },
-  iconContainer: {
-    width: 30,
-    height: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
