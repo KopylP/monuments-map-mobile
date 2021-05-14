@@ -26,8 +26,6 @@ import { Platform } from "react-native";
 import SourcesScreenModalIOS from "./modals/sources-screen-modal-ios";
 
 const Stack = isIOS ? createNativeStackNavigator() : createStackNavigator();
-const ModalStack = createNativeStackNavigator();
-// const Stack = createNativeStackNavigator();
 
 const navigatorOptions = Platform.select({
   ios: {

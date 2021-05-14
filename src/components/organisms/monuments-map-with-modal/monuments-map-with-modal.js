@@ -1,24 +1,20 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useState } from "react";
 import MonumentBottomSheet from "../monument-bottom-sheet";
 import MonumentsMap from "../../molecules/monuments-map";
 
 function MonumentsMapWithModal({ monuments, onMonumentPress = (p) => p }) {
   const [monument, setMonument] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState({ open: false });
 
-  const handleMonumentMarkerClick = (monument) => {
+  const handleMonumentMarkerClick = useCallback((monument) => {
     setMonument(monument);
-    setOpenModal(true);
-  };
+    setOpenModal({ open: true });
+  }, []);
 
-  const handleMonumentBottomSheetChange = (isOpen) => {
-    setOpenModal(isOpen);
-  };
-
-  const handleClosePressed = () => {
-    setOpenModal(false);
-  };
+  const handleMonumentBottomSheetChange = useCallback((isOpen) => {
+    if (openModal.open !== isOpen) setOpenModal({ open: isOpen });
+  }, []);
 
   return (
     <>
@@ -27,11 +23,10 @@ function MonumentsMapWithModal({ monuments, onMonumentPress = (p) => p }) {
         onClickMonument={handleMonumentMarkerClick}
       />
       <MonumentBottomSheet
-        open={openModal}
+        sheetState={openModal}
         onChange={handleMonumentBottomSheetChange}
         monument={monument}
         onOpenMonument={onMonumentPress}
-        onClose={handleClosePressed}
       />
     </>
   );

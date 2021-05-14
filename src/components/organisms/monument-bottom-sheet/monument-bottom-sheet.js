@@ -1,31 +1,34 @@
-import BottomSheet, {
-  useBottomSheetSpringConfigs,
-  useBottomSheetTimingConfigs,
-} from "@gorhom/bottom-sheet";
+import BottomSheet, { useBottomSheetSpringConfigs } from "@gorhom/bottom-sheet";
 import { BlurView } from "expo-blur";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import MonumentBottomSheetHeader from "../../atoms/monument-bottom-sheet-header";
 import MonumentBottomSheetItem from "../../molecules/monument-bottom-sheet-item";
+import useCancelablePromise from "@rodw95/use-cancelable-promise";
+import timeout from "../../../helpers/timeout-promise";
 
 export default function MonumentBottomSheet({
-  open,
+  sheetState,
   onChange = (isOpen) => isOpen,
   monument,
   onOpenMonument = (monument) => monument,
-  onClose,
 }) {
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => [0, "45%"], []);
+  const makeCancelable = useCancelablePromise();
 
   const handleSheetChanges = useCallback((index) => {
     onChange(index === 1);
   }, []);
 
   useEffect(() => {
-    bottomSheetRef.current.snapTo(open ? 1 : 0);
-  }, [open]);
+    if (sheetState.open) bottomSheetRef.current.snapTo(sheetState.open ? 1 : 0);
+  }, [sheetState]);
 
   const animationConfigs = useBottomSheetSpringConfigs();
+
+  const handleCloseButton = useCallback(() => {
+    bottomSheetRef.current.snapTo(0, 300);
+    makeCancelable(timeout(300)).then(() => onChange(false));
+  }, []);
 
   return (
     <BottomSheet
@@ -40,7 +43,7 @@ export default function MonumentBottomSheet({
       {monument && (
         <MonumentBottomSheetItem
           monument={monument}
-          onClose={onClose}
+          onClose={handleCloseButton}
           onOpenMonument={onOpenMonument}
         />
       )}

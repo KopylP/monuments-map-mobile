@@ -1,8 +1,9 @@
 import { BlurView } from "expo-blur";
 import React, { memo } from "react";
-import { Text, View } from "react-native";
-import { Button } from "react-native-elements";
+import { Platform, StyleSheet, Text, View } from "react-native";
+import { isIOS } from "react-native-elements/dist/helpers";
 import FastImage from "react-native-fast-image";
+import { Button } from "react-native-paper";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import CloseButton from "../../atoms/close-button";
@@ -13,63 +14,88 @@ function MonumentBottomSheetItem({
   onOpenMonument = (monumentId) => monumentId,
   onClose,
 }) {
+  const ContainerView = isIOS ? BlurView : View;
+
+  const containerViewProps = Platform.select({
+    ios: {
+      intensity: 100,
+      tint: "light",
+    },
+    default: {},
+  });
+
   return (
-    <View style={{ flex: 1 }}>
-      <BlurView
-        intensity={90}
-        style={{
-          flex: 1,
-          borderRadius: 10,
-          overflow: "hidden",
-          paddingBottom: 15,
-        }}
-        tint="light"
+    <View style={styles.outerContainer}>
+      <ContainerView
+        {...containerViewProps}
+        style={isIOS ? styles.iosContainer : styles.androidContainer}
       >
         <FastImage
-          style={{ flex: 1 }}
+          style={styles.image}
           source={{ uri: getPhotoUrlById(monument.majorPhotoImageId, 500) }}
         />
-        <Text
-          style={{
-            color: "black",
-            padding: 15,
-            fontSize: 22,
-            fontWeight: "600",
-          }}
-        >
-          {monument.name}
-        </Text>
+        <Text style={styles.title}>{monument.name}</Text>
         <Button
-          style={{
-            marginHorizontal: 15,
-            borderRadius: 12,
-            overflow: "hidden",
-          }}
-          buttonStyle={{
-            backgroundColor: DefaultTheme.palette.colors.primary.main,
-          }}
+          style={styles.openButton}
           mode="contained"
           onPress={() => onOpenMonument(monument)}
-          title="Відкрити"
-        />
-        <HandleIcon
-          style={{
-            position: "absolute",
-            top: 8,
-            alignSelf: "center",
-          }}
-        />
-        <CloseButton
-          style={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-          }}
-          onClose={onClose}
-        />
-      </BlurView>
+          color={DefaultTheme.palette.colors.primary.main}
+        >
+          Відкрити
+        </Button>
+      </ContainerView>
+      <HandleIcon style={styles.handleIcon} />
+      <CloseButton style={styles.closeButton} onClose={onClose} />
     </View>
   );
 }
 
 export default memo(MonumentBottomSheetItem);
+
+const container = {
+  flex: 1,
+  borderRadius: 10,
+  overflow: "hidden",
+  paddingBottom: 15,
+  elevation: 0,
+};
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+  },
+  iosContainer: {
+    ...container,
+  },
+  androidContainer: {
+    ...container,
+    backgroundColor: "white",
+  },
+  title: {
+    color: "black",
+    padding: 15,
+    fontSize: 22,
+    fontWeight: isIOS ? "600" : "700",
+  },
+  closeButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    elevation: 1,
+  },
+  handleIcon: {
+    position: "absolute",
+    top: 8,
+    alignSelf: "center",
+    elevation: 1,
+  },
+  openButton: {
+    marginHorizontal: 15,
+    borderRadius: 10,
+    overflow: "hidden",
+    marginBottom: 5,
+  },
+  image: {
+    flex: 1,
+  },
+});

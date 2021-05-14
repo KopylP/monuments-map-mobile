@@ -1,7 +1,6 @@
 import React from "react";
-import { TouchableOpacity } from "@gorhom/bottom-sheet";
 import { Icon } from "react-native-elements";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 export default function CloseButton({ onClose = (p) => p, style = {} }) {
   const handleClose = () => setTimeout(() => onClose(), 0);
