@@ -8,12 +8,15 @@ import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import CloseButton from "../../atoms/close-button";
 import HandleIcon from "../../atoms/handle-icon";
+import { useLocate } from "../../hooks/locate-hooks";
 
 function MonumentBottomSheetItem({
   monument,
   onOpenMonument = (monumentId) => monumentId,
   onClose,
 }) {
+  const { t } = useLocate();
+
   const ContainerView = isIOS ? BlurView : View;
 
   const containerViewProps = Platform.select({
@@ -41,7 +44,7 @@ function MonumentBottomSheetItem({
           onPress={() => onOpenMonument(monument)}
           color={DefaultTheme.palette.colors.primary.main}
         >
-          Відкрити
+          {t("Open")}
         </Button>
       </ContainerView>
       <HandleIcon style={styles.handleIcon} />
