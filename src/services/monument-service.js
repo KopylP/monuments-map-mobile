@@ -27,6 +27,11 @@ export default class MonumentService {
         cancelCallback(c);
       }),
     });
+    return response;
+  }
+
+  async _getRequestData(path, params = {}, cancelCallback = (p) => p) {
+    const response = await this._getRequest(path, params, cancelCallback);
     return response.data;
   }
 
@@ -45,7 +50,7 @@ export default class MonumentService {
   }
 
   getAllMonuments = async (hidden = true) => {
-    return await this._getRequest(`monument/`, true, { hidden });
+    return await this._getRequestData(`monument/`, true, { hidden });
   };
 
   async getMonumentsByFilter(
@@ -55,7 +60,7 @@ export default class MonumentService {
     yearsRange, // [from, to]
     cancelCallback
   ) {
-    const monuments = await this._getRequest(
+    const monuments = await this._getRequestData(
       "monument",
       {
         cities,
@@ -67,31 +72,57 @@ export default class MonumentService {
       cancelCallback
     );
 
-    return monuments.map((p) => ({
-      slug: p.slug,
-      name: p.name,
-      id: p.id,
-      isEasterEgg: p.tags != null && p.tags.includes("easter_egg"),
-      latitude: p.latitude,
-      longitude: p.longitude,
-      majorPhotoImageId: p.majorPhotoImageId,
-      condition: p.condition,
-      id: p.id,
-      year: p.year,
-      period: p.period,
-    }));
+    return monuments.map(this._mapMonuments);
+  }
+
+  async getPaginatedMonumentsByFilter(
+    cities,
+    statuses,
+    conditions,
+    yearsRange, // [from, to]
+    cancelCallback,
+    paginatedOptions = {
+      pageSize: 10,
+      pageNumber: 1,
+    }
+  ) {
+    const response = await this._getRequest(
+      "monument",
+      {
+        cities,
+        statuses,
+        conditions,
+        startYear: yearsRange[0],
+        endYear: yearsRange[1],
+        pageSize: paginatedOptions.pageSize,
+        pageNumber: paginatedOptions.pageNumber,
+      },
+      cancelCallback
+    );
+
+    var monuments = response.data.map(this._mapMonuments);
+    var pagination = JSON.parse(response.headers["x-pagination"]);
+
+    return {
+      data: monuments,
+      pagination: pagination,
+    };
   }
 
   getMonumentById = async (id) => {
-    return await this._getRequest(`monument/${id}`);
+    return await this._getRequestData(`monument/${id}`);
   };
 
   getAllStatuses = async (cancelCallback) => {
-    return await this._getRequest("status/", {}, (cancelCallback = (p) => p));
+    return await this._getRequestData(
+      "status/",
+      {},
+      (cancelCallback = (p) => p)
+    );
   };
 
   getAllConditions = async (cancelCallback) => {
-    return await this._getRequest(
+    return await this._getRequestData(
       "condition/",
       {},
       (cancelCallback = (p) => p)
@@ -99,23 +130,23 @@ export default class MonumentService {
   };
 
   getAllCities = async () => {
-    return await this._getRequest("city/");
+    return await this._getRequestData("city/");
   };
 
   getMonumentPhoto = async (monumentPhotoId) => {
-    return await this._getRequest(`monumentphoto/${monumentPhotoId}`);
+    return await this._getRequestData(`monumentphoto/${monumentPhotoId}`);
   };
 
   getParticipants = async () => {
-    return await this._getRequest(`participant`);
+    return await this._getRequestData(`participant`);
   };
 
   async getPhotoIds(monumentId) {
-    return await this._getRequest(`monument/${monumentId}/photo/ids`);
+    return await this._getRequestData(`monument/${monumentId}/photo/ids`);
   }
 
   getMonumentPhotos = async (monumentId) => {
-    return await this._getRequest(`monument/${monumentId}/monumentPhotos`);
+    return await this._getRequestData(`monument/${monumentId}/monumentPhotos`);
   };
 
   getPhoto = async (id, size, base64 = true, webp = true) => {
@@ -129,4 +160,18 @@ export default class MonumentService {
       `photo/${id}/image/${1000}?base64=${base64}&webp=${webp}`
     ); // TODO Update Api
   };
+
+  _mapMonuments = (p) => ({
+    slug: p.slug,
+    name: p.name,
+    id: p.id,
+    isEasterEgg: p.tags != null && p.tags.includes("easter_egg"),
+    latitude: p.latitude,
+    longitude: p.longitude,
+    majorPhotoImageId: p.majorPhotoImageId,
+    condition: p.condition,
+    id: p.id,
+    year: p.year,
+    period: p.period,
+  });
 }

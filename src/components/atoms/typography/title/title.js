@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     color: "black",
-    fontWeight: isIOS ? "600" : "700",
+    fontWeight: "700",
   },
 });
 

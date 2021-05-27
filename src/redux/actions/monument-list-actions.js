@@ -23,7 +23,10 @@ const monumentListRequest = () => {
   };
 };
 
-const monumentListLoaded = (monuments) => {
+const monumentListLoaded = (response) => {
+  const monuments = response.data;
+  // const pagination = response.headers.
+
   return {
     type: FETCH_MONUMENT_LIST_SUCCESS,
     payload: monuments,
@@ -37,45 +40,48 @@ const monumentListFailure = (error) => {
   };
 };
 
-export const fetchMonumentList = (monumentService) => () => (
-  dispatch,
-  getState
-) => {
-  function executor(e) {
-    dispatch(changeMonumentListCancelRequest(e));
-  }
+export const fetchMonumentList =
+  (monumentService) => () => (dispatch, getState) => {
+    function executor(e) {
+      dispatch(changeMonumentListCancelRequest(e));
+    }
 
-  const {
-    cancelRequest = null,
-    statuses = [],
-    conditions = [],
-    cities = [],
-    yearsRange = defaultYearsRange,
-  } = getState().monumentList;
+    const {
+      cancelRequest = null,
+      statuses = [],
+      conditions = [],
+      cities = [],
+      yearsRange = defaultYearsRange,
+      pagination,
+    } = getState().monumentList;
 
-  if (cancelRequest) {
-    cancelRequest();
-  }
+    if (cancelRequest) {
+      cancelRequest();
+    }
 
-  dispatch(monumentListRequest());
+    dispatch(monumentListRequest());
 
-  monumentService
-    .getMonumentsByFilter(
-      cities.map((c) => c.id),
-      statuses,
-      conditions,
-      yearsRange,
-      executor
-    )
-    .then((monuments) => {
-      dispatch(monumentListLoaded(monuments));
-    })
-    .catch((e) => {
-      if (!Axios.isCancel(e)) {
-        dispatch(monumentListFailure(e));
-      }
-    });
-};
+    monumentService
+      .getPaginatedMonumentsByFilter(
+        cities.map((c) => c.id),
+        statuses,
+        conditions,
+        yearsRange,
+        executor,
+        {
+          pageNumber: pagination ? pagination.currentPage + 1 : 1,
+          pageSize: 10,
+        }
+      )
+      .then((monuments) => {
+        dispatch(monumentListLoaded(monuments));
+      })
+      .catch((e) => {
+        if (!Axios.isCancel(e)) {
+          dispatch(monumentListFailure(e));
+        }
+      });
+  };
 
 export const requestMonumentListFetch = () => ({
   type: REQUEST_MONUMENT_LIST_FETCH,

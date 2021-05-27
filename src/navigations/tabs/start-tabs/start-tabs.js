@@ -3,6 +3,7 @@ import React from "react";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { useLocate } from "../../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../../screens/about-app-screen";
+import CategoryScreen from "../../../screens/category-screen/category-screen";
 import MonumentMapScreen from "../../../screens/monument-map-screen";
 
 export default function StartTabs() {
@@ -25,6 +26,16 @@ export default function StartTabs() {
               color={color}
             />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="CategoryTab"
+        component={CategoryScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="info" type="font-awesome" size={size} color={color} />
+          ),
+          tabBarLabel: t("About app"),
         }}
       />
       <Tab.Screen

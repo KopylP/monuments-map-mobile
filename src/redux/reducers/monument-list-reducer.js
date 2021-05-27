@@ -13,6 +13,7 @@ const {
 const initialState = {
   monuments: [],
   loading: true,
+  loadingExtra: false,
   error: null,
   cancelRequest: null,
   requestFetch: true,
@@ -20,6 +21,7 @@ const initialState = {
   statuses: [],
   cities: [],
   yearsRange: yearsRange,
+  pagination: null,
 };
 
 export default monumentListReducer = (state = initialState, action) => {
@@ -34,7 +36,8 @@ export default monumentListReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: null,
-        monuments: action.payload,
+        monuments: action.payload.data,
+        pagination: action.payload.pagination,
         requestFetch: false,
       };
     case FETCH_MONUMENT_LIST_FAILURE:
