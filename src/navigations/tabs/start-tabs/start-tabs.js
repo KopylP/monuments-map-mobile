@@ -12,7 +12,14 @@ export default function StartTabs() {
   const { t } = useLocate();
 
   return (
-    <Tab.Navigator initialRouteName="MapTab">
+    <Tab.Navigator
+      initialRouteName="MapTab"
+      tabBarOptions={{
+        tabStyle: {
+          paddingVertical: 2,
+        },
+      }}
+    >
       <Tab.Screen
         name="MapTab"
         component={MonumentMapScreen}
@@ -33,9 +40,9 @@ export default function StartTabs() {
         component={CategoryScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="info" type="font-awesome" size={size} color={color} />
+            <Icon name="home" type="font-awesome" size={size} color={color} />
           ),
-          tabBarLabel: t("About app"),
+          tabBarLabel: t("Home"),
         }}
       />
       <Tab.Screen
