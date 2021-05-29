@@ -5,6 +5,7 @@ import { useLocate } from "../../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../../screens/about-app-screen";
 import CategoryScreen from "../../../screens/category-screen/category-screen";
 import MonumentMapScreen from "../../../screens/monument-map-screen";
+import { DefaultTheme } from "../../../theme/default-theme";
 
 export default function StartTabs() {
   const Tab = createBottomTabNavigator();
@@ -13,11 +14,12 @@ export default function StartTabs() {
 
   return (
     <Tab.Navigator
-      initialRouteName="MapTab"
+      initialRouteName="CategoryTab"
       tabBarOptions={{
         tabStyle: {
           paddingVertical: 2,
         },
+        activeTintColor: DefaultTheme.palette.colors.primary.dark,
       }}
     >
       <Tab.Screen
