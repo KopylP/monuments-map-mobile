@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BlurHeader from "../../components/atoms/blur-header";
 import Title from "../../components/atoms/typography/title";
 import { useLocate } from "../../components/hooks/locate-hooks";
 import { DefaultTheme } from "../../theme/default-theme";
@@ -21,27 +22,17 @@ export default function CategoryScreen() {
           paddingTop: top,
         }}
       >
-        <Title
-          title={t("Home")}
-          style={{
-            marginHorizontal: DefaultTheme.margins.defaultHorizontal,
-            marginTop: 20,
-          }}
-        />
+        <Title title={t("Home")} style={styles.title} />
         <CategoryList categories={[1, 2, 3, 4, 5, 6, 7, 8]} />
       </ScrollView>
-      <BlurView
-        intensity={90}
-        tint="light"
-        style={{
-          left: 0,
-          right: 0,
-          top: 0,
-          height: top,
-          position: "absolute",
-          backgroundColor: "transparent",
-        }}
-      />
+      <BlurHeader />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    marginHorizontal: DefaultTheme.margins.defaultHorizontal,
+    marginTop: 20,
+  },
+});

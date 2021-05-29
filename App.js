@@ -27,7 +27,11 @@ function App() {
     <AppContext.Provider value={{ monumentService, geocoderService }}>
       <Provider store={store}>
         <SafeAreaProvider>
-          <StatusBar translucent backgroundColor="transparent" />
+          <StatusBar
+            translucent
+            backgroundColor="transparent"
+            barStyle="dark-content"
+          />
           <ModalSwitch />
           <MainNavigator />
         </SafeAreaProvider>

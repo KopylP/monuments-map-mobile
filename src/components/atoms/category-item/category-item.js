@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { StyleSheet, View, Text } from "react-native";
 import FastImage from "react-native-fast-image";
+import { DefaultTheme } from "../../../theme/default-theme";
 
 export default function CategoryItem({
   style = {},
@@ -23,8 +24,8 @@ export default function CategoryItem({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    overflow: "hidden",
     justifyContent: "flex-end",
+    overflow: "hidden",
     padding: 12,
   },
   title: {

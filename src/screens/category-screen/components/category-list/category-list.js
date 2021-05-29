@@ -22,7 +22,7 @@ function CategoryList({ categories }) {
       })}
       <CategoryItem
         imageSource={{
-          uri: `https://picsum.photos/20${Math.floor(Math.random() * 11)}`,
+          uri: `https://picsum.photos/80${Math.floor(Math.random() * 11)}`,
         }}
         style={styles.fullWidthCategory}
         title="Hello world"
