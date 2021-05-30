@@ -15,9 +15,14 @@ import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments
 import { getPhotoUrlById } from "../../services/photo-service";
 import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
 import timeout from "../../helpers/timeout-promise";
+import { isIOS } from "../../helpers/platform-helpers";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+const maxHeight = isIOS ? 250 : 200;
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
   const { monument } = params;
+  const { top } = useSafeAreaInsets();
 
   const navigation = useNavigation();
   const imageBackground = useValueWithDelay(
@@ -33,7 +38,7 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
   return (
     <View style={StyleSheet.absoluteFill}>
       <CollapsedToolbar
-        maxHeight={isIPhoneWithMonobrow ? 300 : 250}
+        maxHeight={maxHeight + top}
         title={monument.name}
         onBack={handleBack}
         cacheKey={monument.id + ""}
@@ -61,7 +66,6 @@ const bindRouteParamsToLogObject = ({ monument }) => ({
 const composed = compose(
   withMsGetMethod((p) => p.getMonumentById),
   withRouteParams(),
-  withParamsScreenLog("MonumentsDetailsScreen", bindRouteParamsToLogObject),
   withData(bindRouteParamsToMethodProps)
 );
 
