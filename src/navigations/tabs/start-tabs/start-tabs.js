@@ -1,6 +1,13 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabBar,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
+import { BlurView } from "expo-blur";
 import React from "react";
+import { StyleSheet } from "react-native";
+import { isIOS } from "react-native-elements/dist/helpers";
 import { Icon } from "react-native-elements/dist/icons/Icon";
+import TabBarIOS from "../../../components/atoms/tab-bar-ios";
 import { useLocate } from "../../../components/hooks/locate-hooks";
 import AboutAppScreen from "../../../screens/about-app-screen";
 import CategoryScreen from "../../../screens/category-screen/category-screen";
@@ -12,6 +19,12 @@ export default function StartTabs() {
 
   const { t } = useLocate();
 
+  const tabBar = isIOS
+    ? {
+        tabBar: (props) => <TabBarIOS {...props} />,
+      }
+    : {};
+
   return (
     <Tab.Navigator
       initialRouteName="CategoryTab"
@@ -19,8 +32,10 @@ export default function StartTabs() {
         tabStyle: {
           paddingVertical: 2,
         },
+        style: isIOS ? styles.tabBarStyleIOS : styles.tabBarStyleAndroid,
         activeTintColor: DefaultTheme.palette.colors.primary.dark,
       }}
+      {...tabBar}
     >
       <Tab.Screen
         name="MapTab"
@@ -60,3 +75,10 @@ export default function StartTabs() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBarStyleIOS: {
+    backgroundColor: "transparent",
+  },
+  tabBarStyleAndroid: {},
+});

@@ -2,13 +2,15 @@ import React, { memo, useRef } from "react";
 import AppMap from "../../atoms/app-map/app-map";
 import MonumentMarker from "../monument-marker/monument-marker";
 
-
-
-function MonumentsMap({ monuments, onClickMonument }) {
+function MonumentsMap({
+  monuments,
+  onClickMonument,
+  locationButtonBottomInset = 0,
+}) {
   const mapRef = useRef();
 
   const handleMarkerPress = (monument) => {
-    onClickMonument({...monument});
+    onClickMonument({ ...monument });
     mapRef.current.animateToRegion(
       {
         latitude: monument.latitude,
@@ -21,9 +23,13 @@ function MonumentsMap({ monuments, onClickMonument }) {
   };
 
   return (
-    <AppMap ref={mapRef}>
+    <AppMap ref={mapRef} locationButtonBottomInset={locationButtonBottomInset}>
       {monuments.map((monument) => (
-        <MonumentMarker monument={monument} onPress={handleMarkerPress} key={monument.id + ''}/>
+        <MonumentMarker
+          monument={monument}
+          onPress={handleMarkerPress}
+          key={monument.id + ""}
+        />
       ))}
     </AppMap>
   );

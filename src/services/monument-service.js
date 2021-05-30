@@ -54,10 +54,13 @@ export default class MonumentService {
   };
 
   async getMonumentsByFilter(
-    cities,
-    statuses,
-    conditions,
-    yearsRange, // [from, to]
+    {
+      cities = [],
+      statuses = [],
+      conditions = [],
+      yearsRange = null, // [from, to]
+      tags = [],
+    },
     cancelCallback
   ) {
     const monuments = await this._getRequestData(
@@ -66,8 +69,9 @@ export default class MonumentService {
         cities,
         statuses,
         conditions,
-        startYear: yearsRange[0],
-        endYear: yearsRange[1],
+        startYear: yearsRange && yearsRange[0],
+        endYear: yearsRange && yearsRange[1],
+        tags,
       },
       cancelCallback
     );
@@ -76,10 +80,13 @@ export default class MonumentService {
   }
 
   async getPaginatedMonumentsByFilter(
-    cities,
-    statuses,
-    conditions,
-    yearsRange, // [from, to]
+    {
+      cities = [],
+      statuses = [],
+      conditions = [],
+      yearsRange, // [from, to]
+      tags = [],
+    },
     cancelCallback,
     paginatedOptions = {
       pageSize: 10,
@@ -92,10 +99,11 @@ export default class MonumentService {
         cities,
         statuses,
         conditions,
-        startYear: yearsRange[0],
-        endYear: yearsRange[1],
+        startYear: yearsRange && yearsRange[0],
+        endYear: yearsRange && yearsRange[1],
         pageSize: paginatedOptions.pageSize,
         pageNumber: paginatedOptions.pageNumber,
+        tags,
       },
       cancelCallback
     );

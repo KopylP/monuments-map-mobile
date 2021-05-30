@@ -1,18 +1,22 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import withMonumentService from "../../components/hoc-helpers/with-monument-service";
 import withReduxData from "../../components/hoc-helpers/with-redux-data";
 import MonumentsMapWithModal from "../../components/organisms/monuments-map-with-modal";
+import { isIOS } from "../../helpers/platform-helpers";
 import {
   fetchMonumentMap,
   requestMonumentMapFetch,
 } from "../../redux/actions/monument-map-actions";
+import { DefaultTheme } from "../../theme/default-theme";
 import { navigateToMonumentsDetailScreen } from "../monument-detail-screen/monument-detail-screen";
 
 function MonumentMapScreen({ monuments, loading }) {
   const { navigate } = useNavigation();
+  const { bottom } = useSafeAreaInsets();
 
   const handleMonumentPress = (monument) => {
     navigateToMonumentsDetailScreen(navigate)(monument);
@@ -23,6 +27,9 @@ function MonumentMapScreen({ monuments, loading }) {
       monuments={monuments}
       loading={loading}
       onMonumentPress={handleMonumentPress}
+      locationButtonBottomInset={
+        isIOS ? DefaultTheme.dims.tabHeight + bottom : 0
+      }
     />
   );
 }

@@ -8,7 +8,9 @@ import {
   Image,
 } from "react-native";
 import FastImage from "react-native-fast-image";
+import { runOnUI } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import timeout from "../../../helpers/timeout-promise";
 import { DefaultTheme } from "../../../theme/default-theme";
 import BackButton from "../buttons/back-button/back-button";
 

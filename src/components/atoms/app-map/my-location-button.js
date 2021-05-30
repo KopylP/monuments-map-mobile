@@ -3,12 +3,12 @@ import { View } from "react-native";
 import { Button } from "react-native-elements";
 import { DefaultTheme } from "../../../theme/default-theme";
 
-export default function MyLocationButton({ onPress }) {
+export default function MyLocationButton({ onPress, bottomInset = 0 }) {
   return (
     <View
       style={{
         position: "absolute",
-        bottom: 20,
+        bottom: 30 + bottomInset,
         right: 20,
         alignSelf: "center",
       }}
@@ -18,14 +18,14 @@ export default function MyLocationButton({ onPress }) {
         buttonStyle={{
           backgroundColor: DefaultTheme.palette.colors.primary.main,
           padding: 0,
-          width: 40,
-          height: 40,
-          borderRadius: 20,
+          width: 50,
+          height: 50,
+          borderRadius: 25,
         }}
         icon={{
           name: "md-locate",
           type: "ionicon",
-          size: 20,
+          size: 25,
           color: "white",
         }}
       />

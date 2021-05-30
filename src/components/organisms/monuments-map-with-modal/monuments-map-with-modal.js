@@ -3,7 +3,11 @@ import { useState } from "react";
 import MonumentBottomSheet from "../monument-bottom-sheet";
 import MonumentsMap from "../../molecules/monuments-map";
 
-function MonumentsMapWithModal({ monuments, onMonumentPress = (p) => p }) {
+function MonumentsMapWithModal({
+  monuments,
+  locationButtonBottomInset = 0,
+  onMonumentPress = (p) => p,
+}) {
   const [monument, setMonument] = useState(null);
   const [openModal, setOpenModal] = useState({ open: false });
 
@@ -21,6 +25,7 @@ function MonumentsMapWithModal({ monuments, onMonumentPress = (p) => p }) {
       <MonumentsMap
         monuments={monuments}
         onClickMonument={handleMonumentMarkerClick}
+        locationButtonBottomInset={locationButtonBottomInset}
       />
       <MonumentBottomSheet
         sheetState={openModal}

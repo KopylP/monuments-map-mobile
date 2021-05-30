@@ -37,45 +37,45 @@ const monumentMapFailure = (error) => {
   };
 };
 
-export const fetchMonumentMap = (monumentService) => () => (
-  dispatch,
-  getState
-) => {
-  function executor(e) {
-    dispatch(changeMonumentMapCancelRequest(e));
-  }
+export const fetchMonumentMap =
+  (monumentService) => () => (dispatch, getState) => {
+    function executor(e) {
+      dispatch(changeMonumentMapCancelRequest(e));
+    }
 
-  const {
-    cancelRequest = null,
-    statuses = [],
-    conditions = [],
-    cities = [],
-    yearsRange = defaultYearsRange,
-  } = getState().monumentMap;
+    const {
+      cancelRequest = null,
+      statuses = [],
+      conditions = [],
+      cities = [],
+      yearsRange = defaultYearsRange,
+    } = getState().monumentMap;
 
-  if (cancelRequest) {
-    cancelRequest();
-  }
+    if (cancelRequest) {
+      cancelRequest();
+    }
 
-  dispatch(monumentMapRequest());
+    dispatch(monumentMapRequest());
 
-  monumentService
-    .getMonumentsByFilter(
-      cities.map((c) => c.id),
-      statuses,
-      conditions,
-      yearsRange,
-      executor
-    )
-    .then((monuments) => {
-      dispatch(monumentMapLoaded(monuments));
-    })
-    .catch((e) => {
-      if (!Axios.isCancel(e)) {
-        dispatch(monumentMapFailure(e));
-      }
-    });
-};
+    monumentService
+      .getMonumentsByFilter(
+        {
+          cities: cities.map((c) => c.id),
+          statuses,
+          conditions,
+          yearsRange,
+        },
+        executor
+      )
+      .then((monuments) => {
+        dispatch(monumentMapLoaded(monuments));
+      })
+      .catch((e) => {
+        if (!Axios.isCancel(e)) {
+          dispatch(monumentMapFailure(e));
+        }
+      });
+  };
 
 export const requestMonumentMapFetch = () => ({
   type: REQUEST_MONUMENT_MAP_FETCH,

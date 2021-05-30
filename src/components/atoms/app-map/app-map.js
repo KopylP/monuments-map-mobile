@@ -43,7 +43,7 @@ class AppMap extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, locationButtonBottomInset = 0 } = this.props;
     const { userAccessLocation } = this.state;
     return (
       <View style={[StyleSheet.absoluteFill]}>
@@ -65,7 +65,10 @@ class AppMap extends Component {
           {children}
         </MapView>
         {userAccessLocation && (
-          <MyLocationButton onPress={this.handleLocationButtonPress} />
+          <MyLocationButton
+            onPress={this.handleLocationButtonPress}
+            bottomInset={locationButtonBottomInset}
+          />
         )}
       </View>
     );

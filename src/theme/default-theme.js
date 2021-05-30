@@ -31,15 +31,10 @@ export const DefaultTheme = {
       },
     },
   },
-  fonts: {
-    //   ubuntu: {
-    //     light: "Ubuntu_300Light",
-    //     regular: "Ubuntu_400Regular",
-    //     medium: "Ubuntu_500Medium",
-    //     bold: "Ubuntu_700Bold"
-    //   }
-  },
   margins: {
     defaultHorizontal: 20,
+  },
+  dims: {
+    tabHeight: 45,
   },
 };

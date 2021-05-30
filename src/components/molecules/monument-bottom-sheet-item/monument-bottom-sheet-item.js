@@ -4,6 +4,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import { isIOS } from "react-native-elements/dist/helpers";
 import FastImage from "react-native-fast-image";
 import { Button } from "react-native-paper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import CloseButton from "../../atoms/close-button";
@@ -16,6 +17,7 @@ function MonumentBottomSheetItem({
   onClose,
 }) {
   const { t } = useLocate();
+  const { bottom } = useSafeAreaInsets();
 
   const ContainerView = isIOS ? BlurView : View;
 
@@ -47,6 +49,13 @@ function MonumentBottomSheetItem({
           {t("Open")}
         </Button>
       </ContainerView>
+      {isIOS && (
+        <View
+          style={{
+            height: bottom + DefaultTheme.dims.tabHeight,
+          }}
+        />
+      )}
       <HandleIcon style={styles.handleIcon} />
       <CloseButton style={styles.closeButton} onClose={onClose} />
     </View>

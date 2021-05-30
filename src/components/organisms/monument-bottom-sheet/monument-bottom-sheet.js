@@ -30,6 +30,8 @@ export default function MonumentBottomSheet({
     makeCancelable(timeout(300)).then(() => onChange(false));
   }, []);
 
+  console.log("Hello world");
+
   return (
     <BottomSheet
       ref={bottomSheetRef}

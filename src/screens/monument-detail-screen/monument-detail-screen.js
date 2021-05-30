@@ -14,6 +14,7 @@ import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 import { getPhotoUrlById } from "../../services/photo-service";
 import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
+import timeout from "../../helpers/timeout-promise";
 
 const MonumentDetailScreen = ({ data, loading, params }) => {
   const { monument } = params;
@@ -23,11 +24,10 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
     DefaultTheme.palette.colors.primary.main
   );
 
-  const [backClicked, setBackClicked] = useState(false);
-
   const handleBack = () => {
-    setBackClicked(true);
-    navigation.goBack();
+    timeout(0).then(() => {
+      navigation.goBack();
+    });
   };
 
   return (
@@ -37,7 +37,7 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
         title={monument.name}
         onBack={handleBack}
         cacheKey={monument.id + ""}
-        headerBackground={backClicked ? null : imageBackground}
+        headerBackground={imageBackground}
         source={{
           uri: getPhotoUrlById(monument.majorPhotoImageId, 500),
         }}
