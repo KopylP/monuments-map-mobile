@@ -1,4 +1,5 @@
 import React, { memo, useRef } from "react";
+import { Marker } from "react-native-maps";
 import AppMap from "../../atoms/app-map/app-map";
 import MonumentMarker from "../monument-marker/monument-marker";
 
@@ -22,15 +23,23 @@ function MonumentsMap({
     );
   };
 
+  function mapMonumentToMarker(monument) {
+    return (
+      <MonumentMarker
+        coordinate={{
+          latitude: monument.latitude,
+          longitude: monument.longitude,
+        }}
+        monument={monument}
+        onPress={handleMarkerPress}
+        key={monument.id + ""}
+      />
+    );
+  }
+
   return (
     <AppMap ref={mapRef} locationButtonBottomInset={locationButtonBottomInset}>
-      {monuments.map((monument) => (
-        <MonumentMarker
-          monument={monument}
-          onPress={handleMarkerPress}
-          key={monument.id + ""}
-        />
-      ))}
+      {monuments.map(mapMonumentToMarker)}
     </AppMap>
   );
 }

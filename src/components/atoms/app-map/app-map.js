@@ -5,6 +5,7 @@ import MyLocationButton from "./my-location-button";
 import * as Location from "expo-location";
 import { memo } from "react";
 import MapView from "react-native-map-clustering";
+import { DefaultTheme } from "../../../theme/default-theme";
 
 class AppMap extends Component {
   state = {
@@ -63,6 +64,9 @@ class AppMap extends Component {
           showsUserLocation={userAccessLocation}
           style={[StyleSheet.absoluteFill]}
           showsMyLocationButton={false}
+          tracksViewChanges={false}
+          animationEnabled={false}
+          clusterColor={DefaultTheme.palette.colors.primary.main}
         >
           {children}
         </MapView>

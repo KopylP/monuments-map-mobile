@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import { StyleSheet, Text, View } from "react-native";
 import { DefaultTheme } from "../../../../theme/default-theme";
@@ -6,7 +6,7 @@ import AppContext from "../../../../context/app-context";
 import ContentLoader, { Rect } from "react-content-loader/native";
 import { Icon } from "react-native-elements";
 
-export default function MonumentAddress({ latitude, longitude, style = {} }) {
+function MonumentAddress({ latitude, longitude, style = {} }) {
   const {
     geocoderService: { getAddressInformationFromLatLng },
   } = useContext(AppContext);
@@ -44,6 +44,8 @@ export default function MonumentAddress({ latitude, longitude, style = {} }) {
     </View>
   );
 }
+
+export default memo(MonumentAddress);
 
 const styles = StyleSheet.create({
   text: {

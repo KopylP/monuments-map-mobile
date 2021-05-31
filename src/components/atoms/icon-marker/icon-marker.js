@@ -12,6 +12,7 @@ function IconMarker(props) {
         x: 0,
         y: -10,
       }}
+      tracksViewChanges={false}
     >
       <Icon
         name="map-marker-alt"

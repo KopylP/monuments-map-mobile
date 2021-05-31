@@ -15,7 +15,7 @@ export default function ButtonGroup({ monument }) {
   const podcastButtonStyles = {
     ...styles.button,
     ...(!podcastsAvailable ? styles.invisible : {}),
-  }
+  };
 
   return (
     <View style={styles.container}>
