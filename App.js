@@ -13,7 +13,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import ModalSwitch from "./src/components/modal/modal-switch";
 import { logApplicationEvent } from "./src/helpers/application-analytics";
 import MainNavigator from "./src/navigations/main-navigator";
-enableScreens();
 
 function App() {
   const { culture } = useLocate();

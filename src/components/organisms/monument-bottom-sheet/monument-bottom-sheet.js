@@ -4,8 +4,9 @@ import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import MonumentBottomSheetItem from "../../molecules/monument-bottom-sheet-item";
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../../helpers/timeout-promise";
+import { memo } from "react";
 
-export default function MonumentBottomSheet({
+function MonumentBottomSheet({
   sheetState,
   onChange = (isOpen) => isOpen,
   monument,
@@ -50,3 +51,5 @@ export default function MonumentBottomSheet({
     </BottomSheet>
   );
 }
+
+export default memo(MonumentBottomSheet);

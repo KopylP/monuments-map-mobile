@@ -24,6 +24,8 @@ import {
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
 import SourcesScreenModalIOS from "./modals/sources-screen-modal-ios";
+import { enableScreens } from "react-native-screens";
+enableScreens();
 
 const Stack = isIOS ? createNativeStackNavigator() : createStackNavigator();
 

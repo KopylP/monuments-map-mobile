@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import MapView from "react-native-maps";
 import { defaultMapCenter } from "../../../config";
 import MyLocationButton from "./my-location-button";
 import * as Location from "expo-location";
+import { memo } from "react";
+import MapView from "react-native-map-clustering";
 
 class AppMap extends Component {
   state = {
@@ -48,6 +49,7 @@ class AppMap extends Component {
     return (
       <View style={[StyleSheet.absoluteFill]}>
         <MapView
+          minPoints={2}
           ref={this.mapRef}
           onMapReady={this.handleMapReady}
           initialRegion={{
@@ -75,4 +77,4 @@ class AppMap extends Component {
   }
 }
 
-export default AppMap;
+export default memo(AppMap);

@@ -1,5 +1,6 @@
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import { useEffect, useRef, useState } from "react";
+import { InteractionManager } from "react-native";
 import timeout from "../../helpers/timeout-promise";
 
 export default function useData(
@@ -9,6 +10,7 @@ export default function useData(
     params: [],
     defaultValue: null,
     numberOfAttempts: 0,
+    useInteractionManagerDelay: true,
   },
   effectParams = []
 ) {
@@ -58,10 +60,12 @@ export default function useData(
 
   const update = () => {
     if (effectParams.length > 0 && !checkEffectParamsOnNull()) return;
-    enableLoading();
-    makeCancelable(getData(...params))
-      .then(handleSuccess)
-      .catch(handleError);
+    InteractionManager.runAfterInteractions(() => {
+      enableLoading();
+      makeCancelable(getData(...params))
+        .then(handleSuccess)
+        .catch(handleError);
+    });
   };
 
   useEffect(update, effectParams);
@@ -69,6 +73,6 @@ export default function useData(
   return {
     data,
     loading,
-    error  
+    error,
   };
 }

@@ -17,6 +17,7 @@ import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
 import timeout from "../../helpers/timeout-promise";
 import { isIOS } from "../../helpers/platform-helpers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { memo } from "react";
 
 const maxHeight = isIOS ? 250 : 200;
 
@@ -57,11 +58,6 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
 };
 
 const bindRouteParamsToMethodProps = ({ monument }) => [monument.id];
-const bindRouteParamsToLogObject = ({ monument }) => ({
-  id: monument.id,
-  slug: monument.slug,
-  localizedName: monument.name,
-});
 
 const composed = compose(
   withMsGetMethod((p) => p.getMonumentById),
@@ -75,4 +71,4 @@ export const navigateToMonumentsDetailScreen = (navigate) => (monument) => {
   });
 };
 
-export default composed(MonumentDetailScreen);
+export default composed(memo(MonumentDetailScreen));

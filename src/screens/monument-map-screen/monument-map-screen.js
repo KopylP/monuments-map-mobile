@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
+import { memo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";

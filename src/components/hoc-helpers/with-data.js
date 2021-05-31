@@ -7,7 +7,6 @@ const withData =
   (Wrapper) =>
   (props) => {
     const { delay = 350, ErrorComponent = ErrorScreen } = options;
-
     const { getMethod, params } = props;
     const [refreshKey, setRefreshKey] = useState(-1);
 
