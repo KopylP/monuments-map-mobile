@@ -106,6 +106,8 @@ export default function MainNavigator() {
           options={{
             headerShown: false,
             gestureEnabled: isIOS,
+            cardStyleInterpolator:
+              CardStyleInterpolators.forScaleFromCenterAndroid,
           }}
           component={MonumentDetailScreen}
         />

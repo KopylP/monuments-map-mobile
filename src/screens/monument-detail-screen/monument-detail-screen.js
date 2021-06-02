@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { DefaultTheme } from "../../theme/default-theme";
@@ -18,11 +18,14 @@ import timeout from "../../helpers/timeout-promise";
 import { isIOS } from "../../helpers/platform-helpers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { memo } from "react";
+import { OptimizedHeavyScreen } from "react-navigation-heavy-screen";
 
 const maxHeight = isIOS ? 250 : 200;
 
-const MonumentDetailScreen = ({ data, loading, params }) => {
-  const { monument } = params;
+const MonumentDetailScreen = () => {
+  const {
+    params: { monument },
+  } = useRoute();
   const { top } = useSafeAreaInsets();
 
   const navigation = useNavigation();
@@ -49,21 +52,14 @@ const MonumentDetailScreen = ({ data, loading, params }) => {
         }}
       >
         <View style={{ flex: 1 }}>
-          {!loading && data && <MonumentDetails monument={data} />}
-          {loading && <Loader />}
+          <OptimizedHeavyScreen>
+            <MonumentDetails />
+          </OptimizedHeavyScreen>
         </View>
       </CollapsedToolbar>
     </View>
   );
 };
-
-const bindRouteParamsToMethodProps = ({ monument }) => [monument.id];
-
-const composed = compose(
-  withMsGetMethod((p) => p.getMonumentById),
-  withRouteParams(),
-  withData(bindRouteParamsToMethodProps)
-);
 
 export const navigateToMonumentsDetailScreen = (navigate) => (monument) => {
   navigate(MONUMENT_DETAIL_SCREEN, {
@@ -71,4 +67,4 @@ export const navigateToMonumentsDetailScreen = (navigate) => (monument) => {
   });
 };
 
-export default composed(memo(MonumentDetailScreen));
+export default memo(MonumentDetailScreen);

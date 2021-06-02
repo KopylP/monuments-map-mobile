@@ -3,13 +3,15 @@ import React, { memo } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import { isIOS } from "react-native-elements/dist/helpers";
 import FastImage from "react-native-fast-image";
-import { Button } from "react-native-paper";
+import { Button } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getPhotoUrlById } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import CloseButton from "../../atoms/close-button";
 import HandleIcon from "../../atoms/handle-icon";
 import { useLocate } from "../../hooks/locate-hooks";
+import { SCREEN_WIDTH } from "../../../helpers/dimensions-helpers";
+import OpenInMapButton from "./components/open-in-map-button";
 
 function MonumentBottomSheetItem({
   monument,
@@ -29,6 +31,10 @@ function MonumentBottomSheetItem({
     default: {},
   });
 
+  function handleOpenButtonPressed() {
+    onOpenMonument(monument);
+  }
+
   return (
     <View style={styles.outerContainer}>
       <ContainerView
@@ -40,14 +46,24 @@ function MonumentBottomSheetItem({
           source={{ uri: getPhotoUrlById(monument.majorPhotoImageId, 500) }}
         />
         <Text style={styles.title}>{monument.name}</Text>
-        <Button
-          style={styles.openButton}
-          mode="contained"
-          onPress={() => onOpenMonument(monument)}
-          color={DefaultTheme.palette.colors.primary.main}
+        <View
+          style={{
+            marginBottom: 5,
+            marginLeft: 15,
+            marginRight: 15,
+            flexDirection: "row",
+            justifyContent: "space-between"
+          }}
         >
-          {t("Open")}
-        </Button>
+          <Button
+            title={t("Open")}
+            type="solid"
+            color={DefaultTheme.palette.colors.primary.main}
+            onPress={handleOpenButtonPressed}
+            buttonStyle={styles.openButton}
+          />
+          <OpenInMapButton {...monument} style={styles.navigationButton}/>
+        </View>
       </ContainerView>
       {isIOS && (
         <View
@@ -102,10 +118,14 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   openButton: {
-    marginHorizontal: 15,
     borderRadius: 10,
     overflow: "hidden",
-    marginBottom: 5,
+    width: SCREEN_WIDTH - 30 - 60,
+    backgroundColor: DefaultTheme.palette.colors.primary.main,
+  },
+  navigationButton: {
+    width: 50,
+    borderRadius: 10,
   },
   image: {
     flex: 1,
