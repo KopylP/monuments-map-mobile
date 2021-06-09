@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { PHOTO_MARGIN, PHOTO_GRID_HEIGHT } from "..";
@@ -14,11 +15,9 @@ function OneImageGrid({ data, onPress = (p) => p }) {
   }
 
   return (
-    <FastImage
-      style={styles.container}
-      source={data[0].source}
-      onPress={handlePress}
-    />
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
+      <FastImage style={styles.image} source={data[0].source} />
+    </TouchableOpacity>
   );
 }
 
@@ -28,6 +27,9 @@ const styles = new StyleSheet.create({
   container: {
     width: "100%",
     height: PHOTO_GRID_HEIGHT,
-    resizeMode: "cover"
+    resizeMode: "cover",
+  },
+  image: {
+    flex: 1,
   },
 });

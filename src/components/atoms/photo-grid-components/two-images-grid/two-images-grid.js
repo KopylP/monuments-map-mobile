@@ -1,10 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
-import { View } from "react-native";
+import { StyleSheet,TouchableOpacity,View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { PHOTO_MARGIN, PHOTO_GRID_HEIGHT } from "..";
 
-function TwoImagesGrid({ data, onPress = p => p }) {
+function TwoImagesGrid({ data, onPress = (p) => p }) {
   if (!data || !data.length || data.length != 2) {
     throw new TypeError("Data is invalid");
   }
@@ -15,9 +14,13 @@ function TwoImagesGrid({ data, onPress = p => p }) {
 
   return (
     <View style={styles.container}>
-        <FastImage style={styles.image} source={data[0].source} onPress={handlePress(0)}/>
-        <View style={styles.verticalDelimiter}/>
-        <FastImage style={styles.image} source={data[1].source} onPress={handlePress(1)}/>
+      <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+        <FastImage style={styles.image} source={data[0].source} />
+      </TouchableOpacity>
+      <View style={styles.verticalDelimiter} />
+      <TouchableOpacity style={styles.image} onPress={() => handlePress(1)}>
+        <FastImage style={styles.image} source={data[1].source} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -36,6 +39,6 @@ const styles = new StyleSheet.create({
     backgroundColor: "transparent",
   },
   image: {
-      flex: 1,
-  }
+    flex: 1,
+  },
 });

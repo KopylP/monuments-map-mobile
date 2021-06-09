@@ -47,6 +47,7 @@
     "react-native-pager-view": "5.0.12",
     "react-native-paper": "^4.4.0",
     "react-native-photo-gallery": "^0.2.4",
+    "react-native-photo-view": "github:alwx/react-native-photo-view",
     "react-native-reanimated": "^2.1.0",
     "react-native-redash": "^14.2.4",
     "react-native-safe-area-context": "^3.2.0",

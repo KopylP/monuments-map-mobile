@@ -1,10 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet } from "react-native";
-import { View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { PHOTO_MARGIN, PHOTO_GRID_HEIGHT } from "..";
 
-function ThreeImagesRightGrid({ data, onPress = p => p }) {
+function ThreeImagesRightGrid({ data, onPress = (p) => p }) {
   if (!data || !data.length || data.length != 3) {
     throw new TypeError("Data is invalid");
   }
@@ -15,12 +14,18 @@ function ThreeImagesRightGrid({ data, onPress = p => p }) {
 
   return (
     <View style={styles.container}>
-      <FastImage style={styles.image} source={data[0].source} onPress={handlePress(0)}/>
-      <View style={styles.verticalDelimiter}/>
+      <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+        <FastImage style={styles.image} source={data[0].source} />
+      </TouchableOpacity>
+      <View style={styles.verticalDelimiter} />
       <View style={styles.rightView}>
-        <FastImage style={styles.image} source={data[1].source} onPress={handlePress(1)}/>
-        <View style={styles.horizontalDelimiter}/>
-        <FastImage style={styles.image} source={data[2].source} onPress={handlePress(2)}/>
+        <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+          <FastImage style={styles.image} source={data[1].source} />
+        </TouchableOpacity>
+        <View style={styles.horizontalDelimiter} />
+        <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+          <FastImage style={styles.image} source={data[2].source} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -48,6 +53,6 @@ const styles = new StyleSheet.create({
     backgroundColor: "transparent",
   },
   image: {
-      flex: 1,
-  }
+    flex: 1,
+  },
 });

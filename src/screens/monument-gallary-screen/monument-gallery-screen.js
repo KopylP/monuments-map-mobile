@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -8,12 +9,14 @@ import withData from "../../components/hoc-helpers/with-data";
 import withMsGetMethod from "../../components/hoc-helpers/with-ms-get-method";
 import withRouteParams from "../../components/hoc-helpers/with-route-params";
 import { groupPhotoData } from "../../components/molecules/photo-grid/helpers";
+import { PHOTO_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
 import { getPhotoUrlById } from "../../services/photo-service";
 import GalleryPhotosList from "./gallery/gallery-photos-list";
 
 function MonumentGalleryScreen({ params, data, loading }) {
   const { title } = params;
   const [photoGroups, setPhotoGroups] = useState(null);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     if (data && photoGroups == null) {
@@ -27,11 +30,20 @@ function MonumentGalleryScreen({ params, data, loading }) {
     }
   }, [data]);
 
+  function handlePhotoPress(monumentPhoto) {
+    const selectedIndex = data.findIndex((p) => p.id === monumentPhoto.id);
+    navigate(PHOTO_DETAIL_SCREEN, {
+      selectedIndex,
+      monumentPhotos: data,
+      title,
+    });
+  }
+
   return (
     <View style={StyleSheet.absoluteFill}>
       {loading && <AbsoluteIndicator />}
       {photoGroups && (
-        <GalleryPhotosList photoGroups={photoGroups} title={title} />
+        <GalleryPhotosList photoGroups={photoGroups} title={title} onPhotoPress={handlePhotoPress}/>
       )}
     </View>
   );

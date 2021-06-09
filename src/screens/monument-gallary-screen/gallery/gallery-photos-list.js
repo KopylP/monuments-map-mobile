@@ -8,18 +8,10 @@ import PhotoGrid from "../../../components/molecules/photo-grid";
 
 const SIZE = Math.floor(Dimensions.get("window").width / 3) - 2;
 
-export default function GalleryPhotosList({ photoGroups = [], title }) {
+export default function GalleryPhotosList({ photoGroups = [], title, onPhotoPress }) {
   const navigation = useNavigation();
 
   const { bottom } = useSafeAreaInsets();
-
-  // const handleImageSelected = (image) => {
-  //   navigation.navigate(PHOTO_DETAIL_SCREEN, {
-  //     selectedIndex: index,
-  //     monumentPhotos: monumentPhotos,
-  //     title: title,
-  //   });
-  // };
 
   return (
     <View style={{...StyleSheet.absoluteFill, backgroundColor: "white"}}>
@@ -30,6 +22,7 @@ export default function GalleryPhotosList({ photoGroups = [], title }) {
             paddingBottom: bottom
           },
         }}
+        onPress={onPhotoPress}
       />
     </View>
   );

@@ -15,12 +15,9 @@ target 'PoltavaMonuments' do
 
   # Uncomment to opt-in to using Flipper
   #
-#  if !ENV['CI']
-#    use_flipper!({ 'Flipper' => '0.80.0' })
-#    post_install do |installer|
-#      flipper_post_install(installer)
-#    end
-#  end
+  if !ENV['CI']
+    use_flipper!({ 'Flipper-Folly' => '2.5.3', 'Flipper' => '0.87.0', 'Flipper-RSocket' => '1.3.1' })
+  end
 
 
 end
