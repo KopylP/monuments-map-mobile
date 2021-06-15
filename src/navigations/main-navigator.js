@@ -97,7 +97,7 @@ export default function MainNavigator() {
             headerShown: false,
             stackPresentation: "fullScreenModal",
             cardStyleInterpolator:
-              CardStyleInterpolators.forScaleFromCenterAndroid,
+              CardStyleInterpolators.forFadeFromBottomAndroid,
           }}
           component={PhotoViewScreen}
         />

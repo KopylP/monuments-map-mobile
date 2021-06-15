@@ -19,11 +19,11 @@ function ThreeImagesRightGrid({ data, onPress = (p) => p }) {
       </TouchableOpacity>
       <View style={styles.verticalDelimiter} />
       <View style={styles.rightView}>
-        <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+        <TouchableOpacity style={styles.image} onPress={() => handlePress(1)}>
           <FastImage style={styles.image} source={data[1].source} />
         </TouchableOpacity>
         <View style={styles.horizontalDelimiter} />
-        <TouchableOpacity style={styles.image} onPress={() => handlePress(0)}>
+        <TouchableOpacity style={styles.image} onPress={() => handlePress(2)}>
           <FastImage style={styles.image} source={data[2].source} />
         </TouchableOpacity>
       </View>
