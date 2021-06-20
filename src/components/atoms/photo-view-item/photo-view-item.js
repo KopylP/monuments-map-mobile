@@ -2,11 +2,20 @@ import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import PhotoView from "react-native-photo-view";
 
-function PhotoViewItem({ width, height, uri, onTap = (p) => p }) {
+function PhotoViewItem({
+  width,
+  height,
+  uri,
+  onTap = (p) => p,
+  onTouchStart = (p) => p,
+  onTouchEnd = (p) => p,
+}) {
   return (
-    <View style={{ ...StyleSheet.absoluteFill,}}>
-       <PhotoView
+    <View style={{ ...StyleSheet.absoluteFill }}>
+      <PhotoView
         source={{ uri }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         minimumZoomScale={1}
         maximumZoomScale={3}
         showsVerticalScrollIndicator={false}
@@ -18,8 +27,8 @@ function PhotoViewItem({ width, height, uri, onTap = (p) => p }) {
           width,
           height,
         }}
-      /> 
-   </View>
+      />
+    </View>
   );
 }
 
