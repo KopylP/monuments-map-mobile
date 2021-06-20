@@ -5,6 +5,7 @@ import MonumentBottomSheetItem from "../../molecules/monument-bottom-sheet-item"
 import useCancelablePromise from "@rodw95/use-cancelable-promise";
 import timeout from "../../../helpers/timeout-promise";
 import { memo } from "react";
+import { isIOS } from "../../../helpers/platform-helpers";
 
 function MonumentBottomSheet({
   sheetState,
@@ -27,7 +28,7 @@ function MonumentBottomSheet({
   const animationConfigs = useBottomSheetSpringConfigs();
 
   const handleCloseButton = useCallback(() => {
-    bottomSheetRef.current.snapTo(0, 300);
+    bottomSheetRef.current.snapTo(0, isIOS ? 800 : 500);
     makeCancelable(timeout(300)).then(() => onChange(false));
   }, []);
 

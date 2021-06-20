@@ -73,7 +73,7 @@ function MonumentBottomSheetItem({
         />
       )}
       <HandleIcon style={styles.handleIcon} />
-      <CloseButton style={styles.closeButton} onClose={onClose} />
+      <CloseButton style={styles.closeButton} onClick={onClose} />
     </View>
   );
 }
