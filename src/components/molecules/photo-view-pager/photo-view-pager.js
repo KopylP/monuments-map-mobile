@@ -8,7 +8,7 @@ import {
 import { getPhotoUrlById } from "../../../services/photo-service";
 import PhotoViewItem from "../../atoms/photo-view-item";
 
-function PhotoViewPager({ photos, initialPage }) {
+function PhotoViewPager({ photos, initialPage, onPageSelected = p => p }) {
 
   const [scrollEnabled, setScrollEnabled] = useState(true);
 
@@ -29,6 +29,7 @@ function PhotoViewPager({ photos, initialPage }) {
       <PagerView 
         initialPage={initialPage}
         scrollEnabled={scrollEnabled}
+        onPageSelected={onPageSelected}
         style={StyleSheet.absoluteFill}>
         {photos.map((photo, i) => (
           <PhotoViewItem
