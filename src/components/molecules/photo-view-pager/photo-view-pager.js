@@ -5,7 +5,7 @@ import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from "../../../helpers/dimensions-helpers";
-import { getPhotoUrlById } from "../../../services/photo-service";
+import { getPhotoUrlWithSize } from "../../../services/photo-service";
 import PhotoViewItem from "../../atoms/photo-view-item";
 
 function PhotoViewPager({ photos, initialPage, onPageSelected = p => p }) {
@@ -34,7 +34,7 @@ function PhotoViewPager({ photos, initialPage, onPageSelected = p => p }) {
         {photos.map((photo, i) => (
           <PhotoViewItem
             key={i}
-            uri={getPhotoUrlById(photo.id)}
+            uri={getPhotoUrlWithSize(photo.url)}
             width={SCREEN_WIDTH}
             height={SCREEN_HEIGHT}
             onTouchStart={handleTouchStart}

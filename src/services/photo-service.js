@@ -1,5 +1,3 @@
-import { host } from "../config";
-
-export function getPhotoUrlById(id, size) {
-    return `${host}api/photo/${id}/image${size ? "/" + size : ""}`;
+export function getPhotoUrlWithSize(url, size = null) {
+    return `${url}${size ? "/" + size : ""}`;
 }

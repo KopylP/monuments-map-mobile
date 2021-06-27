@@ -10,7 +10,7 @@ import withMsGetMethod from "../../components/hoc-helpers/with-ms-get-method";
 import withRouteParams from "../../components/hoc-helpers/with-route-params";
 import { groupPhotoData } from "../../components/molecules/photo-grid/helpers";
 import { PHOTO_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
-import { getPhotoUrlById } from "../../services/photo-service";
+import { getPhotoUrlWithSize } from "../../services/photo-service";
 import GalleryPhotosList from "./gallery/gallery-photos-list";
 
 function MonumentGalleryScreen({ params, data, loading }) {
@@ -21,9 +21,9 @@ function MonumentGalleryScreen({ params, data, loading }) {
   useEffect(() => {
     if (data && photoGroups == null) {
       setPhotoGroups(
-        groupPhotoData(data, (photo) => {
+        groupPhotoData(data, (monumentphoto) => {
           return {
-            uri: getPhotoUrlById(photo.photoId, 500),
+            uri: getPhotoUrlWithSize(monumentphoto.photo.url, 500),
           };
         })
       );

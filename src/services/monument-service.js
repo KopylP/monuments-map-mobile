@@ -181,5 +181,6 @@ export default class MonumentService {
     id: p.id,
     year: p.year,
     period: p.period,
+    majorPhotoImageUrl: p.majorPhotoImageUrl
   });
 }

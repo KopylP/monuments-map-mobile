@@ -1,19 +1,12 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import { DefaultTheme } from "../../theme/default-theme";
 import CollapsedToolbar from "../../components/atoms/collapsed-toolbar/collapsed-toolbar";
-import Loader from "./components/loader";
 import MonumentDetails from "./components/monument-details/monument-details";
-import { compose } from "redux";
-import withMsGetMethod from "../../components/hoc-helpers/with-ms-get-method";
-import withRouteParams from "../../components/hoc-helpers/with-route-params";
-import withData from "../../components/hoc-helpers/with-data";
-import withParamsScreenLog from "../../components/hoc-helpers/analytics/with-params-screen-log";
 import useValueWithDelay from "../../components/hooks/use-value-with-delay";
 import { MONUMENT_DETAIL_SCREEN } from "../../navigations/route-consts/monuments-detail-navigation-consts";
-import { getPhotoUrlById } from "../../services/photo-service";
-import { isIPhoneWithMonobrow } from "react-native-status-bar-height";
+import { getPhotoUrlWithSize } from "../../services/photo-service";
 import timeout from "../../helpers/timeout-promise";
 import { isIOS } from "../../helpers/platform-helpers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -48,7 +41,7 @@ const MonumentDetailScreen = () => {
         cacheKey={monument.id + ""}
         headerBackground={imageBackground}
         source={{
-          uri: getPhotoUrlById(monument.majorPhotoImageId, 500),
+          uri:  getPhotoUrlWithSize(monument.majorPhotoImageUrl, 500),
         }}
       >
         <View style={{ flex: 1 }}>

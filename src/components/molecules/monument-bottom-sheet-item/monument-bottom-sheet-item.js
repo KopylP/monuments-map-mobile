@@ -5,7 +5,7 @@ import { isIOS } from "react-native-elements/dist/helpers";
 import FastImage from "react-native-fast-image";
 import { Button } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { getPhotoUrlById } from "../../../services/photo-service";
+import { getPhotoUrlWithSize } from "../../../services/photo-service";
 import { DefaultTheme } from "../../../theme/default-theme";
 import CloseButton from "../../atoms/close-button";
 import HandleIcon from "../../atoms/handle-icon";
@@ -43,7 +43,7 @@ function MonumentBottomSheetItem({
       >
         <FastImage
           style={styles.image}
-          source={{ uri: getPhotoUrlById(monument.majorPhotoImageId, 500) }}
+          source={{ uri: getPhotoUrlWithSize(monument.majorPhotoImageUrl, 500) }}
         />
         <Text style={styles.title}>{monument.name}</Text>
         <View
