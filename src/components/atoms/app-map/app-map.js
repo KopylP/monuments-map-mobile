@@ -6,6 +6,7 @@ import * as Location from "expo-location";
 import { memo } from "react";
 import MapView from "react-native-map-clustering";
 import { DefaultTheme } from "../../../theme/default-theme";
+import appMapStyle from "./app-map-style";
 
 class AppMap extends Component {
   state = {
@@ -67,6 +68,7 @@ class AppMap extends Component {
           tracksViewChanges={false}
           animationEnabled={false}
           clusterColor={DefaultTheme.palette.colors.primary.main}
+          customMapStyle={appMapStyle}
         >
           {children}
         </MapView>
