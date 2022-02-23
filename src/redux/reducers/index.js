@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import categoriesReducer from "./categories-reducer";
 import conditionsReducer from "./conditions-reducer";
 import filterReducer from "./filter-reducer";
 import modalReducer from "./modal-reducer";
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   conditions: conditionsReducer,
   modal: modalReducer,
   monumentMap: monumentMapReducer,
+  categories: categoriesReducer
 });
 
 export default reducer;

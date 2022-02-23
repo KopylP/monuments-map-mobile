@@ -1,4 +1,5 @@
 import axios from "axios";
+import { categories } from "../local-data/categories";
 
 const CancelToken = axios.CancelToken;
 
@@ -168,6 +169,10 @@ export default class MonumentService {
       `photo/${id}/image/${1000}?base64=${base64}&webp=${webp}`
     ); // TODO Update Api
   };
+
+  getCategories = async () => {
+    return await Promise.resolve(categories);
+  }
 
   _mapMonuments = (p) => ({
     slug: p.slug,

@@ -5,10 +5,7 @@ import { DefaultTheme } from "../../../theme/default-theme";
 import { useLocateYear } from "../../hooks/locate-hooks";
 
 function MonumentBottomSheetHeader({ year, period }) {
-  console.log(year, period);
   const yearString = useLocateYear(year, period);
-
-  console.log("yearString", yearString);
 
   return (
     <BlurView

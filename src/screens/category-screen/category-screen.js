@@ -1,4 +1,3 @@
-import { BlurView } from "expo-blur";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native";
@@ -10,8 +9,9 @@ import { useLocate } from "../../components/hooks/locate-hooks";
 import { isIOS } from "../../helpers/platform-helpers";
 import { DefaultTheme } from "../../theme/default-theme";
 import CategoryList from "./components/category-list/category-list";
+import { connectData } from "./connector";
 
-export default function CategoryScreen() {
+function CategoryScreen({ categories }) {
   const { top, bottom } = useSafeAreaInsets();
   const { t } = useLocate();
 
@@ -27,7 +27,7 @@ export default function CategoryScreen() {
         showsVerticalScrollIndicator={false}
       >
         <Title title={t("Home")} style={styles.title} />
-        <CategoryList categories={[1, 2, 3, 4, 5, 6, 7, 8]} />
+        {categories && <CategoryList categories={categories} />}
       </ScrollView>
       <BlurHeader />
     </View>
@@ -40,3 +40,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default connectData(CategoryScreen);
